@@ -31,6 +31,7 @@ export interface IAlumniUser {
     endTime: Date;
     createdBy: number;
     children?: React.ReactNode;
+    users: {userId:string, name: string}[]
     // The following collections are omitted in the TypeScript interface
     // because they would create circular dependencies with other interfaces
     // and usually are not required when working with frontend data structures.
