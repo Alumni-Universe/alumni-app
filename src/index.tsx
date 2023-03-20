@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import Keycloak from 'keycloak-js';
 
 const keycloak = new Keycloak();
-//const keycloak: Keycloak.KeycloakInstance = Keycloak();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

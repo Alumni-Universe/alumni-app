@@ -8,8 +8,7 @@ const AlumniGroupItem : FC<IAlumniGroup>  = ({ groupId, name, description, isPri
         <div className="card-body">
             <h4 className="card-title">{ name } {groupId} </h4>
             <p className="card-text">Description:  { description }</p>
-            <p className="card-text">Private/Public: { isPrivate }</p>
-            <p className="card-text">Created by: { createdBy } kr/t</p>
+            <p className="card-text">Created by id: { createdBy }</p>
         </div>
     </article>
     )
