@@ -14,6 +14,7 @@ export interface IAlumniUser {
     status: string | null;
     bio: string | null;
     funFact: string | null;
+    children?: React.ReactNode;
     // The following collections are omitted in the TypeScript interface
     // because they would create circular dependencies with other interfaces
     // and usually are not required when working with frontend data structures.
@@ -29,6 +30,7 @@ export interface IAlumniUser {
     startTime: Date;
     endTime: Date;
     createdBy: number;
+    children?: React.ReactNode;
     // The following collections are omitted in the TypeScript interface
     // because they would create circular dependencies with other interfaces
     // and usually are not required when working with frontend data structures.
@@ -46,6 +48,7 @@ export interface IAlumniUser {
     targetGroup: number | null;
     targetTopic: number | null;
     targetEvent: number | null;
+    children?: React.ReactNode;
     // The following properties are omitted in the TypeScript interface
     // because they would create circular dependencies with other interfaces
     // and usually are not required when working with frontend data structures.
@@ -67,6 +70,7 @@ export interface IAlumniUser {
     topicId: number;
     name: string;
     description: string;
+    children?: React.ReactNode;
     // The following properties are omitted in the TypeScript interface
     // because they would create circular dependencies with other interfaces
     // and usually are not required when working with frontend data structures.
