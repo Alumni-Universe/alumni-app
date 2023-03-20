@@ -1,12 +1,12 @@
 import * as React from 'react';
 import './App.css';
-import AlumniGroups from './pages/AlumniGroups';
+import Routing from './routing/Routing';
 
 class App extends React.Component {
   render() {
     return (
       <div className="container">
-          <AlumniGroups/>
+        <Routing />
       </div>
     );
   }
