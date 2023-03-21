@@ -37,6 +37,7 @@ const Events:FC = () => {
                     } }/>
                 })
             }
+            <h2 className="font-bold text-2xl mt-3">Recommended for you</h2>
         </section>
     )
 }
