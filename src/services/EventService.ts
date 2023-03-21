@@ -3,7 +3,7 @@ import { IEvent } from '../interfaces/Interfaces';
 
 export const EventService = (function(){
 
-    const urlToEventController = "https://localhost:7100/api/Events";
+    const urlToEventController = "https://noroffalumni.azurewebsites.net/api/Events";
 
     const getAll = async () => {
         const result = await axios.get( urlToEventController );

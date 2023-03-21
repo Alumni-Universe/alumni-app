@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/shared/Sidebar';
-import CreatePostModal from '../components/CreatePostModel';
-import Post from '../components/Post';
+import CreatePostModal from '../components/post/CreatePostModel';
+import Post from '../components/post/Post';
 import profilePicture from '../assets/noroff.png';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -46,6 +46,8 @@ const UserProfile = () => {
     <div className="flex h-screen">
       <div className="flex-1">
         <Header
+        heading='Home'
+        headerBtnText='New Post'
           isCreatePostPopUpVisible={isCreatePostModalOpen}
           changeCreatePostPopUpVisiblility={toggleCreatePostModal}
         />

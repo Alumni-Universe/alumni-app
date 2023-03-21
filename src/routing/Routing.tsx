@@ -6,6 +6,7 @@ import UserProfile from "../pages/UserProfile"
 import Sidebar from "../components/shared/Sidebar";
 import Events from "../pages/Events";
 import Topics from "../pages/Topics";
+import CreateEvents from "../components/events/CreateEvents";
 
 const Routing: FC = () => {
     return(
@@ -18,6 +19,7 @@ const Routing: FC = () => {
                     <Route path="/groups" element={<AlumniGroups/>}/>
                     <Route path="/events" element={<Events/>}/>
                     <Route path="/topics" element={<Topics/>}/>
+                    <Route path="/post" element={<CreateEvents isOpen={true}/>}/>
                 </Routes>
             </div>
         </BrowserRouter>
