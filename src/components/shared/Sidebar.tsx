@@ -4,7 +4,7 @@ import noroffLogo from '../../assets/noroff.png';
 
 const Sidebar : FC = () => {
     return (
-      <div className="bg-gray-100 h-screen pl-3 w-1/5 fixed top-0">
+      <div className="fixed top-0 left-0 h-screen w-1/5 bg-gray-100">
         <div className='flex flex-row items-center'>
             <img src={noroffLogo} className="w-10 h-10 mt-2 mr-2"/>
             <span className='sidebar-heading text-xs'>Alumni Portal</span>

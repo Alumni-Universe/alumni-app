@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-const Groups:FC = () => {
+const Topics:FC = () => {
     return(
         <section>
             <h2>TOPICS</h2>
@@ -8,4 +8,4 @@ const Groups:FC = () => {
     )
 }
 
-export default Groups;
+export default Topics;
