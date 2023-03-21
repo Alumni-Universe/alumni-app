@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import CreatePost from '../components/post/CreatePost';
+import CreatePost from '../components//post/CreatePost';
 import Header from '../components/Header';
 import Sidebar from '../components/shared/Sidebar';
 

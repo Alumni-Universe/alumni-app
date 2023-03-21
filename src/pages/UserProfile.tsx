@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
-import Sidebar from '../components/shared/Sidebar';
 import CreatePostModal from '../components/post/CreatePostModel';
-import Post from '../components/post/Post';
+import Post from '../components//post/Post';
 import profilePicture from '../assets/noroff.png';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -43,14 +42,12 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="flex h-screen">
-      <div className="flex-1">
+    <div className="flex">
+      
+      <div className="w-full mt-3 ml-3">
         <Header
-        heading='Home'
-        headerBtnText='New Post'
           isCreatePostPopUpVisible={isCreatePostModalOpen}
-          changeCreatePostPopUpVisiblility={toggleCreatePostModal}
-        />
+          changeCreatePostPopUpVisiblility={toggleCreatePostModal} heading={''} headerBtnText={''}        />
         <div className="px-5">
           {posts.map((post) => (
             <Post
