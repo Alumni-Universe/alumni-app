@@ -4,7 +4,7 @@ import AlumniGroupList from "../components/AlumniGroup/AlumniGroupList";
 
 const AlumniGroups:FC = () => {
     return(
-        <section>
+        <section className="flex">
             <AlumniGroupProvider groupId={0} name={""} description={""} isPrivate={false} createdBy={0}>
                 <AlumniGroupList/>
             </AlumniGroupProvider>

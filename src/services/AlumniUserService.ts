@@ -3,7 +3,7 @@ import { IAlumniUser } from '../interfaces/Interfaces';
 
 export const AlumniUserService = (function(){
 
-    const urlToAlumniUserController = "https://localhost:7100/api/AlumniUser";
+    const urlToAlumniUserController = "https://noroffalumni.azurewebsites.net/api/alumniusers";
 
     const getAll = async () => {
         const result = await axios.get( urlToAlumniUserController );

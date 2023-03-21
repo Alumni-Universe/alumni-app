@@ -1,5 +1,4 @@
 import React from 'react';
-import Sidebar from '../shared/Sidebar';
 
 interface EventDetailsProps {
   event: {
