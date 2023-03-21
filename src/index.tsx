@@ -5,19 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Keycloak from 'keycloak-js';
 
-const keycloak = new Keycloak();
+const keycloak = new Keycloak;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-/*keycloak.init({onLoad: 'login-required'})
-.then(() => {
-  root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
-})*/
 
 root.render(
   <React.StrictMode>

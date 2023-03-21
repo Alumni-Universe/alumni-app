@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import CreatePostModal from '../components/post/CreatePostModel';
-import Post from '../components//post/Post';
+import Post from '../components/post/Post';
 import profilePicture from '../assets/noroff.png';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -43,8 +43,7 @@ const UserProfile = () => {
 
   return (
     <div className="flex">
-      
-      <div className="w-full mt-3 ml-3">
+      <div className="">
         <Header
           isCreatePostPopUpVisible={isCreatePostModalOpen}
           changeCreatePostPopUpVisiblility={toggleCreatePostModal} heading={''} headerBtnText={''}        />
@@ -63,10 +62,7 @@ const UserProfile = () => {
           onClose={toggleCreatePostModal}
           onSubmit={handlePostSubmit}
         />
-
-
-  
-        <div className="calendar-container float-right mt-5 mr-5 flex">
+        <div className="flex">
           <UserInfoComponent/>
           <Calendar value={date} onChange={onDateChange} />
       </div>
