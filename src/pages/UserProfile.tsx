@@ -1,19 +1,16 @@
-import React, { useState } from 'react';
-import Header from '../components/Header';
-import CreatePostModal from '../components/post/CreatePostModel';
-import Post from '../components/post/Post';
-import profilePicture from '../assets/noroff.png';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import UserInfoComponent from '../components/user/UserInfo';
-import UserDetailTab from '../components/user/UserDetailTab';
+import React, { useState } from "react";
+import Header from "../components/Header";
+import CreatePostModal from "../components/post/CreatePostModel";
+import Post from "../components/post/Post";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import UserInfoComponent from "../components/user/UserInfo";
 
 interface PostData {
   id: number;
   title: string;
   content: string;
 }
-
 
 const UserProfile = () => {
   const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState(false);
@@ -46,7 +43,10 @@ const UserProfile = () => {
       <div className="">
         <Header
           isCreatePostPopUpVisible={isCreatePostModalOpen}
-          changeCreatePostPopUpVisiblility={toggleCreatePostModal} heading={''} headerBtnText={''}        />
+          changeCreatePostPopUpVisiblility={toggleCreatePostModal}
+          heading={""}
+          headerBtnText={""}
+        />
         <div className="px-5">
           {posts.map((post) => (
             <Post
@@ -63,12 +63,10 @@ const UserProfile = () => {
           onSubmit={handlePostSubmit}
         />
         <div className="flex">
-          <UserInfoComponent/>
+          <UserInfoComponent />
           <Calendar value={date} onChange={onDateChange} />
+        </div>
       </div>
-
-      </div>
-
     </div>
   );
 };

@@ -1,27 +1,31 @@
-import React from 'react';
+import React from "react";
 
 interface EventDetailsProps {
   event: {
     id: number;
     title: string;
     description: string;
-    StartDate: string |  Date;
-    EndDate: string |  Date;
+    StartDate: string | Date;
+    EndDate: string | Date;
     bannerImg: string;
   };
   onDelete: (id: number) => void;
   onUpdate: (id: number, updatedEvent: any) => void;
 }
 
-const EventDetails: React.FC<EventDetailsProps> = ({ event, onDelete, onUpdate }) => {
-    const getInitials = function(name: string){
-        name = name.toUpperCase();
-        const nameSplit = name.split(" ");
-        if(nameSplit.length<2)return  name[0];
-        else return nameSplit[0][0] + nameSplit[1][0];
-    }
+const EventDetails: React.FC<EventDetailsProps> = ({
+  event,
+  onDelete,
+  onUpdate,
+}) => {
+  const getInitials = function (name: string) {
+    name = name.toUpperCase();
+    const nameSplit = name.split(" ");
+    if (nameSplit.length < 2) return name[0];
+    else return nameSplit[0][0] + nameSplit[1][0];
+  };
   return (
- /*   <div>
+    /*   <div>
       <h3>{event.title}</h3>
       <p>{event.description}</p>
       <p>{event.StartDate}</p>
@@ -29,22 +33,15 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event, onDelete, onUpdate }
       <button onClick={() => onDelete(event.id)}>Delete</button>
       <button onClick={() => onUpdate(event.id, event)}>Update</button>
     </div>*/
-    <div className='flex mt-4 justify-between'>
-        <div className='flex w-44 mr-3'>
-            <img src={event.bannerImg}/>
-        </div>
-        <div>
-            <p>
-                {event.StartDate.toLocaleString()}
-            </p>
-            <span>
-                {event.title}
-            </span>
-            <p>
-                {event.description}
-            </p>
-
-        </div>
+    <div className="flex mt-4 justify-between">
+      <div className="flex w-44 mr-3">
+        <img src={event.bannerImg} alt="banner" />
+      </div>
+      <div>
+        <p>{event.StartDate.toLocaleString()}</p>
+        <span>{event.title}</span>
+        <p>{event.description}</p>
+      </div>
     </div>
   );
 };
