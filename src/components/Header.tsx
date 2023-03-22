@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-import CreatePostModal from './post/CreatePostModel';
-import UserProfile from '../pages/UserProfile';
-import noroffLogo from '../assets/noroff.png';
-
+import { useState } from "react";
+import CreatePostModal from "./post/CreatePostModel";
 
 
 

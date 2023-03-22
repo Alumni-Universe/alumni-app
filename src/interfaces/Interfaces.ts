@@ -1,9 +1,14 @@
+import { AlumniGroupInfoDto, AlumniUserInfoDto, EventInfoDto, PostInfoDto, RsvpInfoDto, TopicInfoDto } from "./Dtos";
+
 export interface IAlumniGroup {
     groupId: number;
     name: string;
     description: string;
     isPrivate: boolean;
     createdBy: number;
+    posts?: PostInfoDto[];
+    events?: EventInfoDto[];
+    users?: AlumniUserInfoDto[];
     children?: React.ReactNode;
 }
 
@@ -14,6 +19,14 @@ export interface IAlumniUser {
     status: string | null;
     bio: string | null;
     funFact: string | null;
+    alumniGroups?: AlumniGroupInfoDto[];
+    events?: EventInfoDto[];
+    postSenders?: number[];
+    postTargetUserNavigations?: number[];
+    rsvps?: RsvpInfoDto[];
+    eventsNavigation?: number[];
+    groups?: number[];
+    topics?: TopicInfoDto[];
     children?: React.ReactNode;
     // The following collections are omitted in the TypeScript interface
     // because they would create circular dependencies with other interfaces
@@ -30,8 +43,12 @@ export interface IAlumniUser {
     startTime: Date;
     endTime: Date;
     createdBy: number;
+    posts?: PostInfoDto[];
+    rsvps?: RsvpInfoDto[];
+    groups?: AlumniGroupInfoDto[];
+    topics?: TopicInfoDto[];
+    users?: AlumniUserInfoDto[];
     children?: React.ReactNode;
-    users: {userId:string, name: string}[]
     // The following collections are omitted in the TypeScript interface
     // because they would create circular dependencies with other interfaces
     // and usually are not required when working with frontend data structures.
@@ -49,6 +66,11 @@ export interface IAlumniUser {
     targetGroup: number | null;
     targetTopic: number | null;
     targetEvent: number | null;
+    sender: AlumniUserInfoDto;
+    targetEventNavigation?: EventInfoDto;
+    targetGroupNavigation?: AlumniGroupInfoDto;
+    targetTopicNavigation?: TopicInfoDto;
+    targetUserNavigation?: AlumniUserInfoDto;
     children?: React.ReactNode;
     // The following properties are omitted in the TypeScript interface
     // because they would create circular dependencies with other interfaces
@@ -71,6 +93,9 @@ export interface IAlumniUser {
     topicId: number;
     name: string;
     description: string;
+    posts?: PostInfoDto[];
+    events?: EventInfoDto[];
+    users?: AlumniUserInfoDto[];
     children?: React.ReactNode;
     // The following properties are omitted in the TypeScript interface
     // because they would create circular dependencies with other interfaces

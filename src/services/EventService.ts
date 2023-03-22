@@ -10,9 +10,9 @@ export const EventService = (function(){
         return result.data as IEvent[];
     }
 
-    const updateEvent = async (groupToUpdate: IEvent, id: number) => {
+    const updateEvent = async (eventToUpdate: IEvent, id: number) => {
         const url = urlToEventController + id;
-        const result = await axios.put(url, groupToUpdate);
+        const result = await axios.put(url, eventToUpdate);
         return result.data as IEvent[];
     }
 

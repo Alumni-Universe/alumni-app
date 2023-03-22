@@ -16,9 +16,6 @@ interface PostData {
  content: string;
 }
 
-
-
-
 const UserProfile = () => {
  const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState(false);
  const [posts, setPosts] = useState<PostData[]>([]);

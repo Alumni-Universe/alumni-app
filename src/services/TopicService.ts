@@ -3,16 +3,16 @@ import { ITopic } from '../interfaces/Interfaces';
 
 export const TopicService = (function(){
 
-    const urlToTopicController = "https://localhost:7100/api/Topics";
+    const urlToTopicController = "https://noroffalumni.azurewebsites.net/api/Topics";
 
     const getAll = async () => {
         const result = await axios.get( urlToTopicController );
         return result.data as ITopic[];
     }
 
-    const updateTopic = async (groupToUpdate: ITopic, id: number) => {
+    const updateTopic = async (topicToUpdate: ITopic, id: number) => {
         const url = urlToTopicController + id;
-        const result = await axios.put(url, groupToUpdate);
+        const result = await axios.put(url, topicToUpdate);
         return result.data as ITopic[];
     }
 
