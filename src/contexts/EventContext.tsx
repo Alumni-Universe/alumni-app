@@ -7,7 +7,7 @@ export const EventContext = createContext<EventContextType | null>(null);
 
 export const EventProvider: FC<IEvent> = ({children}) => {
 
-    const [alumniGroups, setEvents] = useState<IEvent[]>([
+    const [events, setEvents] = useState<IEvent[]>([
         
     ]);
 
@@ -19,20 +19,20 @@ export const EventProvider: FC<IEvent> = ({children}) => {
      }, [] )
 
     const getEvents = async () => {
-        const _alumniGroups = await EventService.getAll();
-        setEvents( _alumniGroups );
+        const _events = await EventService.getAll();
+        setEvents( _events );
     }
 
     const updateEvent = async (alumniGroupToUpdate: IEvent, id: number) => {
         await EventService.updateEvent(alumniGroupToUpdate, id);
-        const _alumniGroups = await EventService.getAll();
-        setEvents( _alumniGroups );
+        const _events = await EventService.getAll();
+        setEvents( _events );
     }
 
     const deleteEvent = async (id: number) => {
         await EventService.deleteEvent(id);
-        const _alumniGroups = await EventService.getAll();
-        setEvents( _alumniGroups );
+        const _events = await EventService.getAll();
+        setEvents( _events );
     }
 
     /*const postArtist = (newArtist: IArtist) => {
@@ -41,14 +41,14 @@ export const EventProvider: FC<IEvent> = ({children}) => {
 
     const postEvent = async (newEvent: IEvent) => {
         await EventService.postEvent(newEvent);
-        const _alumniGroups = await EventService.getAll();
-        setEvents( _alumniGroups );
+        const _events = await EventService.getAll();
+        setEvents( _events );
         
     }
 
     return (
         <>
-            <EventContext.Provider value={{alumniGroups, updateEvent, postEvent, deleteEvent}}>
+            <EventContext.Provider value={{events, updateEvent, postEvent, deleteEvent}}>
                 {children}
             </EventContext.Provider>
         </>

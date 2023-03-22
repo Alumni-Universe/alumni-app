@@ -7,7 +7,7 @@ export const PostContext = createContext<PostContextType | null>(null);
 
 export const PostProvider: FC<IPost> = ({children}) => {
 
-    const [alumniGroups, setPosts] = useState<IPost[]>([
+    const [posts, setPosts] = useState<IPost[]>([
         
     ]);
 
@@ -19,20 +19,20 @@ export const PostProvider: FC<IPost> = ({children}) => {
      }, [] )
 
     const getPosts = async () => {
-        const _alumniGroups = await PostService.getAll();
-        setPosts( _alumniGroups );
+        const _posts = await PostService.getAll();
+        setPosts( _posts );
     }
 
     const updatePost = async (alumniGroupToUpdate: IPost, id: number) => {
         await PostService.updatePost(alumniGroupToUpdate, id);
-        const _alumniGroups = await PostService.getAll();
-        setPosts( _alumniGroups );
+        const _posts = await PostService.getAll();
+        setPosts( _posts );
     }
 
     const deletePost = async (id: number) => {
         await PostService.deletePost(id);
-        const _alumniGroups = await PostService.getAll();
-        setPosts( _alumniGroups );
+        const _posts = await PostService.getAll();
+        setPosts( _posts );
     }
 
     /*const postArtist = (newArtist: IArtist) => {
@@ -41,14 +41,14 @@ export const PostProvider: FC<IPost> = ({children}) => {
 
     const postPost = async (newPost: IPost) => {
         await PostService.postPost(newPost);
-        const _alumniGroups = await PostService.getAll();
-        setPosts( _alumniGroups );
+        const _posts = await PostService.getAll();
+        setPosts( _posts );
         
     }
 
     return (
         <>
-            <PostContext.Provider value={{alumniGroups, updatePost, postPost, deletePost}}>
+            <PostContext.Provider value={{posts, updatePost, postPost, deletePost}}>
                 {children}
             </PostContext.Provider>
         </>

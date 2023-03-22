@@ -29,7 +29,6 @@ const Events:FC = () => {
                         StartDate: ev.startTime || "",
                         EndDate: ev.endTime || "",
                         bannerImg: ev.bannerImg || "",
-                        users: ev.users || [],
                     }} onDelete={function (id: number): void {
                         throw new Error("Function not implemented.");
                     } } onUpdate={function (id: number, updatedEvent: any): void {

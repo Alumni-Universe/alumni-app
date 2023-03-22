@@ -3,16 +3,16 @@ import { IAlumniUser } from '../interfaces/Interfaces';
 
 export const AlumniUserService = (function(){
 
-    const urlToAlumniUserController = "https://localhost:7100/api/AlumniUser";
+    const urlToAlumniUserController = "https://noroffalumni.azurewebsites.net/api/AlumniUsers";
 
     const getAll = async () => {
         const result = await axios.get( urlToAlumniUserController );
         return result.data as IAlumniUser[];
     }
 
-    const updateAlumniUser = async (groupToUpdate: IAlumniUser, id: number) => {
+    const updateAlumniUser = async (userToUpdate: IAlumniUser, id: number) => {
         const url = urlToAlumniUserController + id;
-        const result = await axios.put(url, groupToUpdate);
+        const result = await axios.put(url, userToUpdate);
         return result.data as IAlumniUser[];
     }
 

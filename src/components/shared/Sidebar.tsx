@@ -16,6 +16,10 @@ const Sidebar : FC = () => {
           <li className="w-full text-left px-4 py-2 hover:bg-gray-200"><Link to={'/groups'}>Groups</Link></li>
           <li className="w-full text-left px-4 py-2 hover:bg-gray-200"><Link to={'/events'}>Events</Link></li>
         </ul>
+        <div className='flex flex-row items-center fixed bottom-2 left-0'>
+            <img src={noroffLogo} className="w-10 h-10 mt-2 mr-2"/>
+            <span className='sidebar-heading text-m'><Link to={'/user'}>User name</Link></span>
+        </div>
       </div>
     );
   };

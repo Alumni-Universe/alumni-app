@@ -9,7 +9,6 @@ interface EventDetailsProps {
     StartDate: string |  Date;
     EndDate: string |  Date;
     bannerImg: string;
-    users: {userId:string, name: string}[]
   };
   onDelete: (id: number) => void;
   onUpdate: (id: number, updatedEvent: any) => void;
@@ -45,18 +44,6 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event, onDelete, onUpdate }
             <p>
                 {event.description}
             </p>
-
-        </div>
-        <div>
-            {
-                event.users && event.users.map(user=>{
-                    return(
-                        <span className='ml-1 border-solid rounded-sm bg-sky-500 py-4 px-5'>
-                            {getInitials(user.name)}
-                        </span>
-                    )
-                })
-            }
 
         </div>
     </div>
