@@ -6,8 +6,8 @@ interface EventDetailsProps {
     id: number;
     title: string;
     description: string;
-    StartDate: string |  Date;
-    EndDate: string |  Date;
+    StartDate: string;
+    EndDate: string;
     bannerImg: string;
     users: {userId:string, name: string}[]
   };
@@ -19,9 +19,12 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event, onDelete, onUpdate }
     const getInitials = function(name: string){
         name = name.toUpperCase();
         const nameSplit = name.split(" ");
-        if(nameSplit.length<2)return  name[0];
+        if(nameSplit.
+            length<2)return  name[0];
         else return nameSplit[0][0] + nameSplit[1][0];
     }
+
+
   return (
  /*   <div>
       <h3>{event.title}</h3>

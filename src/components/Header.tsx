@@ -4,61 +4,55 @@ import UserProfile from '../pages/UserProfile';
 import noroffLogo from '../assets/noroff.png';
 
 
+
+
 interface HeaderProps {
-  heading: string,
-  headerBtnText: string,
-  isCreatePostPopUpVisible?: boolean;
-  changeCreatePostPopUpVisiblility?: (visible: boolean) => void;
+ heading: string,
+ headerBtnText: string,
+ isPopUpVisible?: boolean;
+ changePopUpVisibility?: (visible: boolean) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ heading, headerBtnText, isCreatePostPopUpVisible, changeCreatePostPopUpVisiblility }) => {
-  const [screenName, setScreenName] = useState('HOME');
 
-  const changePopUpVisibility = () => {
-    changeCreatePostPopUpVisiblility && changeCreatePostPopUpVisiblility(!isCreatePostPopUpVisible);
-  };
+const Header: React.FC<HeaderProps> = ({ heading, headerBtnText, isPopUpVisible, changePopUpVisibility }) => {
+ const [screenName, setScreenName] = useState('HOME');
 
-  const handleCreatePostSubmit = (postText: string) => {
-    changeCreatePostPopUpVisiblility && changeCreatePostPopUpVisiblility(false);
-  };
 
-  return (
-    /*<div className="header-container flex-row flex justify-between items-center">
-      <div className="header-item-left flex flex-row">
-        <div className="logo-container pr-2">
-          <img src="C:\Users\magom\OneDrive\Skrivebord\noroff.png" />
-        </div>
-        <div className="screen-name">{screenName}</div>
-      </div>*/
-    <div className='flex flex-row'>
-      <div className="header-container flex-row flex justify-between items-center">
-        <div className="header-item-left flex flex-row">
-          <div className="logo-container pr-2">
-            <img src="Noroff Logo" />
-          </div>
-          <div className="screen-name">{heading}</div>
-        </div>
-        <div className="header-item-right flex flex-row items-center">
-          <div className="border-solid border-black">
-            <button className="p-2 border border-gray-300 rounded-lg inline-block px-2 py-2 mr-3" onClick={changePopUpVisibility}>
-              <span className='border-solid border-black'>{headerBtnText}</span>
-            </button>
-          </div>
-        </div>
+ const togglePopUpVisibility = () => {
+   changePopUpVisibility && changePopUpVisibility(!isPopUpVisible);
+ };
 
-      </div>
-      <div className='my-2 flex'>
-        <input placeholder='Search here' />
-      </div>
-      {isCreatePostPopUpVisible && (
-        <CreatePostModal
-          isOpen={isCreatePostPopUpVisible}
-          onClose={() => changeCreatePostPopUpVisiblility && changeCreatePostPopUpVisiblility(false)}
-          onSubmit={handleCreatePostSubmit}
-        />
-      )}
-    </div>
-  );
+
+ const handleCreatePostSubmit = (postText: string) => {
+   changePopUpVisibility && changePopUpVisibility(false);
+ };
+
+
+ return (
+   <div className='flex flex-col w-full'>
+     <div className="header-container flex-row flex justify-between items-center w-full">
+       <div className="header-item-left flex flex-row">
+         <div className="logo-container pr-2">
+           <img src="Noroff Logo" />
+         </div>
+         <div className="screen-name">{heading}</div>
+       </div>
+       <div className="header-item-right flex flex-row items-center">
+         <div className="border-solid border-black">
+           <button className="p-2 border border-gray-300 rounded-lg inline-block px-2 py-2 mr-3" onClick={togglePopUpVisibility}>
+             <span className='border-solid border-black'>{headerBtnText}</span>
+           </button>
+         </div>
+       </div>
+
+
+     </div>
+     <div className='my-2 flex w-full border-solid border-black border rounded-lg inline-block'>
+       <input className='w-full mx-3' placeholder='Search here' />
+     </div>
+   </div>
+ );
 };
+
 
 export default Header;

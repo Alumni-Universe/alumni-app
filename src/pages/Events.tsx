@@ -1,45 +1,34 @@
 import { FC, useEffect, useState } from "react";
-import EventDetails from "../components/events/EventsDetails";
-import {EventService} from "../services/EventService";
-import {IEvent} from "../interfaces/Interfaces";
 import Header from "../components/Header";
+import CreateEvents from "../components/events/CreateEventsModal";
+import EventsList from "../components/events/EventList";
 
-const Events:FC = () => {
-    const [events, setEvents] = useState([] as IEvent[]);
 
-    useEffect(()=>{
-        EventService.getAll().then(events =>{
-            console.log(events);
-            setEvents(events)
-        })
-    },[]); 
-    return(
-        <section className="ml-8">
+
+const Events: FC = () => {
+    const [isCreateEventModalOpen, toggleEventModal] = useState(false);
+
+
+    const toggleCreateEventModal = () => {
+        toggleEventModal(!isCreateEventModalOpen);
+    };
+
+
+
+    return (
+        <section className="flex flex-col ml-12 w-full">
             <Header
-            heading="Events"
-            headerBtnText="Create"
+                heading="Events"
+                headerBtnText="Create"
+                isPopUpVisible={isCreateEventModalOpen}
+                changePopUpVisibility={toggleCreateEventModal}
             />
-            <h2 className="font-bold text-2xl">Most Popular Events</h2>
-            {
-                events && events?.length && events.map(ev=>{
-                    return <EventDetails event={{
-                        id: ev.eventId || 0,
-                        title: ev.name || "",
-                        description: ev.description || "",
-                        StartDate: ev.startTime || "",
-                        EndDate: ev.endTime || "",
-                        bannerImg: ev.bannerImg || "",
-                        users: ev.users || [],
-                    }} onDelete={function (id: number): void {
-                        throw new Error("Function not implemented.");
-                    } } onUpdate={function (id: number, updatedEvent: any): void {
-                        throw new Error("Function not implemented.");
-                    } }/>
-                })
-            }
-            <h2 className="font-bold text-2xl mt-3">Recommended for you</h2>
+            <EventsList isCreateEventModalOpen={isCreateEventModalOpen} toggleCreatePostPopUp={toggleCreateEventModal}/>
+
+
         </section>
     )
 }
+
 
 export default Events;
