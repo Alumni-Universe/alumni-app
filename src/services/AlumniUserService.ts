@@ -5,6 +5,7 @@ export const AlumniUserService = (function(){
 
     const urlToAlumniUserController = "https://noroffalumni.azurewebsites.net/api/AlumniUsers";
 
+
     const getAll = async () => {
         const result = await axios.get( urlToAlumniUserController );
         return result.data as IAlumniUser[];
