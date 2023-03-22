@@ -26,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ heading, headerBtnText, isPopUpVisible,
 
 
  return (
-   <div className='flex flex-col w-full'>
+   <div className='flex flex-col w-full ml-10'>
      <div className="header-container flex-row flex justify-between items-center w-full">
        <div className="header-item-left flex flex-row">
          <div className="logo-container pr-2">

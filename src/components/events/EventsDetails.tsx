@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Sidebar from '../shared/Sidebar';
 
 interface EventDetailsProps {
@@ -34,6 +35,9 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event, onDelete, onUpdate }
       <button onClick={() => onDelete(event.id)}>Delete</button>
       <button onClick={() => onUpdate(event.id, event)}>Update</button>
     </div>*/
+    <Link to={`/event/${event.id}`}>
+
+
     <div className='flex mt-4 justify-between'>
         <div className='flex w-44 mr-3'>
             <img src={event.bannerImg}/>
@@ -63,6 +67,7 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event, onDelete, onUpdate }
 
         </div>
     </div>
+    </Link>
   );
 };
 

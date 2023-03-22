@@ -7,7 +7,7 @@ import profilePicture from '../assets/noroff.png';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import UserInfoComponent from '../components/user/UserInfo';
-import UserDetailTab from '../components/user/UserDetailTab';
+import UserDetailTab from '../components/shared/Tab';
 
 
 interface PostData {

@@ -8,7 +8,7 @@ type TabProps = {
   }[];
 };
 
-const UserDetailTab: React.FC<TabProps> = ({ heading, tabs }) => {
+const Tab: React.FC<TabProps> = ({ heading, tabs }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
 
   const handleTabClick = (index: number) => {
@@ -38,4 +38,4 @@ const UserDetailTab: React.FC<TabProps> = ({ heading, tabs }) => {
   );
 };
 
-export default UserDetailTab;
+export default Tab;
