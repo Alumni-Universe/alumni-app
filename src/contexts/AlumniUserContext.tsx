@@ -7,7 +7,7 @@ export const AlumniUserContext = createContext<AlumniUserContextType | null>(nul
 
 export const AlumniUserProvider: FC<IAlumniUser> = ({children}) => {
 
-    const [alumniGroups, setAlumniUsers] = useState<IAlumniUser[]>([
+    const [alumniUsers, setAlumniUsers] = useState<IAlumniUser[]>([
         
     ]);
 
@@ -19,20 +19,20 @@ export const AlumniUserProvider: FC<IAlumniUser> = ({children}) => {
      }, [] )
 
     const getAlumniUsers = async () => {
-        const _alumniGroups = await AlumniUserService.getAll();
-        setAlumniUsers( _alumniGroups );
+        const _alumniUsers = await AlumniUserService.getAll();
+        setAlumniUsers( _alumniUsers );
     }
 
-    const updateAlumniUser = async (alumniGroupToUpdate: IAlumniUser, id: number) => {
-        await AlumniUserService.updateAlumniUser(alumniGroupToUpdate, id);
-        const _alumniGroups = await AlumniUserService.getAll();
-        setAlumniUsers( _alumniGroups );
+    const updateAlumniUser = async (alumniUserToUpdate: IAlumniUser, id: number) => {
+        await AlumniUserService.updateAlumniUser(alumniUserToUpdate, id);
+        const _alumniUsers = await AlumniUserService.getAll();
+        setAlumniUsers( _alumniUsers );
     }
 
     const deleteAlumniUser = async (id: number) => {
         await AlumniUserService.deleteAlumniUser(id);
-        const _alumniGroups = await AlumniUserService.getAll();
-        setAlumniUsers( _alumniGroups );
+        const _alumniUsers = await AlumniUserService.getAll();
+        setAlumniUsers( _alumniUsers );
     }
 
     /*const postArtist = (newArtist: IArtist) => {
@@ -41,14 +41,14 @@ export const AlumniUserProvider: FC<IAlumniUser> = ({children}) => {
 
     const postAlumniUser = async (newAlumniUser: IAlumniUser) => {
         await AlumniUserService.postAlumniUser(newAlumniUser);
-        const _alumniGroups = await AlumniUserService.getAll();
-        setAlumniUsers( _alumniGroups );
+        const _alumniUsers = await AlumniUserService.getAll();
+        setAlumniUsers( _alumniUsers );
         
     }
 
     return (
         <>
-            <AlumniUserContext.Provider value={{alumniGroups, updateAlumniUser, postAlumniUser, deleteAlumniUser}}>
+            <AlumniUserContext.Provider value={{alumniUsers, updateAlumniUser, postAlumniUser, deleteAlumniUser}}>
                 {children}
             </AlumniUserContext.Provider>
         </>

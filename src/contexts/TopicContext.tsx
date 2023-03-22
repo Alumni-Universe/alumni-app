@@ -7,7 +7,7 @@ export const TopicContext = createContext<TopicContextType | null>(null);
 
 export const TopicProvider: FC<ITopic> = ({children}) => {
 
-    const [alumniGroups, setTopics] = useState<ITopic[]>([
+    const [topics, setTopics] = useState<ITopic[]>([
         
     ]);
 
@@ -19,20 +19,20 @@ export const TopicProvider: FC<ITopic> = ({children}) => {
      }, [] )
 
     const getTopics = async () => {
-        const _alumniGroups = await TopicService.getAll();
-        setTopics( _alumniGroups );
+        const _topics = await TopicService.getAll();
+        setTopics( _topics );
     }
 
     const updateTopic = async (alumniGroupToUpdate: ITopic, id: number) => {
         await TopicService.updateTopic(alumniGroupToUpdate, id);
-        const _alumniGroups = await TopicService.getAll();
-        setTopics( _alumniGroups );
+        const _topics = await TopicService.getAll();
+        setTopics( _topics );
     }
 
     const deleteTopic = async (id: number) => {
         await TopicService.deleteTopic(id);
-        const _alumniGroups = await TopicService.getAll();
-        setTopics( _alumniGroups );
+        const _topics = await TopicService.getAll();
+        setTopics( _topics );
     }
 
     /*const postArtist = (newArtist: IArtist) => {
@@ -41,14 +41,14 @@ export const TopicProvider: FC<ITopic> = ({children}) => {
 
     const postTopic = async (newTopic: ITopic) => {
         await TopicService.postTopic(newTopic);
-        const _alumniGroups = await TopicService.getAll();
-        setTopics( _alumniGroups );
+        const _topics = await TopicService.getAll();
+        setTopics( _topics );
         
     }
 
     return (
         <>
-            <TopicContext.Provider value={{alumniGroups, updateTopic, postTopic, deleteTopic}}>
+            <TopicContext.Provider value={{topics, updateTopic, postTopic, deleteTopic}}>
                 {children}
             </TopicContext.Provider>
         </>
