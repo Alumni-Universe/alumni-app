@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
-import Header from '../components/Header';
-import Sidebar from '../components/shared/Sidebar';
-import CreatePostModal from '../components/CreatePostModel';
-import Post from '../components/Post';
-import profilePicture from '../assets/noroff.png';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import UserInfoComponent from '../components/user/UserInfo';
-import UserDetailTab from '../components/user/UserDetailTab';
+import React, { useState } from "react";
+import Header from "../components/Header";
+import CreatePostModal from "../components/CreatePostModel";
+import Post from "../components/Post";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import UserInfoComponent from "../components/user/UserInfo";
 
 interface PostData {
   id: number;
   title: string;
   content: string;
 }
-
 
 const UserProfile = () => {
   const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState(false);
@@ -65,15 +61,11 @@ const UserProfile = () => {
           onSubmit={handlePostSubmit}
         />
 
-
-  
         <div className="calendar-container float-right mt-5 mr-5 flex">
-          <UserInfoComponent/>
+          <UserInfoComponent />
           <Calendar value={date} onChange={onDateChange} />
+        </div>
       </div>
-
-      </div>
-
     </div>
   );
 };
