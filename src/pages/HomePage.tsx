@@ -13,6 +13,7 @@ const HomePage: FC = function () {
         changeCreatePostPopUpVisiblility={changeCreatePostPopUpVisiblility}
         isCreatePostPopUpVisible={isCreatePostPopUpVisible}
       />
+      <div className="w-3/5">
       <PostProvider
         postId={0}
         lastUpdated={new Date()}
@@ -28,6 +29,7 @@ const HomePage: FC = function () {
       >
         <PostList />
       </PostProvider>
+      </div>
     </div>
   );
 };
