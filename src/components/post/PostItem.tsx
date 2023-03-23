@@ -56,7 +56,7 @@ const PostItem : FC<IPost> = ({
                             />
                         </button>
                         {dropdownVisible && (
-                            <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-md">
+                            <div className="absolute mt-2 w-48 bg-white border border-gray-200 rounded shadow-md">
                                 <ul>
                                     <li className="px-4 py-2 hover:bg-gray-200">
                                         <p className="text-sm">Turn off notification</p>
