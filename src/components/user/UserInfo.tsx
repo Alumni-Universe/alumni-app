@@ -1,4 +1,4 @@
-import UserDetailTab from "./UserDetailTab";
+import Tab from "../shared/Tab";
 
 const InterestTab = [
   {
@@ -73,8 +73,8 @@ const UserInfoComponent = () => {
           wrong?
         </p>
       </div>
-      <UserDetailTab heading="Interests" tabs={InterestTab} />
-      <UserDetailTab heading="Activity" tabs={ActivityTab} />
+      <Tab heading="Interests" tabs={InterestTab} />
+      <Tab heading="Activity" tabs={ActivityTab} />
     </div>
   );
 };
