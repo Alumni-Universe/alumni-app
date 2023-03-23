@@ -18,12 +18,13 @@ const EventDetails: React.FC<EventDetailsProps> = ({
   onDelete,
   onUpdate,
 }) => {
+  /*
   const getInitials = function (name: string) {
     name = name.toUpperCase();
     const nameSplit = name.split(" ");
     if (nameSplit.length < 2) return name[0];
     else return nameSplit[0][0] + nameSplit[1][0];
-  };
+  };*/
   return (
     /*   <div>
       <h3>{event.title}</h3>
