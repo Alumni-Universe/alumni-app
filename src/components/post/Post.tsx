@@ -1,10 +1,12 @@
+import React, { FC } from "react";
+
 interface PostProps {
   postTitle: string;
   postContent: string;
   onDelete: () => void;
 }
 
-const Post: React.FC<PostProps> = ({ postTitle, postContent, onDelete }) => {
+const Post: FC<PostProps> = ({ postTitle, postContent, onDelete }) => {
   //const [posts, setPosts] = useState(null);
 
   return (

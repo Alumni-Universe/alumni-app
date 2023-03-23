@@ -8,15 +8,8 @@ import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
-/*keycloak.init({onLoad: 'login-required'})
-.then(() => {
-  root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
-})*/
 
 root.render(
   <React.StrictMode>

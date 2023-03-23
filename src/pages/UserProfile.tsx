@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
-import CreatePostModal from "../components/CreatePostModel";
-import Post from "../components/Post";
+import CreatePostModal from "../components/post/CreatePostModel";
+import Post from "../components/post/Post";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import UserInfoComponent from "../components/user/UserInfo";
@@ -39,11 +39,13 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="flex h-screen">
-      <div className="flex-1">
+    <div className="flex">
+      <div className="">
         <Header
           isCreatePostPopUpVisible={isCreatePostModalOpen}
           changeCreatePostPopUpVisiblility={toggleCreatePostModal}
+          heading={""}
+          headerBtnText={""}
         />
         <div className="px-5">
           {posts.map((post) => (
@@ -60,8 +62,7 @@ const UserProfile = () => {
           onClose={toggleCreatePostModal}
           onSubmit={handlePostSubmit}
         />
-
-        <div className="calendar-container float-right mt-5 mr-5 flex">
+        <div className="flex">
           <UserInfoComponent />
           <Calendar value={date} onChange={onDateChange} />
         </div>

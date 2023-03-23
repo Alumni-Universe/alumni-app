@@ -1,12 +1,33 @@
-import React, { FC } from "react";
+import { FC, useState } from "react";
+import HomeHeader from "../components/home/HomeHeader";
+import PostList from "../components/post/PostList";
+import { PostProvider } from "../contexts/PostContext";
 
 const HomePage: FC = function () {
-  //const [isCreatePostPopUpVisible, changeCreatePostPopUpVisiblility] = useState(false);
+  const [isCreatePostPopUpVisible, changeCreatePostPopUpVisiblility] =
+    useState(false);
 
   return (
     <div className="pl-2 pr-2">
-      {/* <Header changeCreatePostPopUpVisiblility={changeCreatePostPopUpVisiblility} isCreatePostPopUpVisible={isCreatePostPopUpVisible}/>  */}
-      {/* <CreatePost isCreatePostPopUpVisible={isCreatePostPopUpVisible}/> */}
+      <HomeHeader
+        changeCreatePostPopUpVisiblility={changeCreatePostPopUpVisiblility}
+        isCreatePostPopUpVisible={isCreatePostPopUpVisible}
+      />
+      <PostProvider
+        postId={0}
+        lastUpdated={new Date()}
+        postMessage={null}
+        postTarget={""}
+        senderId={0}
+        replyParentId={null}
+        targetUser={null}
+        targetGroup={null}
+        targetTopic={null}
+        targetEvent={null}
+        sender={{ userId: 0, name: "" }}
+      >
+        <PostList />
+      </PostProvider>
     </div>
   );
 };

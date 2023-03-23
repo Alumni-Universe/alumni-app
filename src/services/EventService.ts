@@ -3,16 +3,16 @@ import { IEvent } from '../interfaces/Interfaces';
 
 export const EventService = (function(){
 
-    const urlToEventController = "https://localhost:7100/api/Events";
+    const urlToEventController = "https://noroffalumni.azurewebsites.net/api/Events";
 
     const getAll = async () => {
         const result = await axios.get( urlToEventController );
         return result.data as IEvent[];
     }
 
-    const updateEvent = async (groupToUpdate: IEvent, id: number) => {
+    const updateEvent = async (eventToUpdate: IEvent, id: number) => {
         const url = urlToEventController + id;
-        const result = await axios.put(url, groupToUpdate);
+        const result = await axios.put(url, eventToUpdate);
         return result.data as IEvent[];
     }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 interface CreatePostModalProps {
   isOpen: boolean;
@@ -6,7 +6,7 @@ interface CreatePostModalProps {
   onSubmit: (title: string, content: string) => void;
 }
 
-const CreatePostModal: React.FC<CreatePostModalProps> = ({ isOpen, onClose, onSubmit }) => {
+const CreatePostModal: FC<CreatePostModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [postTitle, setPostTitle] = useState('');
   const [postContent, setPostContent] = useState('');
 

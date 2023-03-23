@@ -1,22 +1,27 @@
-import CreatePostModal from "./CreatePostModel";
+import CreatePostModal from "./post/CreatePostModel";
 
 interface HeaderProps {
-  isCreatePostPopUpVisible: boolean;
-  changeCreatePostPopUpVisiblility: (visible: boolean) => void;
+  heading: string;
+  headerBtnText: string;
+  isCreatePostPopUpVisible?: boolean;
+  changeCreatePostPopUpVisiblility?: (visible: boolean) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
+  heading,
+  headerBtnText,
   isCreatePostPopUpVisible,
   changeCreatePostPopUpVisiblility,
 }) => {
-  //const [screenName, setScreenName] = useState("HOME");
+  //const [screenName, setScreenName] = useState('HOME');
 
   const changePopUpVisibility = () => {
-    changeCreatePostPopUpVisiblility(!isCreatePostPopUpVisible);
+    changeCreatePostPopUpVisiblility &&
+      changeCreatePostPopUpVisiblility(!isCreatePostPopUpVisible);
   };
 
   const handleCreatePostSubmit = (postText: string) => {
-    changeCreatePostPopUpVisiblility(false);
+    changeCreatePostPopUpVisiblility && changeCreatePostPopUpVisiblility(false);
   };
 
   return (
@@ -31,8 +36,9 @@ const Header: React.FC<HeaderProps> = ({
       <div className="header-container flex-row flex justify-between items-center">
         <div className="header-item-left flex flex-row">
           <div className="logo-container pr-2">
-            <img src="Noroff Logo" alt="logo" />
+            <img src="Noroff Logo" alt="logo" alt="logo" />
           </div>
+          <div className="screen-name">{heading}</div>
         </div>
         <div className="header-item-right flex flex-row items-center">
           <div className="border-solid border-black">
@@ -40,7 +46,7 @@ const Header: React.FC<HeaderProps> = ({
               className="p-2 border border-gray-300 rounded-lg inline-block px-2 py-2 mr-3"
               onClick={changePopUpVisibility}
             >
-              <span className="border-solid border-black">New post</span>
+              <span className="border-solid border-black">{headerBtnText}</span>
             </button>
           </div>
         </div>
@@ -51,7 +57,10 @@ const Header: React.FC<HeaderProps> = ({
       {isCreatePostPopUpVisible && (
         <CreatePostModal
           isOpen={isCreatePostPopUpVisible}
-          onClose={() => changeCreatePostPopUpVisiblility(false)}
+          onClose={() =>
+            changeCreatePostPopUpVisiblility &&
+            changeCreatePostPopUpVisiblility(false)
+          }
           onSubmit={handleCreatePostSubmit}
         />
       )}
