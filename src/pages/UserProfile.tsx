@@ -14,7 +14,6 @@ interface PostData {
   content: string;
 }
 
-
 const UserProfile = () => {
   const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState(false);
   const [posts, setPosts] = useState<PostData[]>([]);
@@ -66,9 +65,7 @@ const UserProfile = () => {
           <UserInfoComponent/>
           <Calendar value={date} onChange={onDateChange} />
       </div>
-
       </div>
-
     </div>
   );
 };
