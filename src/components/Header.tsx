@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({
       <div className="header-container flex-row flex justify-between items-center">
         <div className="header-item-left flex flex-row">
           <div className="logo-container pr-2">
-            <img src="Noroff Logo" alt="logo" alt="logo" />
+            <img src="Noroff Logo" alt="logo" />
           </div>
           <div className="screen-name">{heading}</div>
         </div>
