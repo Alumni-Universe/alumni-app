@@ -35,15 +35,7 @@ function AppWrapper() {
   }
 
   return (
-    <ReactKeycloakProvider
-      authClient={keycloak}
-      initOptions={{
-        onLoad: 'login-required',
-        checkLoginFrame: false,
-      }}
-    >
       <App />
-    </ReactKeycloakProvider>
   );
 }
 
