@@ -44,7 +44,7 @@ const ActivityTab = [
 
 const UserInfoComponent = () => {
   return (
-    <div className="w-4/5 pt-10 pl-10">
+    <div className="w-3/5 pt-10 pl-1">
       <div className="user-name font-bold">
         <span>Øystein Opperud</span>
       </div>
@@ -57,9 +57,7 @@ const UserInfoComponent = () => {
       <div className="user-location mt-3 font-light">
         <span>
           Oslo, Norway
-          <a href="link" className="user-contact-info ml-2 text-blue-600">
-            Contact info
-          </a>
+          <a className="user-contact-info ml-2 text-blue-600">Contact info</a>
         </span>
       </div>
       <div className="user-bio mt-3">
