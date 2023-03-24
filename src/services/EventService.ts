@@ -3,7 +3,7 @@ import { IEvent } from '../interfaces/Interfaces';
 
 export const EventService = (function(){
 
-    const urlToEventController = "https://noroffalumni.azurewebsites.net/api/Events";
+    const urlToEventController = "https://noroffalumni.azurewebsites.net/api/Events/";
 
     const getAll = async () => {
         const result = await axios.get( urlToEventController );
@@ -28,11 +28,18 @@ export const EventService = (function(){
         return result.data as IEvent[];
     }
 
+    const getEventById = async (eventId: string) => {
+        const url = urlToEventController + eventId;
+        const result = await axios.get(url);
+        return result.data as IEvent;
+  }
+
     return {
         getAll,
         updateEvent,
         deleteEvent,
-        postEvent
+        postEvent,
+        getEventById
     }
 
 }()) 

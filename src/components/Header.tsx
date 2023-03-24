@@ -1,39 +1,31 @@
-import CreatePostModal from "./post/CreatePostModel";
+//import { useState } from "react";
 
 interface HeaderProps {
   heading: string;
   headerBtnText: string;
-  isCreatePostPopUpVisible?: boolean;
-  changeCreatePostPopUpVisiblility?: (visible: boolean) => void;
+  isPopUpVisible?: boolean;
+  changePopUpVisibility?: (visible: boolean) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
   heading,
   headerBtnText,
-  isCreatePostPopUpVisible,
-  changeCreatePostPopUpVisiblility,
+  isPopUpVisible,
+  changePopUpVisibility,
 }) => {
-  //const [screenName, setScreenName] = useState('HOME');
+  //const [screenName, setScreenName] = useState("HOME");
 
-  const changePopUpVisibility = () => {
-    changeCreatePostPopUpVisiblility &&
-      changeCreatePostPopUpVisiblility(!isCreatePostPopUpVisible);
+  const togglePopUpVisibility = () => {
+    changePopUpVisibility && changePopUpVisibility(!isPopUpVisible);
   };
 
-  const handleCreatePostSubmit = (postText: string) => {
-    changeCreatePostPopUpVisiblility && changeCreatePostPopUpVisiblility(false);
-  };
+  //const handleCreatePostSubmit = (postText: string) => {
+  //  changePopUpVisibility && changePopUpVisibility(false);
+  //};
 
   return (
-    /*<div className="header-container flex-row flex justify-between items-center">
-      <div className="header-item-left flex flex-row">
-        <div className="logo-container pr-2">
-          <img src="C:\Users\magom\OneDrive\Skrivebord\noroff.png" />
-        </div>
-        <div className="screen-name">{screenName}</div>
-      </div>*/
-    <div className="flex flex-row">
-      <div className="header-container flex-row flex justify-between items-center">
+    <div className="flex flex-col w-full ml-10">
+      <div className="header-container flex-row flex justify-between items-center w-full">
         <div className="header-item-left flex flex-row">
           <div className="logo-container pr-2">
             <img src="Noroff Logo" alt="logo" />
@@ -44,26 +36,16 @@ const Header: React.FC<HeaderProps> = ({
           <div className="border-solid border-black">
             <button
               className="p-2 border border-gray-300 rounded-lg inline-block px-2 py-2 mr-3"
-              onClick={changePopUpVisibility}
+              onClick={togglePopUpVisibility}
             >
               <span className="border-solid border-black">{headerBtnText}</span>
             </button>
           </div>
         </div>
       </div>
-      <div className="my-2 flex">
-        <input placeholder="Search here" />
+      <div className="my-2 flex w-full border-solid border-black border rounded-lg inline-block">
+        <input className="w-full mx-3" placeholder="Search here" />
       </div>
-      {isCreatePostPopUpVisible && (
-        <CreatePostModal
-          isOpen={isCreatePostPopUpVisible}
-          onClose={() =>
-            changeCreatePostPopUpVisiblility &&
-            changeCreatePostPopUpVisiblility(false)
-          }
-          onSubmit={handleCreatePostSubmit}
-        />
-      )}
     </div>
   );
 };
