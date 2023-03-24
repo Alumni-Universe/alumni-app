@@ -1,14 +1,14 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import noroffLogo from "../../assets/noroff.png";
 
-type buttons = {};
+//type buttons = {};
 
 const Sidebar: FC = () => {
   return (
     <div className="fixed h-screen bg-gray-100">
       <div className="flex items-center px-3">
-        <img src={noroffLogo} className="w-10 h-10 mt-2 mr-2" />
+        <img src={noroffLogo} className="w-10 h-10 mt-2 mr-2" alt="logo" />
         <span className="sidebar-heading text-lg">Alumni Portal</span>
       </div>
       <ul className="flex-row">

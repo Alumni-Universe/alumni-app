@@ -57,7 +57,9 @@ const UserInfoComponent = () => {
       <div className="user-location mt-3 font-light">
         <span>
           Oslo, Norway
-          <a className="user-contact-info ml-2 text-blue-600">Contact info</a>
+          <a href="link" className="user-contact-info ml-2 text-blue-600">
+            Contact info
+          </a>
         </span>
       </div>
       <div className="user-bio mt-3">

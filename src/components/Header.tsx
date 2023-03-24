@@ -1,5 +1,4 @@
-import { useState } from "react";
-import CreatePostModal from "./post/CreatePostModel";
+//import { useState } from "react";
 
 interface HeaderProps {
   heading: string;
@@ -14,22 +13,22 @@ const Header: React.FC<HeaderProps> = ({
   isPopUpVisible,
   changePopUpVisibility,
 }) => {
-  const [screenName, setScreenName] = useState("HOME");
+  //const [screenName, setScreenName] = useState("HOME");
 
   const togglePopUpVisibility = () => {
     changePopUpVisibility && changePopUpVisibility(!isPopUpVisible);
   };
 
-  const handleCreatePostSubmit = (postText: string) => {
-    changePopUpVisibility && changePopUpVisibility(false);
-  };
+  //const handleCreatePostSubmit = (postText: string) => {
+  //  changePopUpVisibility && changePopUpVisibility(false);
+  //};
 
   return (
     <div className="flex flex-col w-full ml-10">
       <div className="header-container flex-row flex justify-between items-center w-full">
         <div className="header-item-left flex flex-row">
           <div className="logo-container pr-2">
-            <img src="Noroff Logo" />
+            <img src="Noroff Logo" alt="logo" />
           </div>
           <div className="screen-name">{heading}</div>
         </div>
