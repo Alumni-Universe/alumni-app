@@ -8,12 +8,12 @@ const HomePage: FC = function () {
     useState(false);
 
   return (
-    <div className="p-2">
+    <div className="px-2">
       <HomeHeader
         changeCreatePostPopUpVisiblility={changeCreatePostPopUpVisiblility}
         isCreatePostPopUpVisible={isCreatePostPopUpVisible}
       />
-      <div className="w-3/5">
+      <div className="w-3/5 py-2">
       <PostProvider
         postId={0}
         lastUpdated={new Date()}

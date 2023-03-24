@@ -43,8 +43,8 @@ const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
       </div>
-      <div className="my-2 flex w-full border-solid border-black border rounded-lg inline-block">
-        <input className="w-full mx-3" placeholder="Search here" />
+      <div className="my-2 flex w-full border rounded-md">
+        <input className="w-full" placeholder="Search here" />
       </div>
     </div>
   );

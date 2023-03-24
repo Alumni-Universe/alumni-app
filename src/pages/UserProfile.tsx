@@ -39,7 +39,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="flex h-screen justify-center items-center">
+    <div className="flex h-screen justify-center items-center p-2">
       <div className="flex flex-col justify-center items-center">
         <Header
           heading="Home"
@@ -63,7 +63,7 @@ const UserProfile = () => {
           onSubmit={handlePostSubmit}
         />
 
-        <div className="calendar-container float-right mt-5 mr-5 flex">
+        <div className="calendar-container float-right flex">
           <UserInfoComponent />
           <Calendar value={date} onChange={onDateChange} />
         </div>

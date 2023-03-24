@@ -10,7 +10,7 @@ const Events: FC = () => {
   };
 
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col p-2">
       <Header
         heading="Events"
         headerBtnText="Create"
