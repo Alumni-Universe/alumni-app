@@ -8,7 +8,7 @@ const HomePage: FC = function () {
     useState(false);
 
   return (
-    <div className="px-2">
+    <div className="p-2">
       <HomeHeader
         changeCreatePostPopUpVisiblility={changeCreatePostPopUpVisiblility}
         isCreatePostPopUpVisible={isCreatePostPopUpVisible}

@@ -2,9 +2,9 @@ import { FC } from "react";
 
 const Topics:FC = () => {
     return(
-        <section>
+        <div className="p-2">
             <h2>TOPICS</h2>
-        </section>
+        </div>
     )
 }
 

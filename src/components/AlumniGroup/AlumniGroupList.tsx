@@ -5,6 +5,7 @@ import { AlumniGroupContext } from "../../contexts/AlumniGroupContext";
 import { AlumniGroupContextType } from "../../types/AlumniGroupContextType";
 import { Calendar } from "react-calendar";
 import AlumniGroupButtonCreate from "./AlumniGroupButtonCreate";
+import AlumniGroupHeader from "./AlumniGroupHeader";
 
 const AlumniGroupList: FC = () => {
   const { alumniGroups } = useContext(
@@ -30,8 +31,7 @@ const AlumniGroupList: FC = () => {
   return (
     <div className="flex-col">
       <div className="shadow-xl justify-between">
-        <span>Groups</span>
-        <AlumniGroupButtonCreate />
+        <AlumniGroupHeader/>
       </div>
       <div className="flex">
         <div className="w-3/4 ">
