@@ -15,14 +15,13 @@ const EventViewDetail = function () {
   };
 
   useEffect(() => {
+    const getEventDetail = async function () {
+      if (typeof eventId !== "string") return;
+      const event = await EventService.getEventById(eventId);
+      setEvent(event);
+    };
     getEventDetail();
-  }, []);
-
-  const getEventDetail = async function () {
-    if (typeof eventId !== "string") return;
-    const event = await EventService.getEventById(eventId);
-    setEvent(event);
-  };
+  }, [eventId]);
 
   return (
     <div>
