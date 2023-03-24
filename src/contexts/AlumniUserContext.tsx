@@ -11,25 +11,24 @@ export const AlumniUserProvider: FC<IAlumniUser> = ({children}) => {
         
     ]);
 
-    useEffect( () => { 
-        getAlumniUsers();
-
-        
-
-     }, [] )
+    useEffect(() => {
+        getAlumniUsers().catch((error) => {
+          console.error('Error in getAlumniUsers:', error);
+        });
+      }, []);
 
     const getAlumniUsers = async () => {
         const _alumniUsers = await AlumniUserService.getAll();
         setAlumniUsers( _alumniUsers );
     }
 
-    const updateAlumniUser = async (alumniUserToUpdate: IAlumniUser, id: number) => {
+    const updateAlumniUser = async (alumniUserToUpdate: IAlumniUser, id: string) => {
         await AlumniUserService.updateAlumniUser(alumniUserToUpdate, id);
         const _alumniUsers = await AlumniUserService.getAll();
         setAlumniUsers( _alumniUsers );
     }
 
-    const deleteAlumniUser = async (id: number) => {
+    const deleteAlumniUser = async (id: string) => {
         await AlumniUserService.deleteAlumniUser(id);
         const _alumniUsers = await AlumniUserService.getAll();
         setAlumniUsers( _alumniUsers );

@@ -15,6 +15,7 @@ const PostList: FC = () => {
           <div key={key}>
             <PostItem
               postId={p.postId}
+              postTitle={p.postTitle}
               lastUpdated={p.lastUpdated}
               sender={p.sender}
               postTarget={p.postTarget}

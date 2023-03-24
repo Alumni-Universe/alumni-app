@@ -13,7 +13,7 @@ export interface IAlumniGroup {
 }
 
 export interface IAlumniUser {
-    userId: number;
+    userId: string;
     name: string;
     picture: string;
     status: string | null;
@@ -57,6 +57,7 @@ export interface IAlumniUser {
 
   export interface IPost {
     postId: number;
+    postTitle: string;
     lastUpdated: Date;
     postMessage: string | null;
     postTarget: string;

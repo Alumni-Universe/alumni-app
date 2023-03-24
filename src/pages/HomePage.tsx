@@ -15,6 +15,7 @@ const HomePage: FC = function () {
       />
       <div className="w-3/5">
       <PostProvider
+        postTitle={""}
         postId={0}
         lastUpdated={new Date()}
         postMessage={null}
@@ -25,7 +26,7 @@ const HomePage: FC = function () {
         targetGroup={null}
         targetTopic={null}
         targetEvent={null}
-        sender={{ userId: 0, name: "" }}
+        sender={{ userId: "", name: "" }}
       >
         <PostList />
       </PostProvider>

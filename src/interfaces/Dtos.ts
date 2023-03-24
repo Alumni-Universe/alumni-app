@@ -4,7 +4,7 @@ export interface AlumniGroupInfoDto {
 }
 
 export interface AlumniUserInfoDto {
-    userId: number;
+    userId: string;
     name: string;
 }
 

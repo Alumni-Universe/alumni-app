@@ -11,6 +11,7 @@ const hoursSince = (date: Date | string) => {
  
 const PostItem : FC<IPost> = ({ 
     postId, 
+    postTitle,
     lastUpdated, 
     sender, 
     postTarget, 
@@ -40,7 +41,7 @@ const PostItem : FC<IPost> = ({
                 <div className="flex items-center justify-between">
                     <div className="flex items-center">
                         <div>
-                            <h4 className="text-xl font-semibold">{sender.name}</h4>
+                            <h4 className="text-sm font-semibold">{sender.name}</h4>
                             <p className="text-gray-600 text-sm">Posted in {postTarget}</p>
                         </div>
                             <div className="pl-6">
@@ -73,7 +74,8 @@ const PostItem : FC<IPost> = ({
                     </div>
                 </div>
                 <div className="mt-4">
-                    <p className="text-gray-700 mt-2">Post message: {postMessage}</p>
+                    <h2 className="text-medium font-semibold">{postTitle}</h2>
+                    <p className="text-gray-700 mt-2">{postMessage}</p>
                 </div>
             </div>
         </article>
