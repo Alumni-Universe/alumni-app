@@ -35,7 +35,7 @@ const PostItem : FC<IPost> = ({
     };
 
     return (
-        <article className="bg-white shadow-md rounded-lg mb-4">
+        <article className="bg-white shadow-md mb-4">
             <div className="p-2">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center">

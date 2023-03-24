@@ -12,7 +12,7 @@ import EventViewDetail from "../pages/EventViewDetail";
 const Routing: FC = () => {
   return (
     <BrowserRouter>
-      <div className="flex bg-slate-100">
+      <div className="flex">
         <div className="w-1/5">
         <Sidebar />
         </div>

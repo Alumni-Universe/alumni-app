@@ -39,8 +39,8 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="flex h-screen justify-center items-center p-2">
-      <div className="flex flex-col justify-center items-center">
+    <div className="flex h-screen justify-center items-center p-2 ">
+      <div className="flex flex-col justify-center items-center bg-slate-100">
         <Header
           heading="Home"
           headerBtnText="New Post"

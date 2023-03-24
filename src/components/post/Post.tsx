@@ -10,7 +10,7 @@ const Post: FC<PostProps> = ({ postTitle, postContent, onDelete }) => {
   //const [posts, setPosts] = useState(null);
 
   return (
-    <div className="bg-white p-4 my-4 rounded-lg shadow-md relative w-100 overflow-auto whitespace-pre-wrap break-words">
+    <div className="bg-white p-4 my-4 rounded shadow-md relative w-100 overflow-auto whitespace-pre-wrap break-words">
       <button
         onClick={onDelete}
         className="absolute top-2 right-2 text-red-500 hover:text-red-700"
