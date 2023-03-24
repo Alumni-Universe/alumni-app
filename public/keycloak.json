@@ -1,8 +1,9 @@
 {
-    "realm": "alumni",
-    "auth-server-url": "https://lemur-3.cloud-iam.com/auth/",
-    "ssl-required": "external",
-    "resource": "react-auth",
-    "public-client": true,
-    "confidential-port": 0
-  }
+  "realm": "alumni",
+  "auth-server-url": "https://keyclokalumni.azurewebsites.net/auth",
+  "ssl-required": "external",
+  "public-client": true,
+  "resource": "react-auth",
+  "confidential-port": 0,
+  "clientid": "react-auth"
+}

@@ -39,13 +39,13 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="flex">
-      <div className="">
+    <div className="flex h-screen justify-center items-center">
+      <div className="flex flex-col justify-center items-center">
         <Header
-          isCreatePostPopUpVisible={isCreatePostModalOpen}
-          changeCreatePostPopUpVisiblility={toggleCreatePostModal}
-          heading={""}
-          headerBtnText={""}
+          heading="Home"
+          headerBtnText="New Post"
+          isPopUpVisible={isCreatePostModalOpen}
+          changePopUpVisibility={toggleCreatePostModal}
         />
         <div className="px-5">
           {posts.map((post) => (
@@ -62,7 +62,8 @@ const UserProfile = () => {
           onClose={toggleCreatePostModal}
           onSubmit={handlePostSubmit}
         />
-        <div className="flex">
+
+        <div className="calendar-container float-right mt-5 mr-5 flex">
           <UserInfoComponent />
           <Calendar value={date} onChange={onDateChange} />
         </div>
