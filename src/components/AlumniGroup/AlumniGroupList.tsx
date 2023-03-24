@@ -29,10 +29,10 @@ const AlumniGroupList: FC = () => {
 
   return (
     <div className="flex-col">
-      <header className="font-bold text-xl rounded-md">
+      <div className="shadow-xl justify-between">
         <span>Groups</span>
         <AlumniGroupButtonCreate />
-      </header>
+      </div>
       <div className="flex">
         <div className="w-3/4 ">
           <p className="">No groups if user has not joined</p>

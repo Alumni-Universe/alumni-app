@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({
   //};
 
   return (
-    <div className="flex flex-col w-full ml-10">
+    <div className="flex flex-col w-full">
       <div className="header-container flex-row flex justify-between items-center w-full">
         <div className="header-item-left flex flex-row">
           <div className="logo-container pr-2">

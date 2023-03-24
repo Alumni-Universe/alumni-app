@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Keycloak from "keycloak-js";
+import Loading from "./components/shared/Loading";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -30,7 +31,7 @@ function AppWrapper() {
   }, []);
 
   if (!authenticated) {
-    return <div>Loading...</div>;
+    return <Loading/>
   }
 
   return <App />;

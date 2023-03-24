@@ -5,7 +5,7 @@ const AlumniGroupItem : FC<IAlumniGroup>  = ({ groupId, name, description, isPri
 
     return (
         <article className="card bg-light p-2">
-        <div className="card-body shadow-lg py-1 bg-slate-100">
+        <div className="card-body shadow-md py-1">
             <h4 className="text-sm card-title px-2 font-bold">{ name } {groupId} </h4>
             <p className="text-xs card-text px-2">Description:  { description }</p>
             <p className="text-xs card-text px-2">Created by: { createdBy }</p>

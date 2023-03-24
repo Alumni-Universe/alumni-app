@@ -4,8 +4,7 @@ import { IAlumniGroup } from '../interfaces/Interfaces';
 export const AlumniGroupService = (function(){
 
     const urlToAlumniGroupController = "https://noroffalumni.azurewebsites.net/api/AlumniGroups";
-
-
+    
     const getAll = async () => {
         const result = await axios.get( urlToAlumniGroupController );
         return result.data as IAlumniGroup[];
