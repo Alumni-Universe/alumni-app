@@ -3,20 +3,39 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
-//const keycloak = new Keycloak;
+import Keycloak from "keycloak-js";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const keycloak = new Keycloak();
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+function AppWrapper() {
+  const [authenticated, setAuthenticated] = React.useState(false);
+
+  React.useEffect(() => {
+    keycloak
+      .init({
+        onLoad: "login-required",
+      })
+      .then((auth) => {
+        if (auth) {
+          setAuthenticated(true);
+        }
+      })
+      .catch((error) => {
+        console.log("Keycloak error", error);
+      });
+  }, []);
+
+  if (!authenticated) {
+    return <div>Loading...</div>;
+  }
+
+  return <App />;
+}
+
+root.render(<AppWrapper />);
+
 reportWebVitals();

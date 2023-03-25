@@ -11,7 +11,7 @@ interface EventDetailsProps {
     StartDate: string;
     EndDate: string;
     bannerImg: string;
-    users: {userId:number, name: string}[]
+    users: { userId: number; name: string }[];
   };
   onDelete: (id: number) => void;
   onUpdate: (id: number, updatedEvent: any) => void;
