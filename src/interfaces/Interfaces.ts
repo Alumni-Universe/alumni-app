@@ -42,7 +42,7 @@ export interface IAlumniUser {
     bannerImg: string | null;
     startTime: Date;
     endTime: Date;
-    createdBy: number;
+    createdBy: number | string;
     posts?: PostInfoDto[];
     rsvps?: RsvpInfoDto[];
     groups?: AlumniGroupInfoDto[];

@@ -27,7 +27,7 @@ const EventsList:FC <{isCreateEventModalOpen:boolean, toggleCreatePostPopUp:Func
         bannerImg: CreateImage,
         startTime: new Date(CreateStartDate),
         endTime: new Date(CreateEndDate),
-        createdBy: 1,
+        createdBy: "1",
         users: [],
         eventId:0
       };
