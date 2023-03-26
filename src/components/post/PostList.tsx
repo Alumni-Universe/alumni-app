@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC, SetStateAction, useContext, useState } from "react";
 import { IPost } from "../../interfaces/Interfaces";
 import PostItem from "./PostItem";
 import { PostContext } from "../../contexts/PostContext";
@@ -12,7 +12,7 @@ const PostList: FC = () => {
       .filter((p: IPost) => p.replyParentId === null)
       .map((p: IPost, key: number) => {
         return (
-          <div key={key}>
+          <div key={p.postId}>
             <PostItem
               postId={p.postId}
               postTitle={p.postTitle}
@@ -33,9 +33,9 @@ const PostList: FC = () => {
   };
 
   return (
-    <section>
-      <hr className="mb-1" />
-      <div>{createPostList()}</div>
+    <section className="w-4/6">
+      <hr className="mb-2" />
+      <div className="">{createPostList()}</div>
     </section>
   );
 };

@@ -41,7 +41,7 @@ const PostItem : FC<IPost> = ({
                 <div className="flex items-center justify-between">
                     <div className="flex items-center">
                         <div>
-                            <h4 className="text-sm font-semibold">{sender.name}</h4>
+                            <h4 className="text-sm font-semibold text-gray-600">{sender.name}</h4>
                             <p className="text-gray-600 text-sm">Posted in {postTarget}</p>
                         </div>
                             <div className="pl-6">
