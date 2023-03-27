@@ -15,24 +15,24 @@ const keycloak = new Keycloak();
 function AppWrapper() {
   const [authenticated, setAuthenticated] = React.useState(false);
 
-  // React.useEffect(() => {
-  //   keycloak
-  //     .init({
-  //       onLoad: "login-required",
-  //     })
-  //     .then((auth) => {
-  //       if (auth) {
-  //         setAuthenticated(true);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log("Keycloak error", error);
-  //     });
-  // }, []);
+  React.useEffect(() => {
+    keycloak
+      .init({
+        onLoad: "login-required",
+      })
+      .then((auth) => {
+        if (auth) {
+          setAuthenticated(true);
+        }
+      })
+      .catch((error) => {
+        console.log("Keycloak error", error);
+      });
+  }, []);
 
-  // if (!authenticated) {
-  //   return <Loading/>
-  // }
+  if (!authenticated) {
+    return <Loading/>
+  }
 
   return <App />;
 }

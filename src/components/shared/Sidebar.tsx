@@ -1,3 +1,4 @@
+import { CalendarIcon } from "@heroicons/react/outline";
 import { BellIcon, BookmarkIcon, FolderIcon, HomeIcon, UserGroupIcon } from "@heroicons/react/outline";
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
@@ -30,7 +31,7 @@ const Sidebar: FC = () => {
           <Link className="px-3 w-full" to={"/groups"}>Groups</Link>
         </li>
         <li className=" justify-start flex px-4 py-2 hover:bg-gray-200">
-          <BookmarkIcon className="h-6 w-6 text-gray-600" />
+          <CalendarIcon className="h-6 w-6 text-gray-600" />
           <Link className="px-3 w-full" to={"/events"}>Events</Link>
         </li>
       </ul>

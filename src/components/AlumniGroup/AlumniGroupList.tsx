@@ -38,7 +38,7 @@ const AlumniGroupList: FC = () => {
           <p className="">No groups if user has not joined</p>
         </div>
         <div className="w-1/4">
-          <div className="flex-row">
+          <div className="flex-row py-2">
             <Calendar />
             <h4 className="text-center py-2 font-bold">PUBLIC GROUPS</h4>
             {createGroupList()}
