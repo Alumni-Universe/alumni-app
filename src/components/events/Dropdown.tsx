@@ -2,11 +2,9 @@
 import React, { useState } from "react";
 
 interface DropdownMenuProps {
-    children: React.ReactNode;
-    onDelete?:() => void 
-  }
-
-
+  children: React.ReactNode;
+  onDelete?: () => void;
+}
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({ onDelete }) => {
   const [showDropdown, setShowDropdown] = useState(false);

@@ -1,4 +1,5 @@
-import React, { FC, useState, useEffect } from "react";
+// eslint-disable-next-line react-hooks/exhaustive-deps
+import React, { FC, useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { IEvent } from "../../interfaces/Interfaces";
 import { EventService } from "../../services/EventService";
@@ -19,15 +20,18 @@ const EventView: FC = function () {
     toggleEventModal(!isCreateEventModalOpen);
   };
 
+  const getEventDetail = useCallback(
+    async function () {
+      if (typeof eventId !== "string") return;
+      const event = await EventService.getEventById(eventId);
+      setEvent(event);
+    },
+    [eventId]
+  );
+
   useEffect(() => {
     getEventDetail();
-  }, []);
-
-  const getEventDetail = async function () {
-    if (typeof eventId !== "string") return;
-    const event = await EventService.getEventById(eventId);
-    setEvent(event);
-  };
+  }, [getEventDetail]);
 
   useEffect(() => {
     const storedComments = localStorage.getItem("eventComments");

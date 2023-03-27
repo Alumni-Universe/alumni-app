@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState } from "react";
 
 interface CreatePostModalProps {
   isOpen: boolean;
@@ -6,29 +6,44 @@ interface CreatePostModalProps {
   onSubmit: (title: string, content: string) => void;
 }
 
-const CreatePostModal: FC<CreatePostModalProps> = ({ isOpen, onClose, onSubmit }) => {
-  const [postTitle, setPostTitle] = useState('');
-  const [postContent, setPostContent] = useState('');
+const CreatePostModal: FC<CreatePostModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+}) => {
+  const [postTitle, setPostTitle] = useState("");
+  const [postContent, setPostContent] = useState("");
 
-  const handlePostTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePostTitleChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setPostTitle(event.target.value);
   };
 
-  const handlePostContentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handlePostContentChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setPostContent(event.target.value);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit(postTitle, postContent);
-    setPostTitle('');
-    setPostContent('');
+    setPostTitle("");
+    setPostContent("");
     onClose();
   };
 
   return (
-    <div className={`modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 ${isOpen ? 'block' : 'hidden'}`}>
-      <form onSubmit={handleSubmit} className="bg-white rounded-md p-4 mx-auto mt-16 w-1/2">
+    <div
+      className={`modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 ${
+        isOpen ? "block" : "hidden"
+      }`}
+    >
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white rounded-md p-4 mx-auto mt-16 w-1/2"
+      >
         <h2 className="text-xl mb-4">Create a Post</h2>
         <input
           type="text"

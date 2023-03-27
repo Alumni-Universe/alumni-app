@@ -8,13 +8,12 @@ import Events from "../pages/Events";
 import Topics from "../pages/Topics";
 import EventViewDetail from "../pages/EventViewDetail";
 
-
 const Routing: FC = () => {
   return (
     <BrowserRouter>
       <div className="flex">
         <div className="w-1/5">
-        <Sidebar />
+          <Sidebar />
         </div>
         <div className="w-4/5">
           <Routes>
@@ -22,9 +21,9 @@ const Routing: FC = () => {
             <Route path="/user" element={<UserProfile />} />
             <Route path="/groups" element={<AlumniGroups />} />
             <Route path="/events" element={<Events />} />
-            <Route path="/event/:eventId" element={<EventViewDetail/>} />
+            <Route path="/event/:eventId" element={<EventViewDetail />} />
             <Route path="/topics" element={<Topics />} />
-          </Routes> 
+          </Routes>
         </div>
       </div>
     </BrowserRouter>
