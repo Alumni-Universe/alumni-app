@@ -11,6 +11,8 @@ export const AlumniUserProvider: FC<IAlumniUser> = ({children}) => {
         
     ]);
 
+    const [alumniUser, setAlumniUser] = useState<IAlumniUser>();
+
     useEffect(() => {
         getAlumniUsers().catch((error) => {
           console.error('Error in getAlumniUsers:', error);
@@ -21,6 +23,21 @@ export const AlumniUserProvider: FC<IAlumniUser> = ({children}) => {
         const _alumniUsers = await AlumniUserService.getAll();
         setAlumniUsers( _alumniUsers );
     }
+
+    const getAlumniUser = async (id: string) => {
+        const _alumniUser = await AlumniUserService.getAlumniUser(id);
+        setAlumniUser(_alumniUser);
+    }
+
+    const getUser = async (id: string): Promise<IAlumniUser | undefined> => {
+        try {
+          const _alumniUser = await AlumniUserService.getAlumniUser(id);
+          return _alumniUser;
+        } catch (error) {
+          console.error('Error in getUser:', error);
+          return undefined;
+        }
+      };
 
     const updateAlumniUser = async (alumniUserToUpdate: IAlumniUser, id: string) => {
         await AlumniUserService.updateAlumniUser(alumniUserToUpdate, id);
@@ -47,7 +64,7 @@ export const AlumniUserProvider: FC<IAlumniUser> = ({children}) => {
 
     return (
         <>
-            <AlumniUserContext.Provider value={{alumniUsers, updateAlumniUser, postAlumniUser, deleteAlumniUser}}>
+            <AlumniUserContext.Provider value={{alumniUsers, alumniUser, getUser, getAlumniUser, updateAlumniUser, postAlumniUser, deleteAlumniUser}}>
                 {children}
             </AlumniUserContext.Provider>
         </>

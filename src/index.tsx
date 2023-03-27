@@ -14,7 +14,22 @@ const root = ReactDOM.createRoot(
 
 function AppWrapper() {
   const [authenticated, setAuthenticated] = React.useState(false);
-  const { postAlumniUser } = useContext(AlumniUserContext) as AlumniUserContextType;
+  const { postAlumniUser, getUser } = useContext(AlumniUserContext) as AlumniUserContextType;
+
+  async function handleUser(userId: string, fullName: string) {
+    const existingUser = await getUser(userId);
+    if (!existingUser) {
+      const newAlumniUser: IAlumniUser = {
+        userId: userId,
+        name: fullName,
+        picture: "",
+        status: null,
+        bio: null,
+        funFact: null,
+      };
+      postAlumniUser(newAlumniUser);
+    }
+  }
 
   React.useEffect(() => {
     keycloak
@@ -29,18 +44,9 @@ function AppWrapper() {
           console.log("Token expires in:", keycloak.tokenParsed?.exp);
           const userId = keycloak.tokenParsed?.sub;
           const fullName = keycloak.tokenParsed?.given_name + " " + keycloak.tokenParsed?.family_name;
-          
 
-          if(userId) {
-            const newAlumniUser: IAlumniUser = {
-              userId: userId,
-              name: fullName,
-              picture: "",
-              status: null,
-              bio: null,
-              funFact: null
-            };
-            postAlumniUser(newAlumniUser);
+          if (userId) {
+            handleUser(userId, fullName);
           } else {
             console.error("User ID is undefined");
           }

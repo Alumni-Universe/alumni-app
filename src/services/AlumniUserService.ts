@@ -3,7 +3,7 @@ import axiosInstance from '../axiosInstance';
 
 export const AlumniUserService = (function(){
 
-    const urlToAlumniUserController = "https://noroffalumni.azurewebsites.net/api/AlumniUsers";
+    const urlToAlumniUserController = "https://noroffalumni.azurewebsites.net/api/AlumniUsers/";
 
 
     const getAll = async () => {
@@ -16,6 +16,12 @@ export const AlumniUserService = (function(){
           throw error;
         }
       };
+
+    const getAlumniUser = async (id: string) => {
+        const url = urlToAlumniUserController + id;
+        const result = await axiosInstance.get(url);
+        return result.data as IAlumniUser;
+    }
 
     const updateAlumniUser = async (userToUpdate: IAlumniUser, id: string) => {
         const url = urlToAlumniUserController + id;
@@ -39,7 +45,8 @@ export const AlumniUserService = (function(){
         getAll,
         updateAlumniUser,
         deleteAlumniUser,
-        postAlumniUser
+        postAlumniUser,
+        getAlumniUser
     }
 
 }()) 

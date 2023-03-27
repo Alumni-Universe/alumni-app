@@ -3,7 +3,7 @@ import { ITopic } from '../interfaces/Interfaces';
 
 export const TopicService = (function(){
 
-    const urlToTopicController = "https://noroffalumni.azurewebsites.net/api/Topics";
+    const urlToTopicController = "https://noroffalumni.azurewebsites.net/api/Topics/";
 
     const getAll = async () => {
         const result = await axiosInstance.get( urlToTopicController );

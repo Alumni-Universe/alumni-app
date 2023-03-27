@@ -3,7 +3,7 @@ import { IPost } from '../interfaces/Interfaces';
 
 export const PostService = (function(){
 
-    const urlToPostController = "https://noroffalumni.azurewebsites.net/api/Posts";
+    const urlToPostController = "https://noroffalumni.azurewebsites.net/api/Posts/";
 
     const getAll = async () => {
         const result = await axiosInstance.get( urlToPostController );
