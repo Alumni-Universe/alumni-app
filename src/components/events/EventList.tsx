@@ -14,37 +14,30 @@ const EventsList: FC<{
     getAllEvents();
   }, []);
 
+    const onSubmit = async function(CreateTitle: string, CreateLocation: string,CreateDescription: string, CreateEndDate: string, CreateStartDate: string, CreateImage:string){
+     const eventPayload: IEvent = {
+        name: CreateTitle,
+        description: CreateDescription,
+        allowGuests: true,
+        bannerImg: CreateImage,
+        startTime: new Date(CreateStartDate),
+        endTime: new Date(CreateEndDate),
+        createdBy: "1",
+        users: [],
+        eventId:0
+      };
+      await EventService.postEvent(eventPayload);
+      getAllEvents();
+    }
+    const onClose=function() {
+        toggleCreatePostPopUp();
+    }
+ 
   const getAllEvents = function () {
     EventService.getAll().then((events) => {
       console.log(events);
       setEvents(events);
     });
-  };
-
-  const onSubmit = async function (
-    CreateTitle: string,
-    CreateLocation: string,
-    CreateDescription: string,
-    CreateEndDate: string,
-    CreateStartDate: string,
-    CreateImage: string
-  ) {
-    const eventPayload: IEvent = {
-      name: CreateTitle,
-      description: CreateDescription,
-      allowGuests: true,
-      bannerImg: CreateImage,
-      startTime: new Date(CreateStartDate),
-      endTime: new Date(CreateEndDate),
-      createdBy: 1,
-      users: [],
-      eventId: 0,
-    };
-    await EventService.postEvent(eventPayload);
-    getAllEvents();
-  };
-  const onClose = function () {
-    toggleCreatePostPopUp();
   };
 
   return (
