@@ -29,9 +29,8 @@ const EventView: FC = function () {
     setEvent(event);
   };
 
-
   useEffect(() => {
-    const storedComments = localStorage.getItem('eventComments');
+    const storedComments = localStorage.getItem("eventComments");
     if (storedComments) {
       setComments(JSON.parse(storedComments));
     }
@@ -40,19 +39,19 @@ const EventView: FC = function () {
   const handleCommentSubmit = (comment: string) => {
     const updatedComments = [...comments, comment];
     setComments(updatedComments);
-    localStorage.setItem('eventComments', JSON.stringify(updatedComments));
+    localStorage.setItem("eventComments", JSON.stringify(updatedComments));
   };
 
   const handleDeleteComment = (index: number) => {
     const updatedComments = comments.filter((_, i) => i !== index);
     setComments(updatedComments);
-    localStorage.setItem('eventComments', JSON.stringify(updatedComments));
+    localStorage.setItem("eventComments", JSON.stringify(updatedComments));
   };
 
   const EventTab = [
     {
       title: "Details",
-      content: <EventAboutBox event={event}/>,
+      content: <EventAboutBox event={event} />,
     },
     {
       title: "Comments",
@@ -74,7 +73,6 @@ const EventView: FC = function () {
   ];
 
   return (
-
     <div>
       <Header
         heading="Event"
@@ -83,33 +81,31 @@ const EventView: FC = function () {
         changePopUpVisibility={toggleCreateEventModal}
       />
 
-    <div className="flex flex-col ml-7 mt-4">
-      <div className="flex justify-between">
-        <div className="flex content-between flex-col mt-4">
-          <h2 className="text-2xl font-bold">
-            {event?.name}
-          </h2>
+      <div className="flex flex-col ml-7 mt-4">
+        <div className="flex justify-between">
+          <div className="flex content-between flex-col mt-4">
+            <h2 className="text-2xl font-bold">{event?.name}</h2>
 
-          <p>
-            {new Date(event?.startTime || new Date()).toLocaleString()} -{" "}
-            {new Date(event?.endTime || new Date()).toLocaleString()}
-          </p>
-          <p>{event?.users?.length || 0} Attendies</p>
-          <div className="flex flex-row mt-5">
-            <button className="ml-3 bg-sky-300 px-4 py-2">Attend</button>
-            <button className="ml-3 bg-slate-300 px-4 py-2">Share</button>
+            <p>
+              {new Date(event?.startTime || new Date()).toLocaleString()} -{" "}
+              {new Date(event?.endTime || new Date()).toLocaleString()}
+            </p>
+            <p>{event?.users?.length || 0} Attendies</p>
+            <div className="flex flex-row mt-5">
+              <button className="ml-3 bg-sky-300 px-4 py-2">Attend</button>
+              <button className="ml-3 bg-slate-300 px-4 py-2">Share</button>
+            </div>
+          </div>
+          <div className="w-80">
+            <img alt="banner" src={event?.bannerImg || ""} />
           </div>
         </div>
-        <div className="w-80">
-          <img src={event?.bannerImg || ""} />
+        <div>
+          <Tab heading="" tabs={EventTab} />
         </div>
+        <div></div>
+        <div></div>
       </div>
-      <div>
-        <Tab heading="" tabs={EventTab} />
-      </div>
-      <div></div>
-      <div></div>
-    </div>
     </div>
   );
 };
