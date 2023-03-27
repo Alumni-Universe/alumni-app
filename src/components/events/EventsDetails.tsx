@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from '../shared/Sidebar';
-import DropdownMenu from './Dropdown';
 
 interface EventDetailsProps {
   event: {
@@ -18,6 +17,7 @@ interface EventDetailsProps {
 }
 
 const EventDetails: React.FC<EventDetailsProps> = ({ event, onDelete, onUpdate }) => {
+    const [dropdownVisible, setDropdownVisible] = useState(false);
   const getInitials = function(name: string){
       name = name.toUpperCase();
       const nameSplit = name.split(" ");
@@ -25,9 +25,24 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event, onDelete, onUpdate }
       else return nameSplit[0][0] + nameSplit[1][0];
   }
 
+  
+  const toggleDropdown = (ev: React.MouseEvent<HTMLButtonElement>) => {
+    ev.preventDefault();
+    setDropdownVisible(!dropdownVisible);
+};
+
+const deleteEvent = (ev: React.MouseEvent<HTMLParagraphElement>) => {
+    ev.preventDefault();
+    onDelete(event.id);
+}
+const editEvent = (ev: React.MouseEvent<HTMLParagraphElement>) => {
+    ev.preventDefault();
+    onUpdate(event.id, event);
+}
+
   return (
     <Link to={`/event/${event.id}`}>
-      <div className='flex mt-4 justify-between'>
+      <div className='flex mt-4 justify-between '>
           <div className='flex w-44 mr-3'>
               <img src={event.bannerImg}/>
           </div>
@@ -53,12 +68,30 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event, onDelete, onUpdate }
                   })
               }
           </div>
-          <div>
-              <DropdownMenu>
-                  <button onClick={() => onDelete(event.id)}>Delete</button>
-                  <button onClick={() => onUpdate(event.id, event)}>Update</button>
-              </DropdownMenu>
-          </div>
+          <div className="flex-none">
+                        <button onClick={toggleDropdown}>
+                            <img
+                            src="settingsIcon.png"
+                            alt="settings"
+                            className="h-6 w-6 text-center"
+                            />
+                        </button>
+                        {dropdownVisible && (
+                            <div className="absolute mt-2 w-48 bg-white border border-gray-200 rounded shadow-md">
+                                <ul>
+                                    <li className="px-4 py-2 hover:bg-gray-200">
+                                        <p onClick={editEvent} className="text-sm">Edit event</p>
+                                    </li>
+                                    <li className="px-4 py-2 hover:bg-gray-200">
+                                        <p className="text-sm">Share</p>
+                                    </li>
+                                    <li className="px-4 py-2 hover:bg-gray-200">
+                                        <p onClick={deleteEvent} className="text-sm text-red-500">Delete</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
+                    </div>
       </div>
     </Link>
   );

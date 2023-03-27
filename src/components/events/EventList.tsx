@@ -8,13 +8,15 @@ const EventsList: FC<{
   isCreateEventModalOpen: boolean;
   toggleCreatePostPopUp: Function;
 }> = ({ isCreateEventModalOpen, toggleCreatePostPopUp }) => {
+    const [eventModalMode, setEventModalMode] = useState("CREATE");
   const [events, setEvents] = useState([] as IEvent[]);
+  const [selectedEvent, setSelectedEvent] = useState();
 
   useEffect(() => {
     getAllEvents();
   }, []);
 
-    const onSubmit = async function(CreateTitle: string, CreateLocation: string,CreateDescription: string, CreateEndDate: string, CreateStartDate: string, CreateImage:string){
+    const onSubmit = async function(CreateTitle: string, CreateLocation: string,CreateDescription: string, CreateEndDate: string, CreateStartDate: string, CreateImage:string, CreateUrl: string, eventId: number=0){
      const eventPayload: IEvent = {
         name: CreateTitle,
         description: CreateDescription,
@@ -26,11 +28,13 @@ const EventsList: FC<{
         users: [],
         eventId:0
       };
-      await EventService.postEvent(eventPayload);
+      await eventModalMode === 'CREATE' ? EventService.postEvent(eventPayload) : EventService.updateEvent(eventPayload,eventId);
       getAllEvents();
     }
     const onClose=function() {
         toggleCreatePostPopUp();
+        setEventModalMode("CREATE");
+        setSelectedEvent(undefined);
     }
  
   const getAllEvents = function () {
@@ -39,6 +43,26 @@ const EventsList: FC<{
       setEvents(events);
     });
   };
+
+  const deleteEvent = async function(eventId: number) {
+    try {
+        await EventService.deleteEvent(eventId);
+        getAllEvents();
+    }
+    catch(e){
+        alert("Some error occured, please try later!")
+    }
+
+  }
+
+  const editEvent = function(eventId: number, event: any){
+ 
+    const selectedEvent: any= events.find((e: any) => e.eventId === eventId);
+    console.log(selectedEvent);
+    setSelectedEvent(selectedEvent);
+    setEventModalMode("EDIT");
+    toggleCreatePostPopUp(true);
+  }
 
   return (
     <div>
@@ -57,19 +81,18 @@ const EventsList: FC<{
                 bannerImg: ev.bannerImg || "",
                 users: ev.users || [],
               }}
-              onDelete={function (id: number): void {
-                throw new Error("Function not implemented.");
-              }}
-              onUpdate={function (id: number, updatedEvent: any): void {
-                throw new Error("Function not implemented.");
-              }}
+              onDelete={deleteEvent}
+              onUpdate={editEvent}
             />
           );
         })}
       <CreateEvents
         isOpen={isCreateEventModalOpen}
+        modalMode={eventModalMode}
         onSubmit={onSubmit}
         onClose={onClose}
+        modeChangeHandler={setEventModalMode}
+        eventDetails={selectedEvent}
       />
     </div>
   );

@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import EventsList from "../components/events/EventList";
 
 const Events: FC = () => {
+
   const [isCreateEventModalOpen, toggleEventModal] = useState(false);
 
   const toggleCreateEventModal = () => {
