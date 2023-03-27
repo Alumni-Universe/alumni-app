@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import DropdownMenu from "./Dropdown";
 
 interface EventDetailsProps {
   event: {
@@ -9,7 +10,7 @@ interface EventDetailsProps {
     StartDate: string;
     EndDate: string;
     bannerImg: string;
-    users: { userId: number; name: string }[];
+    users: { userId: string; name: string }[];
   };
   onDelete: (id: number) => void;
   onUpdate: (id: number, updatedEvent: any) => void;
@@ -28,18 +29,10 @@ const EventDetails: React.FC<EventDetailsProps> = ({
   };
 
   return (
-    /*   <div>
-      <h3>{event.title}</h3>
-      <p>{event.description}</p>
-      <p>{event.StartDate}</p>
-      <p>{event.EndDate}</p>
-      <button onClick={() => onDelete(event.id)}>Delete</button>
-      <button onClick={() => onUpdate(event.id, event)}>Update</button>
-    </div>*/
     <Link to={`/event/${event.id}`}>
       <div className="flex mt-4 justify-between">
         <div className="flex w-44 mr-3">
-          <img src={event.bannerImg} alt="banner" />
+          <img alt="banner" src={event.bannerImg} />
         </div>
         <div>
           <p>{event.StartDate.toLocaleString()}</p>
@@ -55,6 +48,12 @@ const EventDetails: React.FC<EventDetailsProps> = ({
                 </span>
               );
             })}
+        </div>
+        <div>
+          <DropdownMenu>
+            <button onClick={() => onDelete(event.id)}>Delete</button>
+            <button onClick={() => onUpdate(event.id, event)}>Update</button>
+          </DropdownMenu>
         </div>
       </div>
     </Link>

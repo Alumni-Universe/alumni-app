@@ -44,25 +44,25 @@ const ActivityTab = [
 
 const UserInfoComponent = () => {
   return (
-    <div className="w-3/5 pt-10 pl-1">
+    <div className="">
       <div className="user-name font-bold">
         <span>Øystein Opperud</span>
       </div>
       <div className="user-role">
         <span>Developer</span>
       </div>
-      <div className="user-current-status mt-3 font-bold">
+      <div className="user-current-status font-bold">
         <span>"Noroff"</span>
       </div>
-      <div className="user-location mt-3 font-light">
+      <div className="user-location font-light">
         <span>
           Oslo, Norway
-          <a href="link" className="user-contact-info ml-2 text-blue-600">
+          <a href="link" className="user-contact-info text-blue-600">
             Contact info
           </a>
         </span>
       </div>
-      <div className="user-bio mt-3">
+      <div className="user-bio">
         <label className="bio-bold font-bold">Bio</label>
         <p>
           When I graduated from college, life was going to be so different. I
