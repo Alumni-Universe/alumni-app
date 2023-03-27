@@ -33,18 +33,24 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, eventDetails, onClo
     }
   }, [eventDetails])
 
-
-  const handleCreateTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCreateTitleChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setCreateTitle(event.target.value);
   };
 
-  const handleCreateLocation = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleCreateLocation = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const selectedLocation = event.target.value;
 
     if (selectedLocation === "add_new_location") {
       const newLocationName = prompt("Enter the new location name:");
       if (newLocationName) {
-        const newLocation = { value: newLocationName.toUpperCase().slice(0, 2), name: newLocationName };
+        const newLocation = {
+          value: newLocationName.toUpperCase().slice(0, 2),
+          name: newLocationName,
+        };
         addNewLocation(newLocation);
         setCreateLocation(newLocation.value);
       } else {
@@ -55,7 +61,9 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, eventDetails, onClo
     }
   };
 
-  const handleCreateURLChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCreateURLChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setCreateURL(event.target.value);
   };
 
@@ -77,14 +85,26 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, eventDetails, onClo
     setCreateDescription(event.target.value);
   };
 
+  const handleCreateImageChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setCreateImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const isFormValid = (): boolean => {
-    if (CreateLocation == "") {
+    if (CreateLocation === "") {
       alert("Location is required");
       return false;
     }
     return true;
-  }
-
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -102,35 +122,36 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, eventDetails, onClo
   };
 
   const handleClose = async () => {
-    console.log('Close icon clicked');
-    const userResponse = await window.confirm("You have unsaved changes, are you sure you want to close it?");
+    console.log("Close icon clicked");
+    const userResponse = await window.confirm(
+      "You have unsaved changes, are you sure you want to close it?"
+    );
     if (userResponse) {
-      setCreateTitle('');
-      setCreateStartDate('');
-      setCreateEndDate('');
-      setCreateLocation('');
-      setCreateDescription('');
-      setCreateURL('');
+      setCreateTitle("");
+      setCreateStartDate("");
+      setCreateEndDate("");
+      setCreateLocation("");
+      setCreateDescription("");
+      setCreateURL("");
       onClose && onClose();
     }
   };
 
   const getMinEndDate = () => {
-    if (CreateStartDate == '') return new Date().toISOString().slice(0, 10);
+    if (CreateStartDate === "") return new Date().toISOString().slice(0, 10);
     return new Date(CreateStartDate).toISOString().slice(0, 10);
-  }
+  };
 
   const [locations, setLocations] = useState([
     { value: "US", name: "Experis" },
     { value: "CA", name: "Noroff" },
   ]);
 
-  const addNewLocation = (newLocation: { value: string; name: string; }) => {
+  const addNewLocation = (newLocation: { value: string; name: string }) => {
     setLocations([...locations, newLocation]);
   };
 
-  const [CreateURL, setCreateURL] = useState('');
-
+  const [CreateURL, setCreateURL] = useState("");
 
   return (
     <div className={`modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex-col flex ${isOpen ? 'block' : 'hidden'}`}>

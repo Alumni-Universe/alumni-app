@@ -4,7 +4,8 @@ import AlumniGroupItem from "./AlumniGroupItem";
 import { AlumniGroupContext } from "../../contexts/AlumniGroupContext";
 import { AlumniGroupContextType } from "../../types/AlumniGroupContextType";
 import { Calendar } from "react-calendar";
-import AlumniGroupButtonCreate from "./AlumniGroupButtonCreate";
+//import AlumniGroupButtonCreate from "./AlumniGroupButtonCreate";
+import AlumniGroupHeader from "./AlumniGroupHeader";
 
 const AlumniGroupList: FC = () => {
   const { alumniGroups } = useContext(
@@ -29,16 +30,15 @@ const AlumniGroupList: FC = () => {
 
   return (
     <div className="flex-col">
-      <header className="font-bold text-xl rounded-md">
-        <span>Groups</span>
-        <AlumniGroupButtonCreate />
-      </header>
+      <div className="shadow-xl justify-between">
+        <AlumniGroupHeader />
+      </div>
       <div className="flex">
         <div className="w-3/4 ">
           <p className="">No groups if user has not joined</p>
         </div>
         <div className="w-1/4">
-          <div className="flex-row">
+          <div className="flex-row py-2">
             <Calendar />
             <h4 className="text-center py-2 font-bold">PUBLIC GROUPS</h4>
             {createGroupList()}

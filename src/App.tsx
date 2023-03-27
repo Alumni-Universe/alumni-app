@@ -1,11 +1,10 @@
-import React from 'react';
-import Routing from './routing/Routing';
+import React from "react";
+import Routing from "./routing/Routing";
 
 class App extends React.Component {
-
-  render(){
+  render() {
     return (
-      <div className="container">
+      <div className="container bg-slate-100">
         <Routing />
       </div>
     );

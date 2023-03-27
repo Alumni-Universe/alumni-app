@@ -10,7 +10,7 @@ interface EventDetailsProps {
     StartDate: string;
     EndDate: string;
     bannerImg: string;
-    users: { userId: number; name: string }[];
+    users: { userId: string; name: string }[];
   };
   onDelete: (id: number) => void;
   onUpdate: (id: number, updatedEvent: any) => void;
@@ -42,7 +42,7 @@ const editEvent = (ev: React.MouseEvent<HTMLParagraphElement>) => {
 
   return (
     <Link to={`/event/${event.id}`}>
-      <div className='flex mt-4 justify-between '>
+      <div className='flex mt-4 justify-between'>
           <div className='flex w-44 mr-3'>
               <img src={event.bannerImg}/>
           </div>

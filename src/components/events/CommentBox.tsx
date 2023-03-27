@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface CommentBoxProps {
   onSubmit: (comment: string) => void;
 }
 
 const CommentBox: React.FC<CommentBoxProps> = ({ onSubmit }) => {
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (comment.trim()) {
       onSubmit(comment);
-      setComment('');
+      setComment("");
     }
   };
 
