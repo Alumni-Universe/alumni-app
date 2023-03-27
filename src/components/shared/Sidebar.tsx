@@ -20,31 +20,31 @@ const Sidebar: FC = () => {
         <span className="sidebar-heading text-lg">Alumni Portal</span>
       </div>
       <ul className="flex-row py-4">
-        <li className=" justify-start flex px-4 py-2 hover:bg-gray-200">
+        <li className=" justify-start flex px-4 py-4 hover:bg-gray-200">
           <HomeIcon className="h-6 w-6 text-gray-600" />
           <Link className="px-3 w-full" to={"/"}>
             Home
           </Link>
         </li>
-        <li className=" justify-start flex px-4 py-2 hover:bg-gray-200">
+        <li className=" justify-start flex px-4 py-4 hover:bg-gray-200">
           <BellIcon className="h-6 w-6 text-gray-600" />
           <Link className="px-3 w-full" to={"/"}>
             Notifications
           </Link>
         </li>
-        <li className=" justify-start flex px-4 py-2 hover:bg-gray-200">
+        <li className=" justify-start flex px-4 py-4 hover:bg-gray-200">
           <FolderIcon className="h-6 w-6 text-gray-600" />
           <Link className="px-3 w-full" to={"/topics"}>
             Topics
           </Link>
         </li>
-        <li className=" justify-start flex px-4 py-2 hover:bg-gray-200">
+        <li className=" justify-start flex px-4 py-4 hover:bg-gray-200">
           <UserGroupIcon className="h-6 w-6 text-gray-600" />
           <Link className="px-3 w-full" to={"/groups"}>
             Groups
           </Link>
         </li>
-        <li className=" justify-start flex px-4 py-2 hover:bg-gray-200">
+        <li className=" justify-start flex px-4 py-4 hover:bg-gray-200">
           <CalendarIcon className="h-6 w-6 text-gray-600" />
           <Link className="px-3 w-full" to={"/events"}>
             Events

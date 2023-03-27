@@ -63,12 +63,20 @@ const HomeHeader: FC<HeaderProps> = ({
           {filteredPosts.map((post, index) => (
             <div
               key={index}
-              className="px-4 py-2 text-gray-600 hover:bg-gray-200 cursor-pointer"
+              className="px-4 py-2 text-gray-600 hover:bg-gray-200 cursor-pointer flex justify-between"
             >
-              <h4>{post.postTitle}</h4>
-              <p>{post.postMessage}</p>
+              <div>
+                <h4>{post.postTitle}</h4>
+                <p>{post.postMessage}</p>
+              </div>
+              <div className="flex items-center">
+                <h4 className="p-1 border border-gray-600 rounded-md bg-white">{post.postTarget}</h4>
+              </div>
             </div>
           ))}
+          <div className="px-4 py-3 bg-gray-100 text-black font-semibold">
+            {filteredPosts.length} Result{filteredPosts.length > 1 ? 's' : ''}
+          </div>
         </div>
       );
     }

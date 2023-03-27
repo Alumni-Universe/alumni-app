@@ -17,5 +17,11 @@ declare module "@heroicons/react/outline" {
   export const CalendarIcon: (
     pros: React.ComponentProps<"svg">
   ) => React.ReactElement;
+  export const ChatIcon: (
+    pros: React.ComponentProps<"svg">
+  ) => React.ReactElement;
+  export const ThumbUpIcon: (
+    pros: React.ComponentProps<"svg">
+  ) => React.ReactElement;
   // Add any other icons you might need in the future
 }

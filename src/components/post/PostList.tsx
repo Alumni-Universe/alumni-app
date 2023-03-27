@@ -25,8 +25,9 @@ const PostList: FC = () => {
               targetUser={p.targetUser}
               targetGroup={p.targetGroup}
               targetTopic={p.targetTopic}
-              targetEvent={p.targetEvent}
-            />
+              targetEvent={p.targetEvent} 
+              commentsCount={0}            
+              />
           </div>
         );
       });
