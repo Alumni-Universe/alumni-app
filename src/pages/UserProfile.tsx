@@ -5,6 +5,7 @@ import Post from "../components/post/Post";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import UserInfoComponent from "../components/user/UserInfo";
+import { PostProvider } from "../contexts/PostContext";
 
 interface PostData {
   id: number;
@@ -57,11 +58,13 @@ const UserProfile = () => {
             />
           ))}
         </div>
-        <CreatePostModal
-          isOpen={isCreatePostModalOpen}
-          onClose={toggleCreatePostModal}
-          onSubmit={handlePostSubmit}
-        />
+        <PostProvider postTitle={""} lastUpdated={new Date} postMessage={null} postTarget={""} senderId={""} replyParentId={null} targetUser={null} targetGroup={null} targetTopic={null} targetEvent={null} sender={{userId: "", name: ""}}>
+          <CreatePostModal
+            isOpen={isCreatePostModalOpen}
+            onClose={toggleCreatePostModal}
+            onSubmit={handlePostSubmit}
+          />
+        </PostProvider>
 
         <div className="calendar-container float-right flex">
           <UserInfoComponent />

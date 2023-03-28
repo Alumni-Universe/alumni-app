@@ -14,7 +14,7 @@ const UpcomingEventList: FC = () => {
 
     const upcomingEvents = sortedEvents.slice(0, 5);
 
-    return upcomingEvents.map((e: IEvent, key: number) => {
+    return upcomingEvents.map((e: IEvent) => {
       return (
         <div key={e.eventId}>
           <UpcomingEventItem

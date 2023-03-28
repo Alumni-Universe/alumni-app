@@ -17,14 +17,15 @@ const HomePage: FC = function () {
         lastUpdated={new Date()}
         postMessage={null}
         postTarget={""}
-        senderId={0}
+        senderId={""}
         replyParentId={null}
         targetUser={null}
         targetGroup={null}
         targetTopic={null}
         targetEvent={null}
-        sender={{ userId: "", name: "" }}
-      >
+        sender={{ userId: "", name: "" }} 
+        inverseReplyParent={[]}      
+        >
         <HomeHeader
           changeCreatePostPopUpVisiblility={changeCreatePostPopUpVisiblility}
           isCreatePostPopUpVisible={isCreatePostPopUpVisible}
@@ -38,14 +39,15 @@ const HomePage: FC = function () {
           lastUpdated={new Date()}
           postMessage={null}
           postTarget={""}
-          senderId={0}
+          senderId={""}
           replyParentId={null}
           targetUser={null}
           targetGroup={null}
           targetTopic={null}
           targetEvent={null}
-          sender={{ userId: "", name: "" }}
-        >
+          sender={{ userId: "", name: "" }} 
+          inverseReplyParent={[]}        
+          >
           <PostList />
         </PostProvider>
 
