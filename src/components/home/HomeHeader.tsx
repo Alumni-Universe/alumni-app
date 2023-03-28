@@ -70,12 +70,14 @@ const HomeHeader: FC<HeaderProps> = ({
                 <p>{post.postMessage}</p>
               </div>
               <div className="flex items-center">
-                <h4 className="p-1 border border-gray-600 rounded-md bg-white">{post.postTarget}</h4>
+                <h4 className="p-1 border border-gray-600 rounded-md bg-white">
+                  {post.postTarget}
+                </h4>
               </div>
             </div>
           ))}
           <div className="px-4 py-3 bg-gray-100 text-black font-semibold">
-            {filteredPosts.length} Result{filteredPosts.length > 1 ? 's' : ''}
+            {filteredPosts.length} Result{filteredPosts.length > 1 ? "s" : ""}
           </div>
         </div>
       );
