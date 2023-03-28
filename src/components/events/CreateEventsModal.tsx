@@ -23,11 +23,13 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
   const [CreateEndDate, setCreateEndDate] = useState('');
   const [CreateDescription, setCreateDescription] = useState('');
   const [CreateImage, setCreateImage] = useState('');
+  const [currentEvent, setCurrentEvent] = useState <IEvent | {}>({});
 
   useEffect(() => {
     if (modalMode !== 'CREATE') {
       const eventDetails = events.find((e: IEvent) => e.eventId === selectedEventId);
       if(eventDetails) {
+        setCurrentEvent(eventDetails);
         setCreateTitle(eventDetails.name);
         setCreateStartDate(new Date(eventDetails.startTime).toISOString().slice(0, 10));
         setCreateEndDate(new Date(eventDetails.endTime).toISOString().slice(0, 10));
@@ -136,7 +138,7 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
         eventId: selectedEventId,
         description: CreateDescription,
         allowGuests: true,
-        bannerImg: CreateImage,
+        bannerImg: ('bannerImg' in currentEvent) ? currentEvent.bannerImg : '',
         startTime: new Date(CreateStartDate).toISOString(),
         endTime: new Date(CreateEndDate).toISOString(),
         createdBy: "1",
@@ -230,11 +232,11 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
                   type="radio"
                   id="option1"
                   name="options"
-                  value="online"
+                  value="Public"
                   className="form-radio text-blue-600 h-4 w-4"
                 />
                 <label htmlFor="option1" className="ml-2 inline">
-                  Online
+                  Public
                 </label>
               </div>
               <div>
@@ -242,11 +244,11 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
                   type="radio"
                   id="option2"
                   name="options"
-                  value="Personally present"
+                  value="Private"
                   className="form-radio text-blue-600 h-4 w-4"
                 />
                 <label htmlFor="option2" className="ml-2 inline">
-                  Personally present
+                  Private
                 </label>
               </div>
             </div>

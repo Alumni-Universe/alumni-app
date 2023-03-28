@@ -45,7 +45,6 @@ export const EventProvider: FC<IEvent> = ({ children }) => {
       <EventContext.Provider
         value={{ events, selectedEventId, updateEvent, postEvent, deleteEvent, setSelectedEventId }}
       >
-        Selected Event Id: {selectedEventId}
         {children}
       </EventContext.Provider>
     </>
