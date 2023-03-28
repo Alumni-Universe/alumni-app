@@ -6,13 +6,15 @@ import {
   HomeIcon,
   UserGroupIcon,
 } from "@heroicons/react/outline";
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { Link } from "react-router-dom";
 import noroffLogo from "../../assets/noroff.png";
-
-//type buttons = {};
+import { AlumniUserContext } from "../../contexts/AlumniUserContext";
+import { AlumniUserContextType } from "../../types/AlumniUserContextType";
 
 const Sidebar: FC = () => {
+  const { authenticatedUser } = useContext(AlumniUserContext) as AlumniUserContextType;
+
   return (
     <div className="h-screen bg-gray-100">
       <div className="flex items-center px-3">
@@ -54,7 +56,7 @@ const Sidebar: FC = () => {
       <div className="flex flex-row items-center fixed bottom-2 left-0">
         <img src={noroffLogo} className="w-10 h-10 mt-2 mr-2" alt="logo" />
         <span className="sidebar-heading text-m">
-          <Link to={"/user"}>User name</Link>
+          <Link to={"/user"}>{authenticatedUser?.name}</Link>
         </span>
       </div>
     </div>

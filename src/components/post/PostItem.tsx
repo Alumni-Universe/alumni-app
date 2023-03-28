@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { IPost } from "../../interfaces/Interfaces";
 import { ChatIcon, ThumbUpIcon } from "@heroicons/react/outline";
+import { ThumbUpIcon as SolidThumbUpIcon } from "@heroicons/react/solid";
 
 const timeSince = (date: Date | string) => {
   const parsedDate = new Date(date);
@@ -57,6 +58,14 @@ const PostItem: FC<PostItemProps> = ({
     setDropdownVisible(!dropdownVisible);
   };
 
+  // Add a new state variable called `liked` and a function to update it called `setLiked`
+  const [liked, setLiked] = useState(false);
+
+  // Function to toggle the `liked` state
+  const toggleLike = () => {
+    setLiked(!liked);
+  };
+
   return (
     <article className="bg-white shadow-md mb-4">
       <div className="p-2">
@@ -103,8 +112,17 @@ const PostItem: FC<PostItemProps> = ({
         </div>
         <div className="p-2 border-t border-gray-200 flex justify-between items-center">
         <div className="flex space-x-4">
-        <button className="flex items-center text-gray-600 hover:text-blue-600 font-semibold space-x-1">
-          <ThumbUpIcon className="h-5 w-5" />
+        <button
+          onClick={toggleLike}
+          className={`flex items-center font-semibold space-x-1 ${
+            liked ? "text-blue-600" : "text-gray-600 hover:text-blue-600"
+          }`}
+        >
+          {liked ? (
+            <SolidThumbUpIcon className={`h-5 w-5 ${liked ? "text-blue-600" : ""}`} />
+          ) : (
+            <ThumbUpIcon className={`h-5 w-5 ${liked ? "text-blue-600" : ""}`} />
+          )}
           <span>Like</span>
         </button>
           <button className="flex items-center text-gray-600 hover:text-blue-600 font-semibold space-x-1">

@@ -1,5 +1,6 @@
 import { FC, SetStateAction, useContext, useEffect, useState } from "react";
 import { HomeIcon } from "@heroicons/react/outline";
+import { PlusIcon } from "@heroicons/react/solid";
 import CreatePostModal from "../post/CreatePostModel";
 import { PostContextType } from "../../types/PostContextType";
 import { PostContext } from "../../contexts/PostContext";
@@ -91,10 +92,11 @@ const HomeHeader: FC<HeaderProps> = ({
           <h2 className="text-xl font-semibold text-gray-700">Home</h2>
         </div>
         <button
-          className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
+          className="bg-white text-gray-600 border border-gray-600 py-2 px-4 hover:bg-gray-100 flex items-center"
           onClick={changePopUpVisibility}
         >
           New Post
+          <span><PlusIcon className="h-4 w-4 ml-4 text-black"/></span>
         </button>
       </header>
       <hr className="mb-2" />

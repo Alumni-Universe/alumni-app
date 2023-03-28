@@ -25,3 +25,12 @@ declare module "@heroicons/react/outline" {
   ) => React.ReactElement;
   // Add any other icons you might need in the future
 }
+
+declare module "@heroicons/react/solid" {
+  export const ThumbUpIcon: (
+    pros: React.ComponentProps<"svg">
+  ) => React.ReactElement;
+  export const PlusIcon: (
+    pros: React.ComponentProps<"svg">
+  ) => React.ReactElement;
+}
