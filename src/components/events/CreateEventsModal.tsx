@@ -1,37 +1,42 @@
 import { createEvent } from '@testing-library/react';
-import React, { FC, SetStateAction, useEffect, useState } from 'react';
+import React, { FC, SetStateAction, useEffect, useState, useContext } from 'react';
 import DatePicker from 'react-modern-calendar-datepicker';
 import { redirect } from 'react-router-dom';
+import { EventContext } from '../../contexts/EventContext';
+import { ICreateEventPayload, IEvent } from '../../interfaces/Interfaces';
+import { EventContextType } from '../../types/EventContextType';
 import Comment from './DeleteComment';
 
 
 interface CreateEvents {
   isOpen: boolean;
   modalMode: string;
-  eventDetails: any;
-  onClose: () => void;
-  onSubmit: (title: string, location: string, description: string, endDate: string, startDate: string, image: string, url: string, eventId: number) => void;
-modeChangeHandler: Function
+  changeCreateEventPopUpVisiblility: Function
 }
 
 
-const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, eventDetails, onClose, onSubmit, modeChangeHandler }) => {
+const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPopUpVisiblility }) => {
+  const { selectedEventId, events, postEvent, updateEvent,  } = useContext(EventContext) as EventContextType;
   const [CreateTitle, setCreateTitle] = useState('');
   const [CreateLocation, setCreateLocation] = useState('');
   const [CreateStartDate, setCreateStartDate] = useState('');
   const [CreateEndDate, setCreateEndDate] = useState('');
   const [CreateDescription, setCreateDescription] = useState('');
   const [CreateImage, setCreateImage] = useState('');
+
   useEffect(() => {
-    if (eventDetails) {
-      setCreateTitle(eventDetails.name);
-      setCreateStartDate(new Date(eventDetails.startTime).toISOString().slice(0, 10));
-      setCreateEndDate(new Date(eventDetails.endTime).toISOString().slice(0, 10));
-      setCreateLocation('');
-      setCreateDescription(eventDetails.description);
-      setCreateURL('');
+    if (modalMode !== 'CREATE') {
+      const eventDetails = events.find((e: IEvent) => e.eventId === selectedEventId);
+      if(eventDetails) {
+        setCreateTitle(eventDetails.name);
+        setCreateStartDate(new Date(eventDetails.startTime).toISOString().slice(0, 10));
+        setCreateEndDate(new Date(eventDetails.endTime).toISOString().slice(0, 10));
+        setCreateLocation('');
+        setCreateDescription(eventDetails?.description || "");
+        setCreateURL('');
+      }
     }
-  }, [eventDetails])
+  }, [])
 
   const handleCreateTitleChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -106,19 +111,46 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, eventDetails, onClo
     return true;
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!isFormValid()) {
       return;
     }
-    onSubmit && onSubmit(CreateTitle, CreateLocation, CreateDescription, CreateEndDate, CreateStartDate, CreateImage, CreateURL, eventDetails.eventId);
+
+    if (modalMode === 'CREATE'){
+
+      const postPayload: ICreateEventPayload = {
+        name: CreateTitle,
+        description: CreateDescription,
+        allowGuests: true,
+        bannerImg: CreateImage,
+        startTime: CreateStartDate,
+        endTime: CreateEndDate,
+        createdBy: "1"
+      }
+      await postEvent(postPayload);
+    }else{
+
+      const eventPayload: IEvent = {
+        name: CreateTitle,
+        eventId: selectedEventId,
+        description: CreateDescription,
+        allowGuests: true,
+        bannerImg: CreateImage,
+        startTime: new Date(CreateStartDate).toISOString(),
+        endTime: new Date(CreateEndDate).toISOString(),
+        createdBy: "1",
+      };
+      await updateEvent(eventPayload, selectedEventId);
+    }
+
     setCreateTitle('');
     setCreateStartDate('');
     setCreateEndDate('');
     setCreateLocation('');
     setCreateDescription('');
     setCreateURL('');
-    onClose && onClose();
+    changeCreateEventPopUpVisiblility(false);
   };
 
   const handleClose = async () => {
@@ -133,7 +165,7 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, eventDetails, onClo
       setCreateLocation("");
       setCreateDescription("");
       setCreateURL("");
-      onClose && onClose();
+      changeCreateEventPopUpVisiblility(false);
     }
   };
 
@@ -278,3 +310,4 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, eventDetails, onClo
 };
 
 export default CreateEvents;
+

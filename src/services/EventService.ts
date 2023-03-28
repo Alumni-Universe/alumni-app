@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosInstance";
-import { IEvent } from "../interfaces/Interfaces";
+import { ICreateEventPayload, IEvent } from "../interfaces/Interfaces";
 
 export const EventService = (function () {
   const urlToEventController =
@@ -22,7 +22,7 @@ export const EventService = (function () {
     return result.data as IEvent[];
   };
 
-  const postEvent = async (newEvent: IEvent) => {
+  const postEvent = async (newEvent: ICreateEventPayload) => {
     const result = await axiosInstance.post(urlToEventController, newEvent);
     return result.data as IEvent[];
   };
