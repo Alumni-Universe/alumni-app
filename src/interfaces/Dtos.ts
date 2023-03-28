@@ -1,39 +1,30 @@
 export interface AlumniGroupInfoDto {
-    groupId: number;
-    name: string;
+  groupId: number;
+  name: string;
 }
 
 export interface AlumniUserInfoDto {
-    userId: number;
-    name: string;
+  userId: string;
+  name: string;
 }
 
 export interface EventInfoDto {
-    eventId: number;
-    name: string;
+  eventId: number;
+  name: string;
 }
 
 export interface PostInfoDto {
-    postId: number;
-    postTarget: string;
+  postId: number;
+  postTarget: string;
 }
 
 export interface RsvpInfoDto {
-    lastUpdated: Date;
-    userId: number;
-    eventId: number;
+  lastUpdated: Date;
+  userId: number;
+  eventId: number;
 }
 
 export interface TopicInfoDto {
-    topicId: number;
-    name: string;
+  topicId: number;
+  name: string;
 }
-
-
-
-
-
-
-
-
-

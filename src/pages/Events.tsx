@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import Header from "../components/Header";
 import EventsList from "../components/events/EventList";
 import EventsHeader from "../components/events/EventsHeader";
 
@@ -12,7 +11,7 @@ const Events: FC = () => {
 
   return (
     <section className="flex flex-col p-2">
-      <EventsHeader/>
+      <EventsHeader />
       <EventsList
         isCreateEventModalOpen={isCreateEventModalOpen}
         toggleCreatePostPopUp={toggleCreateEventModal}
