@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-interface CreateEvents {
+interface ICreateEvents {
   isOpen?: boolean;
   onClose?: () => void;
   onSubmit?: (
@@ -13,7 +13,7 @@ interface CreateEvents {
   ) => void;
 }
 
-const CreateEvents: React.FC<CreateEvents> = ({
+const CreateEvents: React.FC<ICreateEvents> = ({
   isOpen,
   onClose,
   onSubmit,
@@ -53,6 +53,21 @@ const CreateEvents: React.FC<CreateEvents> = ({
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setCreateDescription(event.target.value);
+  };
+
+  const handleCreateImageChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = event.target.files && event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setCreateImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setCreateImage("");
+    }
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -109,6 +124,13 @@ const CreateEvents: React.FC<CreateEvents> = ({
                     id="event_title"
                     className="mr-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Title"
+                  />
+
+                  <input
+                    type="file"
+                    onChange={handleCreateImageChange}
+                    className="h-1/3 bg-slate-300"
+                    placeholder="Upload Image"
                   />
 
                   <select
