@@ -1,5 +1,6 @@
 import { FC, SetStateAction, useContext, useEffect, useState } from "react";
 import { HomeIcon } from "@heroicons/react/outline";
+import { PlusIcon } from "@heroicons/react/solid";
 import CreatePostModal from "../post/CreatePostModel";
 import { PostContextType } from "../../types/PostContextType";
 import { PostContext } from "../../contexts/PostContext";
@@ -63,12 +64,20 @@ const HomeHeader: FC<HeaderProps> = ({
           {filteredPosts.map((post, index) => (
             <div
               key={index}
-              className="px-4 py-2 text-gray-600 hover:bg-gray-200 cursor-pointer"
+              className="px-4 py-2 text-gray-600 hover:bg-gray-200 cursor-pointer flex justify-between"
             >
-              <h4>{post.postTitle}</h4>
-              <p>{post.postMessage}</p>
+              <div>
+                <h4>{post.postTitle}</h4>
+                <p>{post.postMessage}</p>
+              </div>
+              <div className="flex items-center">
+                <h4 className="p-1 border border-gray-600 rounded-md bg-white">{post.postTarget}</h4>
+              </div>
             </div>
           ))}
+          <div className="px-4 py-3 bg-gray-100 text-black font-semibold">
+            {filteredPosts.length} Result{filteredPosts.length > 1 ? 's' : ''}
+          </div>
         </div>
       );
     }
@@ -83,10 +92,11 @@ const HomeHeader: FC<HeaderProps> = ({
           <h2 className="text-xl font-semibold text-gray-700">Home</h2>
         </div>
         <button
-          className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
+          className="bg-white text-gray-600 border border-gray-600 py-2 px-4 hover:bg-gray-100 flex items-center"
           onClick={changePopUpVisibility}
         >
           New Post
+          <span><PlusIcon className="h-4 w-4 ml-4 text-black"/></span>
         </button>
       </header>
       <hr className="mb-2" />
