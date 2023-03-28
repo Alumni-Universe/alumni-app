@@ -10,7 +10,7 @@ const Events: FC = () => {
   };
 
   return (
-    <section className="flex flex-col p-2">
+    <section className="flex flex-col">
       <EventsHeader />
       <EventsList
         isCreateEventModalOpen={isCreateEventModalOpen}

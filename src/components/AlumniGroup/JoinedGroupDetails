@@ -1,0 +1,5 @@
+
+import { useContext } from "react";
+import {AlumniGroupContext} from "../../contexts/AlumniGroupContext";
+
+const JoinedGroupDetails = ({}) 

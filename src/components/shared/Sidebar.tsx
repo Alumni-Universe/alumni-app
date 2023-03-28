@@ -14,7 +14,7 @@ import noroffLogo from "../../assets/noroff.png";
 
 const Sidebar: FC = () => {
   return (
-    <div className="h-screen fixed bg-gray-100">
+    <div className="h-screen fixed shadow-sm bg-white pr-5">
       <div className="flex items-center px-3">
         <img src={noroffLogo} className="w-10 h-10 mt-2 mr-2" alt="logo" />
         <span className="sidebar-heading text-lg">Alumni Portal</span>
@@ -53,9 +53,9 @@ const Sidebar: FC = () => {
       </ul>
       <div className="flex flex-row items-center fixed bottom-2 left-0">
         <img src={noroffLogo} className="w-10 h-10 mt-2 mr-2" alt="logo" />
-        <span className="sidebar-heading text-m">
+        <div className="sidebar-heading text-m w-full">
           <Link to={"/user"}>User name</Link>
-        </span>
+        </div>
       </div>
     </div>
   );

@@ -4,8 +4,9 @@ import AlumniGroupItem from "./AlumniGroupItem";
 import { AlumniGroupContext } from "../../contexts/AlumniGroupContext";
 import { AlumniGroupContextType } from "../../types/AlumniGroupContextType";
 import { Calendar } from "react-calendar";
-//import AlumniGroupButtonCreate from "./AlumniGroupButtonCreate";
 import AlumniGroupHeader from "./AlumniGroupHeader";
+import AlumniGroupDetails from "./AlumniGroupDetails";
+import AlumniGroupDetailsHeader from "./AlumniGroupDetailsHeader";
 
 const AlumniGroupList: FC = () => {
   const { alumniGroups } = useContext(
@@ -15,7 +16,7 @@ const AlumniGroupList: FC = () => {
   const createGroupList = () => {
     return alumniGroups.map((group: IAlumniGroup, key: number) => {
       return (
-        <div key={key}>
+        <div key={key}> 
           <AlumniGroupItem
             groupId={group.groupId}
             name={group.name}
@@ -30,12 +31,13 @@ const AlumniGroupList: FC = () => {
 
   return (
     <div className="flex-col">
-      <div className="shadow-xl justify-between">
+      <div className="shadow-sm justify-between">
         <AlumniGroupHeader />
       </div>
       <div className="flex">
-        <div className="w-3/4 ">
-          <p className="">No groups if user has not joined</p>
+        <div className="w-3/4 py-2">
+          <AlumniGroupDetailsHeader/>
+          <AlumniGroupDetails groupId={0} name={""} description={""} isPrivate={false} createdBy={0}/>
         </div>
         <div className="w-1/4">
           <div className="flex-row py-2">

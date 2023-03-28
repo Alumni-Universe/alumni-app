@@ -43,7 +43,7 @@ export const AlumniGroupProvider: FC<IAlumniGroup> = ({ children }) => {
     const _alumniGroups = await AlumniGroupService.getAll();
     setAlumniGroups(_alumniGroups);
   };
-
+  
   return (
     <>
       <AlumniGroupContext.Provider

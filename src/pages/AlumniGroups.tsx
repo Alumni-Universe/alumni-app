@@ -4,7 +4,7 @@ import AlumniGroupList from "../components/AlumniGroup/AlumniGroupList";
 
 const AlumniGroups: FC = () => {
   return (
-    <div className="p-2">
+    <div className="">
       <AlumniGroupProvider
         groupId={0}
         name={""}
