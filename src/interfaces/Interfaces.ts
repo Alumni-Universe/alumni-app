@@ -75,13 +75,13 @@ export interface ICreateEventPayload {
 
 export interface IPost {
   postId?: number;
-  postTitle: string;
+  postTitle?: string;
   lastUpdated: Date;
   postMessage: string | null;
   postTarget: string;
   senderId: string;
   replyParentId: number | null;
-  targetUser: number | null;
+  targetUser: string | null;
   targetGroup: number | null;
   targetTopic: number | null;
   targetEvent: number | null;
