@@ -1,8 +1,6 @@
 import { CalendarIcon } from "@heroicons/react/outline";
 import { FC, SetStateAction, useContext, useEffect, useState } from "react";
 import { EventContext } from "../../contexts/EventContext";
-import { IEvent } from "../../interfaces/Interfaces";
-import { EventService } from "../../services/EventService";
 import { EventContextType } from "../../types/EventContextType";
 import CreateEvents from "./CreateEventsModal";
 
@@ -10,16 +8,18 @@ interface HeaderProps {
   isCreateEventPopUpVisible: boolean;
   changeCreateEventPopUpVisiblility: (visible: boolean) => void;
   modalMode: string;
-  setModalMode: Function
+  setModalMode: Function;
 }
 
 const EventsHeader: FC<HeaderProps> = ({
   isCreateEventPopUpVisible,
   changeCreateEventPopUpVisiblility,
   modalMode,
-  setModalMode
+  setModalMode,
 }) => {
-  const { events, setSelectedEventId } = useContext(EventContext) as EventContextType;
+  const { events, setSelectedEventId } = useContext(
+    EventContext
+  ) as EventContextType;
   const [filteredEvents, setFilteredEvents] = useState(events);
 
   useEffect(() => {
@@ -30,13 +30,16 @@ const EventsHeader: FC<HeaderProps> = ({
   const openCreateEventModal = () => {
     changeCreateEventPopUpVisiblility &&
       changeCreateEventPopUpVisiblility(!isCreateEventPopUpVisible);
-      setSelectedEventId(0);
-      setModalMode('CREATE');
+    setSelectedEventId(0);
+    setModalMode("CREATE");
   };
 
+  /*
   const handleCreateEventSubmit = (postText: string) => {
-    changeCreateEventPopUpVisiblility && changeCreateEventPopUpVisiblility(false);
+    changeCreateEventPopUpVisiblility &&
+      changeCreateEventPopUpVisiblility(false);
   };
+  */
 
   const handleChange = (event: {
     target: { value: SetStateAction<string> };
@@ -46,13 +49,13 @@ const EventsHeader: FC<HeaderProps> = ({
     const searchResults = !searchInput
       ? events
       : events.filter(
-        (event) =>
-          event.name
-            .toLowerCase()
-            .includes(searchInput.toLocaleLowerCase()) ||
-          event.description
-            ?.toLowerCase()
-            .includes(searchInput.toLocaleLowerCase())
+          (event) =>
+            event.name
+              .toLowerCase()
+              .includes(searchInput.toLocaleLowerCase()) ||
+            event.description
+              ?.toLowerCase()
+              .includes(searchInput.toLocaleLowerCase())
         );
 
     setFilteredEvents(searchResults);
