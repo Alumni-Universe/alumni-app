@@ -12,9 +12,7 @@ export const AlumniUserProvider: FC<IAlumniUser> = ({ children }) => {
   const [authenticatedUser, setAuthenticatedUser] = useState<IAlumniUser>();
 
   useEffect(() => {
-    getAlumniUsers().catch((error) => {
-      console.error("Error in getAlumniUsers:", error);
-    });
+    getAlumniUsers()
   }, []);
 
   const getAlumniUsers = async () => {
