@@ -9,23 +9,15 @@ export const AlumniUserContext = createContext<AlumniUserContextType | null>(
 
 export const AlumniUserProvider: FC<IAlumniUser> = ({ children }) => {
   const [alumniUsers, setAlumniUsers] = useState<IAlumniUser[]>([]);
-
-  const [alumniUser, setAlumniUser] = useState<IAlumniUser>();
+  const [authenticatedUser, setAuthenticatedUser] = useState<IAlumniUser>();
 
   useEffect(() => {
-    getAlumniUsers().catch((error) => {
-      console.error("Error in getAlumniUsers:", error);
-    });
+    getAlumniUsers()
   }, []);
 
   const getAlumniUsers = async () => {
     const _alumniUsers = await AlumniUserService.getAll();
     setAlumniUsers(_alumniUsers);
-  };
-
-  const getAlumniUser = async (id: string) => {
-    const _alumniUser = await AlumniUserService.getAlumniUser(id);
-    setAlumniUser(_alumniUser);
   };
 
   const getUser = async (id: string): Promise<IAlumniUser | undefined> => {
@@ -68,12 +60,12 @@ export const AlumniUserProvider: FC<IAlumniUser> = ({ children }) => {
       <AlumniUserContext.Provider
         value={{
           alumniUsers,
-          alumniUser,
           getUser,
-          getAlumniUser,
           updateAlumniUser,
           postAlumniUser,
           deleteAlumniUser,
+          authenticatedUser,
+          setAuthenticatedUser,
         }}
       >
         {children}

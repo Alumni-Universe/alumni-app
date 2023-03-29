@@ -14,7 +14,7 @@ const UpcomingEventList: FC = () => {
 
     const upcomingEvents = sortedEvents.slice(0, 5);
 
-    return upcomingEvents.map((e: IEvent, key: number) => {
+    return upcomingEvents.map((e: IEvent) => {
       return (
         <div key={e.eventId}>
           <UpcomingEventItem
@@ -33,7 +33,7 @@ const UpcomingEventList: FC = () => {
   };
 
   return (
-    <section className="w-2/6 mt-2 ml-3 shadow-lg h-full">
+    <section className="w-2/6 bg-white mt-2 ml-3 shadow-lg h-full">
       <h2 className="font-semibold text-center p-1">Your upcoming events:</h2>
       <div className="">{createEventList()}</div>
     </section>

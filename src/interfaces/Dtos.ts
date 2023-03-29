@@ -15,12 +15,36 @@ export interface EventInfoDto {
 
 export interface PostInfoDto {
   postId: number;
+  postTitle: string;
+  lastUpdated: Date;
+  postMessage: string | null;
   postTarget: string;
+  senderId: string;
+  replyParentId: number | null;
+  targetUser: number | null;
+  targetGroup: number | null;
+  targetTopic: number | null;
+  targetEvent: number | null;
+  sender: AlumniUserInfoDto;
+}
+
+export interface PostReplyDto {
+  postId: number;
+  lastUpdated: Date;
+  postMessage: string | null;
+  postTarget: string;
+  senderId: string;
+  replyParentId: number | null;
+  targetUser: number | null;
+  targetGroup: number | null;
+  targetTopic: number | null;
+  targetEvent: number | null;
+  sender: AlumniUserInfoDto;
 }
 
 export interface RsvpInfoDto {
   lastUpdated: Date;
-  userId: number;
+  userId: string;
   eventId: number;
 }
 

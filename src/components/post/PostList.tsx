@@ -10,7 +10,7 @@ const PostList: FC = () => {
   const createPostList = () => {
     return posts
       .filter((p: IPost) => p.replyParentId === null)
-      .map((p: IPost, key: number) => {
+      .map((p: IPost) => {
         return (
           <div key={p.postId}>
             <PostItem
@@ -26,7 +26,8 @@ const PostList: FC = () => {
               targetGroup={p.targetGroup}
               targetTopic={p.targetTopic}
               targetEvent={p.targetEvent}
-            />
+              inverseReplyParent={p.inverseReplyParent}          
+              />
           </div>
         );
       });
