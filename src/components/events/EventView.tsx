@@ -1,6 +1,7 @@
 // eslint-disable-next-line react-hooks/exhaustive-deps
 import React, { FC, useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
+import { EventProvider } from "../../contexts/EventContext";
 import { IEvent } from "../../interfaces/Interfaces";
 import { EventService } from "../../services/EventService";
 import Header from "../Header";
@@ -8,6 +9,7 @@ import Tab from "../shared/Tab";
 import CommentBox from "./CommentBox";
 import Comment from "./DeleteComment";
 import EventAboutBox from "./EventAboutBox";
+import EventsHeader from "./EventsHeader";
 
 const EventView: FC = function () {
   const [comments, setComments] = useState<string[]>([]);
@@ -16,9 +18,13 @@ const EventView: FC = function () {
   const [event, setEvent] = useState<IEvent | undefined>(undefined);
   const [isCreateEventModalOpen, toggleEventModal] = useState(false);
 
+  const [modalMode, setModalMode] = useState('CREATE');
+
   const toggleCreateEventModal = () => {
     toggleEventModal(!isCreateEventModalOpen);
   };
+
+
 
   const getEventDetail = useCallback(
     async function () {
@@ -78,12 +84,24 @@ const EventView: FC = function () {
 
   return (
     <div>
-      <Header
-        heading="Event"
-        headerBtnText="Invite"
-        isPopUpVisible={isCreateEventModalOpen}
-        changePopUpVisibility={toggleCreateEventModal}
-      />
+
+      
+<EventProvider
+        eventId={0}
+        name={""}
+        description={null}
+        allowGuests={false}
+        bannerImg={null}
+        startTime={new Date()}
+        endTime={new Date()}
+        createdBy={0}
+      >
+        <EventsHeader
+          isCreateEventPopUpVisible={isCreateEventModalOpen}
+          changeCreateEventPopUpVisiblility={toggleEventModal}
+          modalMode={modalMode}
+          setModalMode={setModalMode}
+        />
 
       <div className="flex flex-col ml-7 mt-4">
         <div className="flex justify-between">
@@ -110,6 +128,7 @@ const EventView: FC = function () {
         <div></div>
         <div></div>
       </div>
+      </EventProvider>
     </div>
   );
 };

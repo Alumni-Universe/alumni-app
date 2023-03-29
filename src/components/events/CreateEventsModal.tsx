@@ -24,6 +24,7 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
   const [CreateDescription, setCreateDescription] = useState('');
   const [CreateImage, setCreateImage] = useState('');
   const [currentEvent, setCurrentEvent] = useState <IEvent | {}>({});
+  const [allowGuests, setAllowGuest] = useState<boolean>(true);
 
   useEffect(() => {
     if (modalMode !== 'CREATE') {
@@ -36,6 +37,7 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
         setCreateLocation('');
         setCreateDescription(eventDetails?.description || "");
         setCreateURL('');
+        setAllowGuest(eventDetails.allowGuests);
       }
     }
   }, [])
@@ -105,6 +107,10 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
     }
   };
 
+  const handleAllowGuestChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAllowGuest(event.target.value === 'true');
+  } 
+
   const isFormValid = (): boolean => {
     if (CreateLocation === "") {
       alert("Location is required");
@@ -124,7 +130,7 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
       const postPayload: ICreateEventPayload = {
         name: CreateTitle,
         description: CreateDescription,
-        allowGuests: true,
+        allowGuests: allowGuests,
         bannerImg: CreateImage,
         startTime: CreateStartDate,
         endTime: CreateEndDate,
@@ -137,7 +143,7 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
         name: CreateTitle,
         eventId: selectedEventId,
         description: CreateDescription,
-        allowGuests: true,
+        allowGuests: allowGuests,
         bannerImg: ('bannerImg' in currentEvent) ? currentEvent.bannerImg : '',
         startTime: new Date(CreateStartDate).toISOString(),
         endTime: new Date(CreateEndDate).toISOString(),
@@ -152,6 +158,7 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
     setCreateLocation('');
     setCreateDescription('');
     setCreateURL('');
+    setAllowGuest(true);
     changeCreateEventPopUpVisiblility(false);
   };
 
@@ -232,7 +239,9 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
                   type="radio"
                   id="option1"
                   name="options"
-                  value="Public"
+                  value="false" 
+                  onChange={handleAllowGuestChange}
+                  checked={!allowGuests}
                   className="form-radio text-blue-600 h-4 w-4"
                 />
                 <label htmlFor="option1" className="ml-2 inline">
@@ -244,7 +253,9 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
                   type="radio"
                   id="option2"
                   name="options"
-                  value="Private"
+                  value="true" 
+                  onChange={handleAllowGuestChange}
+                  checked={allowGuests}
                   className="form-radio text-blue-600 h-4 w-4"
                 />
                 <label htmlFor="option2" className="ml-2 inline">

@@ -23,6 +23,12 @@ declare module "@heroicons/react/outline" {
   export const ThumbUpIcon: (
     pros: React.ComponentProps<"svg">
   ) => React.ReactElement;
+  export const LockClosedIcon: (
+    pros: React.ComponentProps<"svg">
+  )=> React.ReactElement;
+  export const UserGroupIcon: (
+    pros: React.ComponentProps<"svg">
+  )=> React.ReactElement;
   // Add any other icons you might need in the future
 }
 

@@ -1,3 +1,4 @@
+import { LockClosedIcon, UserGroupIcon } from '@heroicons/react/outline';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { EventContext } from '../../contexts/EventContext';
@@ -13,6 +14,7 @@ interface EventItemProps {
         EndDate: string;
         bannerImg: string;
         users: { userId: string; name: string }[];
+        allowGuests: boolean;
     };
     isCreateEventModalOpen: boolean;
     toggleCreatePostPopUp: Function;
@@ -52,9 +54,24 @@ const EventItem: React.FC<EventItemProps> = ({ eventDetails, isCreateEventModalO
 
     return (
         <Link to={`/event/${eventDetails.id}`}>
-            <div className='flex mt-4 justify-between'>
+            <div className='flex mt-4 justify-between items-center'>
                 <div className='flex w-44 mr-3'>
                     <img src={eventDetails.bannerImg} />
+                </div>
+                <div className='flex mr-3 w-20'>
+                    <p>{eventDetails.allowGuests ? 
+                    (<div className="flex items-center space-x-2">
+                    <LockClosedIcon className="h-6 w-6 text-gray-600" />
+                    <h2 className="text-xl font-semibold text-gray-700">Private</h2>
+                  </div>
+                  )
+                     : 
+                     (<div className="flex items-center space-x-2">
+                     <UserGroupIcon className="h-6 w-6 text-gray-600" />
+                     <h2 className="text-xl font-semibold text-gray-700">Public</h2>
+                   </div>
+                   )
+                    }</p>
                 </div>
                 <div>
                     <p>

@@ -31,6 +31,7 @@ const EventsList: FC<{
                 EndDate: new Date(ev.endTime).toDateString() || "",
                 bannerImg: ev.bannerImg || "",
                 users: ev.users || [],
+                allowGuests: ev.allowGuests
               }}
               isCreateEventModalOpen={isCreateEventModalOpen}
               toggleCreatePostPopUp={toggleCreatePostPopUp}
