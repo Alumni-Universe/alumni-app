@@ -1,68 +1,22 @@
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import HomeHeader from "../components/home/HomeHeader";
 import UpcomingEventList from "../components/home/UpcomingEventList";
 import PostList from "../components/post/PostList";
-import { EventProvider } from "../contexts/EventContext";
-import { PostProvider } from "../contexts/PostContext";
+import { PostContext } from "../contexts/PostContext";
+import { PostContextType } from "../types/PostContextType";
 
 const HomePage: FC = function () {
-  const [isCreatePostPopUpVisible, changeCreatePostPopUpVisiblility] =
-    useState(false);
+  const [isCreatePostPopUpVisible, changeCreatePostPopUpVisiblility] = useState(false);
 
   return (
     <div className="p-2">
-      <PostProvider
-        postTitle={""}
-        postId={0}
-        lastUpdated={new Date()}
-        postMessage={null}
-        postTarget={""}
-        senderId={""}
-        replyParentId={null}
-        targetUser={null}
-        targetGroup={null}
-        targetTopic={null}
-        targetEvent={null}
-        sender={{ userId: "", name: "" }} 
-        inverseReplyParent={[]}      
-        >
-        <HomeHeader
-          changeCreatePostPopUpVisiblility={changeCreatePostPopUpVisiblility}
-          isCreatePostPopUpVisible={isCreatePostPopUpVisible}
-        />
-      </PostProvider>
-
+      <HomeHeader
+        changeCreatePostPopUpVisiblility={changeCreatePostPopUpVisiblility}
+        isCreatePostPopUpVisible={isCreatePostPopUpVisible}
+      />
       <div className="flex w-full">
-        <PostProvider
-          postTitle={""}
-          postId={0}
-          lastUpdated={new Date()}
-          postMessage={null}
-          postTarget={""}
-          senderId={""}
-          replyParentId={null}
-          targetUser={null}
-          targetGroup={null}
-          targetTopic={null}
-          targetEvent={null}
-          sender={{ userId: "", name: "" }} 
-          inverseReplyParent={[]}        
-          >
-          <PostList />
-        </PostProvider>
-
-        <EventProvider
-          eventId={0}
-          name={""}
-          description={null}
-          allowGuests={false}
-          bannerImg={null}
-          startTime={new Date()}
-          endTime={new Date()}
-          createdBy={0}
-        >
-          <UpcomingEventList />
-        </EventProvider>
+        <PostList/>
+        <UpcomingEventList />
       </div>
     </div>
   );
