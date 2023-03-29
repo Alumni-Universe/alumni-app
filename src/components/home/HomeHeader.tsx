@@ -73,12 +73,14 @@ const HomeHeader: FC<HeaderProps> = ({
                 <p>{post.postMessage}</p>
               </div>
               <div className="flex items-center">
-                <h4 className="p-1 border border-gray-600 rounded-md bg-white">{post.postTarget}</h4>
+                <h4 className="p-1 border border-gray-600 rounded-md bg-white">
+                  {post.postTarget}
+                </h4>
               </div>
             </div>
           ))}
           <div className="px-4 py-3 bg-gray-100 text-black font-semibold">
-            {filteredPosts.length} Result{filteredPosts.length > 1 ? 's' : ''}
+          {filteredPosts.length} Result{filteredPosts.length > 1 ? 's' : ''}
           </div>
         </div>
       );
@@ -98,7 +100,9 @@ const HomeHeader: FC<HeaderProps> = ({
           onClick={changePopUpVisibility}
         >
           New Post
-          <span><PlusIcon className="h-4 w-4 ml-4 text-black"/></span>
+          <span>
+            <PlusIcon className="h-4 w-4 ml-4 text-black"/>
+          </span>
         </button>
       </header>
       <hr className="mb-2" />
@@ -114,18 +118,14 @@ const HomeHeader: FC<HeaderProps> = ({
         {renderSearchResults()}
       </div>
       {isCreatePostPopUpVisible && (
-        <AlumniGroupProvider groupId={0} name={""} description={""} isPrivate={false} createdBy={0}>
-          <TopicProvider topicId={0} name={""} description={""}>
-          <CreatePostModal
-              isOpen={isCreatePostPopUpVisible}
-                onClose={() =>
-                  changeCreatePostPopUpVisiblility &&
-                  changeCreatePostPopUpVisiblility(false)
-                }
-                onSubmit={handleCreatePostSubmit}
-              />
-          </TopicProvider>
-        </AlumniGroupProvider>
+        <CreatePostModal
+          isOpen={isCreatePostPopUpVisible}
+          onClose={() =>
+            changeCreatePostPopUpVisiblility &&
+            changeCreatePostPopUpVisiblility(false)
+          }
+          onSubmit={handleCreatePostSubmit}
+        />
       )}
     </>
   );
