@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DropdownMenu from "./Dropdown";
+// import DropdownMenu from "./Dropdown";
 
 interface EventDetailsProps {
   event: {
@@ -50,10 +50,10 @@ const EventDetails: React.FC<EventDetailsProps> = ({
             })}
         </div>
         <div>
-          <DropdownMenu>
+          {/* <DropdownMenu>
             <button onClick={() => onDelete(event.id)}>Delete</button>
             <button onClick={() => onUpdate(event.id, event)}>Update</button>
-          </DropdownMenu>
+          </DropdownMenu> */}
         </div>
       </div>
     </Link>

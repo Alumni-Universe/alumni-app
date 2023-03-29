@@ -7,6 +7,7 @@ import { Calendar } from "react-calendar";
 import AlumniGroupHeader from "./AlumniGroupHeader";
 import AlumniGroupDetails from "./AlumniGroupDetails";
 import AlumniGroupDetailsHeader from "./AlumniGroupDetailsHeader";
+import AlumniGroupModel from "./AlumniGroupModel";
 
 const AlumniGroupList: FC = () => {
   const { alumniGroups } = useContext(
@@ -37,7 +38,9 @@ const AlumniGroupList: FC = () => {
       <div className="flex">
         <div className="w-3/4 py-2">
           <AlumniGroupDetailsHeader/>
-          <AlumniGroupDetails groupId={0} name={""} description={""} isPrivate={false} createdBy={0}/>
+          <div className="py-2">
+            <AlumniGroupModel/>
+          </div>
         </div>
         <div className="w-1/4">
           <div className="flex-row py-2">
