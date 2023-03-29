@@ -19,9 +19,24 @@ export interface PostInfoDto {
   lastUpdated: Date;
   postMessage: string | null;
   postTarget: string;
-  senderId: number;
+  senderId: string;
   replyParentId: number | null;
-  targetUser: number | null;
+  targetUser: string | null;
+  targetGroup: number | null;
+  targetTopic: number | null;
+  targetEvent: number | null;
+  sender: AlumniUserInfoDto;
+}
+
+export interface PostReplyDto {
+  postId?: number;
+  postTitle?: string;
+  lastUpdated: Date;
+  postMessage: string | null;
+  postTarget: string;
+  senderId: string;
+  replyParentId: number | null;
+  targetUser: string | null;
   targetGroup: number | null;
   targetTopic: number | null;
   targetEvent: number | null;
@@ -30,7 +45,7 @@ export interface PostInfoDto {
 
 export interface RsvpInfoDto {
   lastUpdated: Date;
-  userId: number;
+  userId: string;
   eventId: number;
 }
 

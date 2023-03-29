@@ -37,7 +37,7 @@ const CreateEvents: FC<CreateEvents> = ({ isOpen, modalMode, changeCreateEventPo
         setCreateLocation('');
         setCreateDescription(eventDetails?.description || "");
         setCreateURL('');
-        setAllowGuest(eventDetails.allowGuests);
+        setAllowGuest(eventDetails.allowGuests)
       }
     }
   }, [])

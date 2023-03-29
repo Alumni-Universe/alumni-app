@@ -22,35 +22,42 @@ interface EventItemProps {
     setModalMode: Function
 }
 
-const EventItem: React.FC<EventItemProps> = ({ eventDetails, isCreateEventModalOpen, toggleCreatePostPopUp, modalMode, setModalMode  }) => {
-    const {deleteEvent, setSelectedEventId } = useContext(EventContext) as EventContextType;
+const EventItem: React.FC<EventItemProps> = ({
+  eventDetails,
+  isCreateEventModalOpen,
+  toggleCreatePostPopUp,
+  modalMode,
+  setModalMode,
+}) => {
+  const { deleteEvent, setSelectedEventId } = useContext(
+    EventContext
+  ) as EventContextType;
 
-    const [dropdownVisible, setDropdownVisible] = useState(false);
-    const getInitials = function (name: string) {
-        name = name.toUpperCase();
-        const nameSplit = name.split(" ");
-        if (nameSplit.length < 2) return name[0];
-        else return nameSplit[0][0] + nameSplit[1][0];
-    }
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const getInitials = function (name: string) {
+    name = name.toUpperCase();
+    const nameSplit = name.split(" ");
+    if (nameSplit.length < 2) return name[0];
+    else return nameSplit[0][0] + nameSplit[1][0];
+  };
 
+  const toggleDropdown = (ev: React.MouseEvent<HTMLButtonElement>) => {
+    ev.preventDefault();
+    setDropdownVisible(!dropdownVisible);
+  };
 
-    const toggleDropdown = (ev: React.MouseEvent<HTMLButtonElement>) => {
-        ev.preventDefault();
-        setDropdownVisible(!dropdownVisible);
-    };
+  const onDeleteEvent = (ev: React.MouseEvent<HTMLParagraphElement>) => {
+    ev.preventDefault();
+    deleteEvent(eventDetails.id);
+  };
+  const editEvent = (ev: React.MouseEvent<HTMLParagraphElement>) => {
+    ev.preventDefault();
+    console.log("about to set: ", eventDetails.id);
+    setSelectedEventId(eventDetails.id);
+    setModalMode("EDIT");
 
-    const onDeleteEvent = (ev: React.MouseEvent<HTMLParagraphElement>) => {
-        ev.preventDefault();
-        deleteEvent(eventDetails.id);
-    }
-    const editEvent = (ev: React.MouseEvent<HTMLParagraphElement>) => {
-        ev.preventDefault();
-        console.log('about to set: ', eventDetails.id);
-        setSelectedEventId(eventDetails.id);
-        setModalMode("EDIT");
-        
-        toggleCreatePostPopUp(true);
-    }
+    toggleCreatePostPopUp(true);
+  };
 
     return (
         <Link to={`/event/${eventDetails.id}`}>
@@ -120,9 +127,11 @@ const EventItem: React.FC<EventItemProps> = ({ eventDetails, isCreateEventModalO
                     )}
                 </div>
             </div>
-        </Link>
-    );
+
+
+
+    </Link>
+  );
 };
 
 export default EventItem;
-

@@ -1,18 +1,19 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { FC, useContext } from "react";
 import { EventContext } from "../../contexts/EventContext";
-import { IEvent } from "../../interfaces/Interfaces";
-import { EventService } from "../../services/EventService";
 import { EventContextType } from "../../types/EventContextType";
-import CreateEvents from "./CreateEventsModal";
 import EventItem from "./EventsItem";
 
 const EventsList: FC<{
   isCreateEventModalOpen: boolean;
   toggleCreatePostPopUp: Function;
   modalMode: string;
-  setModalMode: Function
-}> = ({ isCreateEventModalOpen, toggleCreatePostPopUp, modalMode, setModalMode }) => {
-
+  setModalMode: Function;
+}> = ({
+  isCreateEventModalOpen,
+  toggleCreatePostPopUp,
+  modalMode,
+  setModalMode,
+}) => {
   const { events } = useContext(EventContext) as EventContextType;
 
   return (
@@ -40,7 +41,6 @@ const EventsList: FC<{
             />
           );
         })}
-
     </div>
   );
 };

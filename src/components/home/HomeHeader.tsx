@@ -4,6 +4,8 @@ import { PlusIcon } from "@heroicons/react/solid";
 import CreatePostModal from "../post/CreatePostModel";
 import { PostContextType } from "../../types/PostContextType";
 import { PostContext } from "../../contexts/PostContext";
+import { AlumniGroupProvider } from "../../contexts/AlumniGroupContext";
+import { TopicProvider } from "../../contexts/TopicContext";
 
 interface HeaderProps {
   isCreatePostPopUpVisible?: boolean;
@@ -27,7 +29,7 @@ const HomeHeader: FC<HeaderProps> = ({
       changeCreatePostPopUpVisiblility(!isCreatePostPopUpVisible);
   };
 
-  const handleCreatePostSubmit = (postText: string) => {
+  const handleCreatePostSubmit = () => {
     changeCreatePostPopUpVisiblility && changeCreatePostPopUpVisiblility(false);
   };
 
@@ -41,7 +43,7 @@ const HomeHeader: FC<HeaderProps> = ({
       : posts.filter(
           (post) =>
             post.postTitle
-              .toLowerCase()
+              ?.toLowerCase()
               .includes(searchInput.toLocaleLowerCase()) ||
             post.postMessage
               ?.toLowerCase()
@@ -112,14 +114,18 @@ const HomeHeader: FC<HeaderProps> = ({
         {renderSearchResults()}
       </div>
       {isCreatePostPopUpVisible && (
-        <CreatePostModal
-          isOpen={isCreatePostPopUpVisible}
-          onClose={() =>
-            changeCreatePostPopUpVisiblility &&
-            changeCreatePostPopUpVisiblility(false)
-          }
-          onSubmit={handleCreatePostSubmit}
-        />
+        <AlumniGroupProvider groupId={0} name={""} description={""} isPrivate={false} createdBy={0}>
+          <TopicProvider topicId={0} name={""} description={""}>
+          <CreatePostModal
+              isOpen={isCreatePostPopUpVisible}
+                onClose={() =>
+                  changeCreatePostPopUpVisiblility &&
+                  changeCreatePostPopUpVisiblility(false)
+                }
+                onSubmit={handleCreatePostSubmit}
+              />
+          </TopicProvider>
+        </AlumniGroupProvider>
       )}
     </>
   );
