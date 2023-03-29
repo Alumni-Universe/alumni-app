@@ -53,11 +53,12 @@ const PostItem: FC<IPost> = ({
 }) => {
   const { postPost } = useContext(PostContext) as PostContextType;
   const { authenticatedUser } = useContext(AlumniUserContext) as AlumniUserContextType;
-  const timeElapsed = timeSince(lastUpdated);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showReplyField, setShowReplyField] = useState(false);
   const [postReply, setPostReply] = useState("");
+
+  const timeElapsed = timeSince(lastUpdated);
 
   const handlePostReplyChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -74,8 +75,10 @@ const PostItem: FC<IPost> = ({
   };
 
   const handleReply = () => {
+    const now = new Date();
+    const nowUtc = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
     const newReply: PostReplyDto = {
-      lastUpdated: new Date(),
+      lastUpdated: nowUtc,
       postTitle: "",
       postMessage: postReply,
       postTarget: "post",
