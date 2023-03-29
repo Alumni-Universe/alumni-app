@@ -31,26 +31,25 @@ const CommentItem: FC<PostReplyDto> = ({
   postTarget,
   postMessage,
 }) => {
-
   const timeElapsed = timeSince(lastUpdated);
   // You can add more styling or information as needed
   return (
     <div className="p-2 bg-gray-100 rounded">
       <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <div>
-              <h4 className="text-sm font-semibold text-gray-800">
-                {sender.name}
-              </h4>
-            </div>
-            <div className="pl-6">
-              <p className="text-sm">Posted {timeElapsed}</p>
-            </div>
+        <div className="flex items-center">
+          <div>
+            <h4 className="text-sm font-semibold text-gray-800">
+              {sender.name}
+            </h4>
+          </div>
+          <div className="pl-6">
+            <p className="text-sm">Posted {timeElapsed}</p>
           </div>
         </div>
-        <div className="mt-4">
-          <p className="text-gray-700 mt-2 pb-10">{postMessage}</p>
-        </div>
+      </div>
+      <div className="mt-4">
+        <p className="text-gray-700 mt-2 pb-10">{postMessage}</p>
+      </div>
     </div>
   );
 };

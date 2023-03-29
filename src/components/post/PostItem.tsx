@@ -198,7 +198,7 @@ const PostItem: FC<IPost> = ({
               onChange={handlePostReplyChange}
             ></textarea>
             <button
-              className="bg-gray-400 text-white hover:text-blue-600 font-semibold px-4 py-2 rounded mt-2 absolute bottom-5 right-4"
+              className="bg-gray-500 text-white hover:bg-blue-600 font-semibold px-4 py-2 rounded mt-2 absolute bottom-5 right-4"
               onClick={handleReply}
             >
               Post

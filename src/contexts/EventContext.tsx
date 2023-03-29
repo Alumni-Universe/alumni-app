@@ -1,4 +1,4 @@
-import { IEvent } from "../interfaces/Interfaces";
+import { ICreateEventPayload, IEvent } from "../interfaces/Interfaces";
 import { EventContextType } from "../types/EventContextType";
 import { EventService } from "../services/EventService";
 import { FC, useState, useEffect, createContext } from "react";
@@ -7,6 +7,7 @@ export const EventContext = createContext<EventContextType | null>(null);
 
 export const EventProvider: FC<IEvent> = ({ children }) => {
   const [events, setEvents] = useState<IEvent[]>([]);
+  const [selectedEventId, setSelectedEventId] = useState<number>(0);
 
   useEffect(() => {
     getEvents();
@@ -33,7 +34,7 @@ export const EventProvider: FC<IEvent> = ({ children }) => {
         setArtists([newArtist, ...artists]); // I useState øsnker man ikke mutasjoner 
     }*/
 
-  const postEvent = async (newEvent: IEvent) => {
+  const postEvent = async (newEvent: ICreateEventPayload) => {
     await EventService.postEvent(newEvent);
     const _events = await EventService.getAll();
     setEvents(_events);
@@ -42,7 +43,7 @@ export const EventProvider: FC<IEvent> = ({ children }) => {
   return (
     <>
       <EventContext.Provider
-        value={{ events, updateEvent, postEvent, deleteEvent }}
+        value={{ events, selectedEventId, updateEvent, postEvent, deleteEvent, setSelectedEventId }}
       >
         {children}
       </EventContext.Provider>

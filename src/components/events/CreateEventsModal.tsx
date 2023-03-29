@@ -1,26 +1,50 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState, useContext } from "react";
+import { EventContext } from "../../contexts/EventContext";
+import { ICreateEventPayload, IEvent } from "../../interfaces/Interfaces";
+import { EventContextType } from "../../types/EventContextType";
 
 interface ICreateEvents {
-  isOpen?: boolean;
-  onClose?: () => void;
-  onSubmit?: (
-    title: string,
-    location: string,
-    description: string,
-    endDate: string,
-    startDate: string,
-    image: string,
-    url: string
-  ) => void;
+  isOpen: boolean;
+  modalMode: string;
+  changeCreateEventPopUpVisiblility: Function;
 }
 
-const CreateEvents: FC<ICreateEvents> = ({ isOpen, onClose, onSubmit }) => {
+const CreateEvents: FC<ICreateEvents> = ({
+  isOpen,
+  modalMode,
+  changeCreateEventPopUpVisiblility,
+}) => {
+  const { selectedEventId, events, postEvent, updateEvent } = useContext(
+    EventContext
+  ) as EventContextType;
   const [CreateTitle, setCreateTitle] = useState("");
   const [CreateLocation, setCreateLocation] = useState("");
   const [CreateStartDate, setCreateStartDate] = useState("");
   const [CreateEndDate, setCreateEndDate] = useState("");
   const [CreateDescription, setCreateDescription] = useState("");
   const [CreateImage, setCreateImage] = useState("");
+  const [currentEvent, setCurrentEvent] = useState<IEvent | {}>({});
+
+  useEffect(() => {
+    if (modalMode !== "CREATE") {
+      const eventDetails = events.find(
+        (e: IEvent) => e.eventId === selectedEventId
+      );
+      if (eventDetails) {
+        setCurrentEvent(eventDetails);
+        setCreateTitle(eventDetails.name);
+        setCreateStartDate(
+          new Date(eventDetails.startTime).toISOString().slice(0, 10)
+        );
+        setCreateEndDate(
+          new Date(eventDetails.endTime).toISOString().slice(0, 10)
+        );
+        setCreateLocation("");
+        setCreateDescription(eventDetails?.description || "");
+        setCreateURL("");
+      }
+    }
+  }, [events, modalMode, selectedEventId]);
 
   const handleCreateTitleChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -95,28 +119,44 @@ const CreateEvents: FC<ICreateEvents> = ({ isOpen, onClose, onSubmit }) => {
     return true;
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!isFormValid()) {
       return;
     }
-    onSubmit &&
-      onSubmit(
-        CreateTitle,
-        CreateLocation,
-        CreateDescription,
-        CreateEndDate,
-        CreateStartDate,
-        CreateImage,
-        CreateURL
-      );
+
+    if (modalMode === "CREATE") {
+      const postPayload: ICreateEventPayload = {
+        name: CreateTitle,
+        description: CreateDescription,
+        allowGuests: true,
+        bannerImg: CreateImage,
+        startTime: CreateStartDate,
+        endTime: CreateEndDate,
+        createdBy: "1",
+      };
+      await postEvent(postPayload);
+    } else {
+      const eventPayload: IEvent = {
+        name: CreateTitle,
+        eventId: selectedEventId,
+        description: CreateDescription,
+        allowGuests: true,
+        bannerImg: "bannerImg" in currentEvent ? currentEvent.bannerImg : "",
+        startTime: new Date(CreateStartDate).toISOString(),
+        endTime: new Date(CreateEndDate).toISOString(),
+        createdBy: "1",
+      };
+      await updateEvent(eventPayload, selectedEventId);
+    }
+
     setCreateTitle("");
     setCreateStartDate("");
     setCreateEndDate("");
     setCreateLocation("");
     setCreateDescription("");
     setCreateURL("");
-    onClose && onClose();
+    changeCreateEventPopUpVisiblility(false);
   };
 
   const handleClose = async () => {
@@ -131,7 +171,7 @@ const CreateEvents: FC<ICreateEvents> = ({ isOpen, onClose, onSubmit }) => {
       setCreateLocation("");
       setCreateDescription("");
       setCreateURL("");
-      onClose && onClose();
+      changeCreateEventPopUpVisiblility(false);
     }
   };
 
@@ -163,7 +203,9 @@ const CreateEvents: FC<ICreateEvents> = ({ isOpen, onClose, onSubmit }) => {
           className="bg-white rounded-md p-4 mx-auto mt-16 w-1/2"
         >
           <div className="relative flex items-center justify-center">
-            <p className="text-lg">Create Event | Event Types</p>
+            <p className="text-lg">
+              {modalMode === "CREATE" ? "Create" : "Update"} Event | Event Types
+            </p>
             <button
               onClick={handleClose}
               className="absolute bottom-4 right-2 text-lg font-semibold"
@@ -210,31 +252,27 @@ const CreateEvents: FC<ICreateEvents> = ({ isOpen, onClose, onSubmit }) => {
                 <div className="flex items-center space-x-4">
                   <div>
                     <input
-                      onChange={handleCreateTitleChange}
-                      value={CreateTitle}
-                      type="text"
-                      id="event_title"
-                      className="mr-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Title"
+                      type="radio"
+                      id="option1"
+                      name="options"
+                      value="Public"
+                      className="form-radio text-blue-600 h-4 w-4"
                     />
-
+                    <label htmlFor="option1" className="ml-2 inline">
+                      Public
+                    </label>
+                  </div>
+                  <div>
                     <input
-                      type="file"
-                      onChange={handleCreateImageChange}
-                      className="h-1/3 bg-slate-300"
-                      placeholder="Upload Image"
+                      type="radio"
+                      id="option2"
+                      name="options"
+                      value="Private"
+                      className="form-radio text-blue-600 h-4 w-4"
                     />
-
-                    <select
-                      onChange={handleCreateLocation}
-                      value={CreateLocation}
-                      id="countries"
-                      className="mr-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      <option selected>Choose a location</option>
-                      <option value="US">Experis</option>
-                      <option value="CA">Noroff</option>
-                    </select>
+                    <label htmlFor="option2" className="ml-2 inline">
+                      Private
+                    </label>
                   </div>
                 </div>
               </div>
@@ -266,20 +304,14 @@ const CreateEvents: FC<ICreateEvents> = ({ isOpen, onClose, onSubmit }) => {
                 </div>
                 <div></div>
               </div>
-              <div className="flex">
-                <input
-                  type="file"
-                  className="h-1/3 bg-slate-300"
-                  placeholder="Upload Image"
-                />
-              </div>
+              <div></div>
             </div>
-            <div className="flex mt-4">
-              <textarea
-                placeholder="Description"
-                value={CreateDescription}
-                onChange={handleCreateDescriptionChange}
-                className="w-full h-48 py-2 px-4 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500 resize-none"
+            <div className="flex">
+              <input
+                type="file"
+                className="h-1/3 bg-slate-300"
+                placeholder="Upload Image"
+                onChange={handleCreateImageChange}
               />
             </div>
           </div>
@@ -302,7 +334,10 @@ const CreateEvents: FC<ICreateEvents> = ({ isOpen, onClose, onSubmit }) => {
             />
           </div>
           <div className="flex justify-end">
-            <button type="submit">Publish Event</button>
+            <button type="submit">
+              {" "}
+              {modalMode === "CREATE" ? "Publish" : "Update"} Event
+            </button>
           </div>
         </form>
       }

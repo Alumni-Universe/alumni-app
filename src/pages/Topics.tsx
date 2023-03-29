@@ -1,10 +1,12 @@
-import { FC } from "react";
+import CreateTopicsModal from "../components/topics/CreateTopicsModal";
 
-const Topics: FC = () => {
+
+const Topics: React.FC = () => {
   return (
-    <div className="p-2">
-      <h2>TOPICS</h2>
-    </div>
+    <section className="p-4">
+      <h2 className="text-2xl mb-4">TOPICS</h2>
+      <CreateTopicsModal />
+    </section>
   );
 };
 

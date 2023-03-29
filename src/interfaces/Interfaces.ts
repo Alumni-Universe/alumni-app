@@ -48,8 +48,8 @@ export interface IEvent {
   description: string | null;
   allowGuests: boolean;
   bannerImg: string | null;
-  startTime: Date;
-  endTime: Date;
+  startTime: Date | string;
+  endTime: Date | string;
   createdBy: number | string;
   posts?: PostInfoDto[];
   rsvps?: RsvpInfoDto[];
@@ -61,6 +61,16 @@ export interface IEvent {
   // because they would create circular dependencies with other interfaces
   // and usually are not required when working with frontend data structures.
   // If needed, use more specific interfaces without circular dependencies.
+}
+
+export interface ICreateEventPayload {
+    name: string,
+    description: string;
+    allowGuests: boolean;
+    bannerImg: string;
+    startTime: Date | string;
+    endTime: Date | string,
+    createdBy: string;
 }
 
 export interface IPost {
