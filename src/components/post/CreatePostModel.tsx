@@ -21,13 +21,21 @@ const CreatePostModal: FC<CreatePostModalProps> = ({
   onSubmit,
 }) => {
   const { postPost } = useContext(PostContext) as PostContextType;
-  const { authenticatedUser } = useContext(AlumniUserContext) as AlumniUserContextType;
-  const { alumniGroups } = useContext(AlumniGroupContext) as AlumniGroupContextType;
+  const { authenticatedUser } = useContext(
+    AlumniUserContext
+  ) as AlumniUserContextType;
+  const { alumniGroups } = useContext(
+    AlumniGroupContext
+  ) as AlumniGroupContextType;
   const { topics } = useContext(TopicContext) as TopicContextType;
   const [postTitle, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
-  const [selectedGroup, setSelectedGroup] = useState(alumniGroups[0]?.groupId ?? null);
-  const [selectedTopic, setSelectedTopic] = useState(topics[0]?.topicId ?? null);
+  const [selectedGroup, setSelectedGroup] = useState(
+    alumniGroups[0]?.groupId ?? null
+  );
+  const [selectedTopic, setSelectedTopic] = useState(
+    topics[0]?.topicId ?? null
+  );
 
   const handlePostTitleChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -44,7 +52,7 @@ const CreatePostModal: FC<CreatePostModalProps> = ({
   const handleGroupChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedGroup(parseInt(event.target.value));
   };
-  
+
   const handleTopicChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedTopic(parseInt(event.target.value));
   };
@@ -60,7 +68,7 @@ const CreatePostModal: FC<CreatePostModalProps> = ({
     }
     const newPost: IPost = {
       postTitle: postTitle,
-      lastUpdated: new Date,
+      lastUpdated: new Date(),
       postMessage: postContent,
       postTarget: postTarget,
       senderId: authenticatedUser?.userId ?? "",
@@ -69,8 +77,11 @@ const CreatePostModal: FC<CreatePostModalProps> = ({
       targetGroup: selectedGroup ?? null,
       targetTopic: selectedTopic ?? null,
       targetEvent: null,
-      sender: { userId: authenticatedUser?.userId ?? "", name: authenticatedUser?.name ?? "" }
-    }
+      sender: {
+        userId: authenticatedUser?.userId ?? "",
+        name: authenticatedUser?.name ?? "",
+      },
+    };
     postPost(newPost);
     setPostTitle("");
     setPostContent("");
@@ -90,7 +101,12 @@ const CreatePostModal: FC<CreatePostModalProps> = ({
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl">Create a Post</h2>
           <div className="flex">
-            <label htmlFor="group-select" className="mr-1 font-semibold px-1 py-1">Groups:</label>
+            <label
+              htmlFor="group-select"
+              className="mr-1 font-semibold px-1 py-1"
+            >
+              Groups:
+            </label>
             <select
               value={selectedGroup}
               onChange={handleGroupChange}
@@ -102,7 +118,12 @@ const CreatePostModal: FC<CreatePostModalProps> = ({
                 </option>
               ))}
             </select>
-            <label htmlFor="topic-select" className="mr-1 font-semibold px-1 py-1">Topics:</label>
+            <label
+              htmlFor="topic-select"
+              className="mr-1 font-semibold px-1 py-1"
+            >
+              Topics:
+            </label>
             <select
               value={selectedTopic}
               onChange={handleTopicChange}

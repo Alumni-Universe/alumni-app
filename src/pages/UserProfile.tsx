@@ -58,7 +58,19 @@ const UserProfile = () => {
             />
           ))}
         </div>
-        <PostProvider postTitle={""} lastUpdated={new Date} postMessage={null} postTarget={""} senderId={""} replyParentId={null} targetUser={null} targetGroup={null} targetTopic={null} targetEvent={null} sender={{userId: "", name: ""}}>
+        <PostProvider
+          postTitle={""}
+          lastUpdated={new Date()}
+          postMessage={null}
+          postTarget={""}
+          senderId={""}
+          replyParentId={null}
+          targetUser={null}
+          targetGroup={null}
+          targetTopic={null}
+          targetEvent={null}
+          sender={{ userId: "", name: "" }}
+        >
           <CreatePostModal
             isOpen={isCreatePostModalOpen}
             onClose={toggleCreatePostModal}
