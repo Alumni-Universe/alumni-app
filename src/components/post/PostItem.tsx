@@ -1,8 +1,13 @@
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { IPost } from "../../interfaces/Interfaces";
 import { ChatIcon, ThumbUpIcon } from "@heroicons/react/outline";
 import { ThumbUpIcon as SolidThumbUpIcon } from "@heroicons/react/solid";
 import CommentList from "./../Comment/CommentList";
+import { PostContext } from "../../contexts/PostContext";
+import { PostContextType } from "../../types/PostContextType";
+import { PostReplyDto } from "../../interfaces/Dtos";
+import { AlumniUserContext } from "../../contexts/AlumniUserContext";
+import { AlumniUserContextType } from "../../types/AlumniUserContextType";
 
 const timeSince = (date: Date | string) => {
   const parsedDate = new Date(date);
@@ -46,12 +51,46 @@ const PostItem: FC<IPost> = ({
   targetUserNavigation,
   inverseReplyParent,
 }) => {
+  const { postPost } = useContext(PostContext) as PostContextType;
+  const { authenticatedUser } = useContext(AlumniUserContext) as AlumniUserContextType;
   const timeElapsed = timeSince(lastUpdated);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [showComments, setShowComments] = useState(false);
+  const [showReplyField, setShowReplyField] = useState(false);
+  const [postReply, setPostReply] = useState("");
+
+  const handlePostReplyChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setPostReply(event.target.value);
+  };
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
+  };
+
+  const toggleReplyField = () => {
+    setShowReplyField(!showReplyField);
+  };
+
+  const handleReply = () => {
+    const newReply: PostReplyDto = {
+      lastUpdated: new Date(),
+      postTitle: "",
+      postMessage: postReply,
+      postTarget: "post",
+      senderId: authenticatedUser?.userId ?? "",
+      replyParentId: postId ?? null,
+      targetUser: senderId,
+      targetGroup: null,
+      targetTopic: null,
+      targetEvent: null,
+      sender: {userId: authenticatedUser?.userId ?? "", name: authenticatedUser?.name ?? ""}
+    }
+    postPost(newReply);
+    setPostReply("");
+    // Send the reply to the database
+    // You can implement this function based on your application logic and backend API
   };
 
   // Add a new state variable called `liked` and a function to update it called `setLiked`
@@ -130,7 +169,10 @@ const PostItem: FC<IPost> = ({
               )}
               <span>Like</span>
             </button>
-            <button className="flex items-center text-gray-600 hover:text-blue-600 font-semibold space-x-1">
+            <button 
+              className="flex items-center text-gray-600 hover:text-blue-600 font-semibold space-x-1"
+              onClick={toggleReplyField}
+            >
               <ChatIcon className="h-5 w-5" />
               <span>Comment</span>
             </button>
@@ -145,6 +187,24 @@ const PostItem: FC<IPost> = ({
         </div>
       </div>
       {showComments && <CommentList comments={inverseReplyParent || []} />}
+      {showReplyField && (
+        <div className="p-2 border-t border-gray-200 relative">
+            <textarea
+              className="w-full border rounded p-2"
+              placeholder="Write a comment..."
+              rows={3}
+              maxLength={500}
+              value={postReply}
+              onChange={handlePostReplyChange}
+            ></textarea>
+            <button
+              className="bg-gray-400 text-white hover:text-blue-600 font-semibold px-4 py-2 rounded mt-2 absolute bottom-5 right-4"
+              onClick={handleReply}
+            >
+              Post
+            </button>
+          </div>
+      )}
     </article>
   );
 };

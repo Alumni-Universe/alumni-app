@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { PostReplyDto } from "../../interfaces/Dtos";
-import { IPost } from "../../interfaces/Interfaces";
 
 const timeSince = (date: Date | string) => {
   const parsedDate = new Date(date);

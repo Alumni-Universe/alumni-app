@@ -43,7 +43,7 @@ const HomeHeader: FC<HeaderProps> = ({
       : posts.filter(
           (post) =>
             post.postTitle
-              .toLowerCase()
+              ?.toLowerCase()
               .includes(searchInput.toLocaleLowerCase()) ||
             post.postMessage
               ?.toLowerCase()

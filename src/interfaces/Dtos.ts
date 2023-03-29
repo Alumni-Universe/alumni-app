@@ -21,7 +21,7 @@ export interface PostInfoDto {
   postTarget: string;
   senderId: string;
   replyParentId: number | null;
-  targetUser: number | null;
+  targetUser: string | null;
   targetGroup: number | null;
   targetTopic: number | null;
   targetEvent: number | null;
@@ -29,13 +29,14 @@ export interface PostInfoDto {
 }
 
 export interface PostReplyDto {
-  postId: number;
+  postId?: number;
+  postTitle?: string;
   lastUpdated: Date;
   postMessage: string | null;
   postTarget: string;
   senderId: string;
   replyParentId: number | null;
-  targetUser: number | null;
+  targetUser: string | null;
   targetGroup: number | null;
   targetTopic: number | null;
   targetEvent: number | null;

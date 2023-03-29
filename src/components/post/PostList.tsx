@@ -10,6 +10,7 @@ const PostList: FC = () => {
   const createPostList = () => {
     return posts
       .filter((p: IPost) => p.replyParentId === null)
+      .sort((a: IPost, b: IPost) => new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime())
       .map((p: IPost) => {
         return (
           <div key={p.postId}>
