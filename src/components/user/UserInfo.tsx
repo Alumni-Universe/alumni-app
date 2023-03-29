@@ -1,50 +1,75 @@
+import { FC, useContext } from "react";
+import { AlumniGroupContext } from "../../contexts/AlumniGroupContext";
+import { AlumniUserContext } from "../../contexts/AlumniUserContext";
+import { AlumniGroupInfoDto } from "../../interfaces/Dtos";
+import { IAlumniUser } from "../../interfaces/Interfaces";
+import { AlumniGroupContextType } from "../../types/AlumniGroupContextType";
+import { AlumniUserContextType } from "../../types/AlumniUserContextType";
 import Tab from "../shared/Tab";
 
-const InterestTab = [
-  {
-    title: "People",
-    content: <div>This is the content of Tab 1</div>,
-  },
-  {
-    title: "Groups",
-    content: <div>This is the content of Tab 2</div>,
-  },
+const UserInfoComponent: FC = () => {
+  const { alumniUsers, authenticatedUser } = useContext(AlumniUserContext) as AlumniUserContextType;
 
-  {
-    title: "Topics",
-    content: <div>This is the content of Tab 2</div>,
-  },
 
-  {
-    title: "People",
-    content: <div>This is the content of Tab 2</div>,
-  },
-];
+  const createGroupList = () => {
+    const user = alumniUsers.find((p: IAlumniUser) => p.userId === authenticatedUser?.userId);
+  
+    if (user && user.alumniGroups) {
+      return user.alumniGroups.map((group: AlumniGroupInfoDto) => (
+        <div key={group.groupId}>
+          <h4>{group.name}</h4>
+          <p>{group.description}</p>
+        </div>
+      ));
+    } else {
+      return <div>No groups found</div>;
+    }
+  };
 
-const ActivityTab = [
-  {
-    title: "Posts",
-    content: <div>This is the content of Tab 1</div>,
-  },
-  {
-    title: "Comments",
-    content: <div>This is the content of Tab 2</div>,
-  },
+  const InterestTab = [
+    {
+      title: "People",
+      content: <div>This is the content of Tab 1</div>,
+    },
+    {
+      title: "Groups",
+      content: <div>{createGroupList()}</div>,
+    },
+  
+    {
+      title: "Topics",
+      content: <div>This is the content of Tab 2</div>,
+    },
+  
+    {
+      title: "People",
+      content: <div>This is the content of Tab 2</div>,
+    },
+  ];
+  
+  const ActivityTab = [
+    {
+      title: "Posts",
+      content: <div>This is the content of Tab 1</div>,
+    },
+    {
+      title: "Comments",
+      content: <div>This is the content of Tab 2</div>,
+    },
+  
+    {
+      title: "Threads",
+      content: <div>This is the content of Tab 2</div>,
+    },
+  
+    {
+      title: "Events",
+      content: <div>This is the content of Tab 2</div>,
+    },
+  ];
 
-  {
-    title: "Threads",
-    content: <div>This is the content of Tab 2</div>,
-  },
-
-  {
-    title: "Events",
-    content: <div>This is the content of Tab 2</div>,
-  },
-];
-
-const UserInfoComponent = () => {
   return (
-    <div className="">
+    <div className="w-4/6 bg-white shadow-md p-2">
       <div className="user-name font-bold">
         <span>Øystein Opperud</span>
       </div>
