@@ -69,9 +69,21 @@ When running the code in Visual studio code, please don't forget to run `npm i` 
 **Creator 1**
 
 - <https://github.com/Tartarpaste>
+
+**Creator 2**
+
 - <https://github.com/bavelibrahim>
+
+**Creator 3**
+
 - <https://github.com/mago1234>
+
+**Creator 4**
+
 - <https://github.com/kboberg98>
+
+**Designer 1**
+
 - Diana Dejic (UX/UI Designer)
 
 In this project there were 4 developers and one UX/UI Designer
