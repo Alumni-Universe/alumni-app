@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   
-  <h3 align="center">Alumni Portal</h3>
+  <h3 align="center">Alumni Portal Frontend Repo</h3>
 
   <p align="center">
     A social media portal for Alumni Students.
@@ -11,9 +11,6 @@
     <br />
     <br />
     <a href="https://github.com/Alumni-Universe/AlumniNetworkApi">View Backend Repo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
   </p>
 </div>
