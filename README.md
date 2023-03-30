@@ -9,9 +9,7 @@
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Take a look at the User Manual »</strong></a>
     <br />
-    <br />
     <a href="https://github.com/Alumni-Universe/AlumniNetworkApi">View Backend Repo</a>
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
   </p>
 </div>
 
