@@ -88,7 +88,7 @@ const EventItem: React.FC<EventItemProps> = ({
           {eventDetails.users &&
             eventDetails.users.map((user) => {
               return (
-                <span className="ml-1 border-solid rounded-sm bg-sky-500 py-4 px-5">
+                <span className="ml-1 border-solid rounded-sm bg-sky-500 py-4 px-5" key={user.userId}>
                   {getInitials(user.name)}
                 </span>
               );

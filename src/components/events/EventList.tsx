@@ -23,7 +23,7 @@ const EventsList: FC<{
         events?.length &&
         events.map((ev) => {
           return (
-            <EventItem
+            <EventItem key={ev.eventId}
               eventDetails={{
                 id: ev.eventId || 0,
                 title: ev.name || "",

@@ -8,6 +8,8 @@ import { AlumniGroupContextType } from "../../types/AlumniGroupContextType";
 import { AlumniUserContextType } from "../../types/AlumniUserContextType";
 import { PostContextType } from "../../types/PostContextType";
 import { TopicContextType } from "../../types/TopicContextType";
+import ReactSelect from "react-select";
+import { components } from "react-select";
 
 interface CreatePostModalProps {
   isOpen: boolean;
@@ -20,22 +22,15 @@ const CreatePostModal: FC<CreatePostModalProps> = ({
   onClose,
   onSubmit,
 }) => {
+
   const { postPost } = useContext(PostContext) as PostContextType;
-  const { authenticatedUser } = useContext(
-    AlumniUserContext
-  ) as AlumniUserContextType;
-  const { alumniGroups } = useContext(
-    AlumniGroupContext
-  ) as AlumniGroupContextType;
+  const { authenticatedUser } = useContext(AlumniUserContext) as AlumniUserContextType;
+  const { alumniGroups } = useContext(AlumniGroupContext) as AlumniGroupContextType;
   const { topics } = useContext(TopicContext) as TopicContextType;
   const [postTitle, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
-  const [selectedGroup, setSelectedGroup] = useState(
-    alumniGroups[0]?.groupId ?? null
-  );
-  const [selectedTopic, setSelectedTopic] = useState(
-    topics[0]?.topicId ?? null
-  );
+  const [selectedGroup, setSelectedGroup] = useState(alumniGroups[0]?.groupId ?? null);
+  const [selectedTopic, setSelectedTopic] = useState(topics[0]?.topicId ?? null);
 
   const handlePostTitleChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -49,12 +44,36 @@ const CreatePostModal: FC<CreatePostModalProps> = ({
     setPostContent(event.target.value);
   };
 
-  const handleGroupChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedGroup(parseInt(event.target.value));
+  const handleGroupChange = (selectedOption: any) => {
+    setSelectedGroup(selectedOption.groupId);
+  };
+  
+  const handleTopicChange = (selectedOption: any) => {
+    setSelectedTopic(selectedOption.topicId);
   };
 
-  const handleTopicChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedTopic(parseInt(event.target.value));
+  const DropdownIndicator = (props: any) => {
+    return (
+      <components.DropdownIndicator {...props}>
+        <span>▼</span>
+      </components.DropdownIndicator>
+    );
+  };
+  
+  const Option = (props: any) => {
+    return (
+      <div>
+        <components.Option {...props}>
+          <input
+            className="px-2 mx-2"
+            type="radio"
+            checked={props.isSelected}
+            onChange={() => null} // We don't need to handle the change event here, react-select takes care of it.
+          />
+          <label>{props.label}</label>
+        </components.Option>
+      </div>
+    );
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -66,9 +85,11 @@ const CreatePostModal: FC<CreatePostModalProps> = ({
     } else if (selectedTopic) {
       postTarget = "topic";
     }
+    const now = new Date();
+    const nowUtc = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
     const newPost: IPost = {
       postTitle: postTitle,
-      lastUpdated: new Date(),
+      lastUpdated: nowUtc,
       postMessage: postContent,
       postTarget: postTarget,
       senderId: authenticatedUser?.userId ?? "",
@@ -101,40 +122,26 @@ const CreatePostModal: FC<CreatePostModalProps> = ({
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl">Create a Post</h2>
           <div className="flex">
-            <label
-              htmlFor="group-select"
-              className="mr-1 font-semibold px-1 py-1"
-            >
-              Groups:
-            </label>
-            <select
-              value={selectedGroup}
-              onChange={handleGroupChange}
-              className="border border-gray-300 rounded-lg px-2 py-1 mr-2"
-            >
-              {alumniGroups.map((group) => (
-                <option key={group.groupId} value={group.groupId}>
-                  {group.name}
-                </option>
-              ))}
-            </select>
-            <label
-              htmlFor="topic-select"
-              className="mr-1 font-semibold px-1 py-1"
-            >
-              Topics:
-            </label>
-            <select
-              value={selectedTopic}
-              onChange={handleTopicChange}
-              className="border border-gray-300 rounded-lg px-2 py-1"
-            >
-              {topics.map((topic) => (
-                <option key={topic.topicId} value={topic.topicId}>
-                  {topic.name}
-                </option>
-              ))}
-            </select>
+          <ReactSelect
+            className="w-40 mx-2"
+            placeholder="Groups"
+            value={alumniGroups.find((group) => group.groupId === selectedGroup)}
+            onChange={(group) => handleGroupChange(group)}
+            options={alumniGroups}
+            components={{ Option, DropdownIndicator }}
+            getOptionLabel={(group) => group.name}
+            getOptionValue={(group) => group.groupId.toString()}
+          />
+          <ReactSelect
+            className="w-40"
+            placeholder="Topics"
+            value={topics.find((topic) => topic.topicId === selectedTopic)}
+            onChange={(topic) => handleTopicChange(topic)}
+            options={topics}
+            components={{ Option, DropdownIndicator }}
+            getOptionLabel={(topic) => topic.name}
+            getOptionValue={(topic) => topic.topicId.toString()}
+          />
           </div>
         </div>
         <input

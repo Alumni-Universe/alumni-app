@@ -6,84 +6,31 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import UserInfoComponent from "../components/user/UserInfo";
 import { PostProvider } from "../contexts/PostContext";
-
-interface PostData {
-  id: number;
-  title: string;
-  content: string;
-}
+import UserHeader from "../components/user/UserHeader";
+import UserEventList from "../components/user/UserEventList";
 
 const UserProfile = () => {
-  const [isCreatePostModalOpen, setIsCreatePostModalOpen] = useState(false);
-  const [posts, setPosts] = useState<PostData[]>([]);
+  const [isCreatePostPopUpVisible, changeCreatePostPopUpVisiblility] = useState(false);
   const [date, setDate] = useState(new Date());
-
-  const toggleCreatePostModal = () => {
-    setIsCreatePostModalOpen(!isCreatePostModalOpen);
-  };
-
-  const handlePostSubmit = (title: string, content: string) => {
-    const newPost: PostData = {
-      id: Date.now(),
-      title,
-      content,
-    };
-    setPosts((prevPosts) => [newPost, ...prevPosts]);
-  };
-
-  const handleDeletePost = (postId: number) => {
-    setPosts(posts.filter((post) => post.id !== postId));
-  };
 
   const onDateChange = (newDate: Date | Date[]) => {
     setDate(newDate as Date);
   };
 
   return (
-    <div className="flex h-screen justify-center items-center p-2 ">
-      <div className="flex flex-col justify-center items-center bg-slate-100">
-        <Header
-          heading="Home"
-          headerBtnText="New Post"
-          isPopUpVisible={isCreatePostModalOpen}
-          changePopUpVisibility={toggleCreatePostModal}
+      <div className="p-2">
+        <UserHeader 
+        changeCreatePostPopUpVisiblility={changeCreatePostPopUpVisiblility}
+        isCreatePostPopUpVisible={isCreatePostPopUpVisible}
         />
-        <div className="px-5">
-          {posts.map((post) => (
-            <Post
-              key={post.id}
-              postTitle={post.title}
-              postContent={post.content}
-              onDelete={() => handleDeletePost(post.id)}
-            />
-          ))}
-        </div>
-        <PostProvider
-          postTitle={""}
-          lastUpdated={new Date()}
-          postMessage={null}
-          postTarget={""}
-          senderId={""}
-          replyParentId={null}
-          targetUser={null}
-          targetGroup={null}
-          targetTopic={null}
-          targetEvent={null}
-          sender={{ userId: "", name: "" }}
-        >
-          <CreatePostModal
-            isOpen={isCreatePostModalOpen}
-            onClose={toggleCreatePostModal}
-            onSubmit={handlePostSubmit}
-          />
-        </PostProvider>
-
-        <div className="calendar-container float-right flex">
+        <div className="flex w-full">
           <UserInfoComponent />
-          <Calendar value={date} onChange={onDateChange} />
+          <div className="w-2/6">
+            <Calendar className="mt-2 ml-7 shadow-lg p-2" value={date} onChange={onDateChange} />
+            <UserEventList />
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 
