@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { EventProvider } from "../../contexts/EventContext";
 import { IEvent } from "../../interfaces/Interfaces";
 import { EventService } from "../../services/EventService";
-import Header from "../Header";
 import Tab from "../shared/Tab";
 import CommentBox from "./CommentBox";
 import Comment from "./DeleteComment";
@@ -18,13 +17,13 @@ const EventView: FC = function () {
   const [event, setEvent] = useState<IEvent | undefined>(undefined);
   const [isCreateEventModalOpen, toggleEventModal] = useState(false);
 
-  const [modalMode, setModalMode] = useState('CREATE');
+  const [modalMode, setModalMode] = useState("CREATE");
 
+  /*
   const toggleCreateEventModal = () => {
     toggleEventModal(!isCreateEventModalOpen);
   };
-
-
+  */
 
   const getEventDetail = useCallback(
     async function () {
@@ -84,9 +83,7 @@ const EventView: FC = function () {
 
   return (
     <div>
-
-      
-<EventProvider
+      <EventProvider
         eventId={0}
         name={""}
         description={null}
@@ -103,31 +100,31 @@ const EventView: FC = function () {
           setModalMode={setModalMode}
         />
 
-      <div className="flex flex-col ml-7 mt-4">
-        <div className="flex justify-between">
-          <div className="flex content-between flex-col mt-4">
-            <h2 className="text-2xl font-bold">{event?.name}</h2>
+        <div className="flex flex-col ml-7 mt-4">
+          <div className="flex justify-between">
+            <div className="flex content-between flex-col mt-4">
+              <h2 className="text-2xl font-bold">{event?.name}</h2>
 
-            <p>
-              {new Date(event?.startTime || new Date()).toLocaleString()} -{" "}
-              {new Date(event?.endTime || new Date()).toLocaleString()}
-            </p>
-            <p>{event?.users?.length || 0} Attendies</p>
-            <div className="flex flex-row mt-5">
-              <button className="ml-3 bg-sky-300 px-4 py-2">Attend</button>
-              <button className="ml-3 bg-slate-300 px-4 py-2">Share</button>
+              <p>
+                {new Date(event?.startTime || new Date()).toLocaleString()} -{" "}
+                {new Date(event?.endTime || new Date()).toLocaleString()}
+              </p>
+              <p>{event?.users?.length || 0} Attendies</p>
+              <div className="flex flex-row mt-5">
+                <button className="ml-3 bg-sky-300 px-4 py-2">Attend</button>
+                <button className="ml-3 bg-slate-300 px-4 py-2">Share</button>
+              </div>
+            </div>
+            <div className="w-80">
+              <img alt="banner" src={event?.bannerImg || ""} />
             </div>
           </div>
-          <div className="w-80">
-            <img alt="banner" src={event?.bannerImg || ""} />
+          <div>
+            <Tab heading="" tabs={EventTab} />
           </div>
+          <div></div>
+          <div></div>
         </div>
-        <div>
-          <Tab heading="" tabs={EventTab} />
-        </div>
-        <div></div>
-        <div></div>
-      </div>
       </EventProvider>
     </div>
   );
