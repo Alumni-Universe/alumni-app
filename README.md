@@ -32,11 +32,16 @@ You need to have a few tools installed to be able to run the frontend.
 Earlier it is mentioned that React was used in this project therefore we need the tools for installation and we also need to install the libraries. 
 To install React we need npm and Node.js, this can be done through here: [Download npm and Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-Lastly we need to install the React Libraries that were used in this project. These were installed through the command line.
+Lastly we need to install the important Libraries that were used in this project. These were installed through the command line.
 
 `npm install react`
+`npm i keycloak-js`
 
-and other necessary libraries used within react.
+However, these will be taken care of (and the other libraries) by running this command alone:
+
+`npm install`
+
+Please keep in mind that you need to have npm and node.js installed and ready to be able to run these commands, and make sure you are in the working directory while running these commands.
 
 ### Tools Used
 
@@ -48,6 +53,7 @@ Tools that were used in this project:
 - [TypeScript](https://www.typescriptlang.org/)
 - [Google Chrome](https://www.google.com/chrome/?brand=YTUH&gclid=EAIaIQobChMIxITDhrrv_AIVIwjmCh0xXw1eEAAYASAAEgKHW_D_BwE&gclsrc=aw.ds)
 - [Keycloak Authentication](https://www.keycloak.org/)
+- [TailwindCSS](https://tailwindcss.com/)
 
 ## Installation
 
