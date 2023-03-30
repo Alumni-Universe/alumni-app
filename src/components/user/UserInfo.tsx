@@ -43,7 +43,7 @@ const UserInfoComponent: FC = () => {
         </div>
       ));
     } else {
-      return <div>No groups found</div>;
+      return <p>No groups found</p>;
     }
   };
 
@@ -57,7 +57,7 @@ const UserInfoComponent: FC = () => {
         </div>
       ));
     } else {
-      return <div>No topics found</div>;
+      return <p>No topics found</p>;
     }
   };
 
@@ -72,7 +72,7 @@ const UserInfoComponent: FC = () => {
         </div>
       ));
     } else {
-      return <div>No posts found</div>;
+      return <p>No posts found</p>;
     }
   };
 
@@ -87,7 +87,7 @@ const UserInfoComponent: FC = () => {
         </div>
       ));
     } else {
-      return <div>No comments found</div>;
+      return <p>No comments found</p>;
     }
   };
 
@@ -117,10 +117,10 @@ const UserInfoComponent: FC = () => {
   return (
     <div className="w-4/6 bg-white shadow-md p-2">
       <div className="user-name font-bold my-1">
-        <span>{authenticatedUser?.name}</span>
+        <p>{authenticatedUser?.name}</p>
       </div>
       <div className="user-current-status font-bold my-1">
-        <span>{authenticatedUser?.status}</span>
+        <p>{authenticatedUser?.status}</p>
       </div>
       <div className="user-location font-light my-1">
       <label className="bio-bold font-bold">Fun fact</label>
