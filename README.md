@@ -23,7 +23,6 @@ The goal of the Alumni web application is to provide an environment for Alumni s
 
 ## Getting Started
 
-Since the application is made with React and .NET it is necessary to download the required libraries and tools
 The Web Applciation is made with React and Typescript on the frontend, together with ASP .NET on the backend. The web app can be deployed further in Azure and will be able to integrate such that the frontend repo is available with the backend repo: [Backend Repo](https://github.com/Alumni-Universe/AlumniNetworkApi)
 
 ### Prerequisites
