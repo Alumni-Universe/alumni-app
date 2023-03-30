@@ -1,8 +1,10 @@
 import { CalendarIcon } from "@heroicons/react/outline";
 import { FC, SetStateAction, useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { EventContext } from "../../contexts/EventContext";
 import { EventContextType } from "../../types/EventContextType";
 import CreateEvents from "./CreateEventsModal";
+import InviteUsersModal from "./InviteUsersModal";
 
 interface HeaderProps {
   isCreateEventPopUpVisible: boolean;
@@ -17,14 +19,19 @@ const EventsHeader: FC<HeaderProps> = ({
   modalMode,
   setModalMode,
 }) => {
-  const { events, setSelectedEventId } = useContext(
-    EventContext
-  ) as EventContextType;
+  
+  const location = useLocation ();
+  const { events, setSelectedEventId } = useContext(EventContext) as EventContextType;
   const [filteredEvents, setFilteredEvents] = useState(events);
+  const [isSearchVisible, setIsSearchVisible] = useState(true);
 
   useEffect(() => {
     setFilteredEvents(events);
   }, [events]);
+
+  useEffect(() => {
+    if (!location.pathname.includes('events')) setIsSearchVisible(false);
+  }, [location]);
 
   const [searchInput, setSearchInput] = useState("");
   const openCreateEventModal = () => {
@@ -80,6 +87,27 @@ const EventsHeader: FC<HeaderProps> = ({
     return null;
   };
 
+  const getPopUpModal = () => {
+    let popUpComponent;
+    if(isSearchVisible) {
+        popUpComponent = (
+          <CreateEvents
+          isOpen={isCreateEventPopUpVisible}
+          modalMode={modalMode}
+          changeCreateEventPopUpVisiblility={changeCreateEventPopUpVisiblility}
+        />
+        );
+    }else {
+       popUpComponent = (
+        <InviteUsersModal
+        isOpen={isCreateEventPopUpVisible}
+        changeCreateEventPopUpVisiblility={changeCreateEventPopUpVisiblility}
+      />
+       );
+    }
+    return popUpComponent;
+    }
+
   return (
     <>
       <header className="bg-white shadow-md p-4 flex justify-between items-center">
@@ -91,27 +119,26 @@ const EventsHeader: FC<HeaderProps> = ({
           className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
           onClick={openCreateEventModal}
         >
-          Create
+          {isSearchVisible ? 'Create' : 'Invite'}
         </button>
       </header>
       <hr className="mb-2" />
-      <div className="relative w-full bg-white shadow-md">
-        <input
-          value={searchInput}
-          onChange={handleChange}
-          type="text"
-          placeholder="Search Here"
-          className="form-control w-full p-2"
-          aria-describedby="basic-addon2"
-        />
-        {renderSearchResults()}
-      </div>
+      {
+      (isSearchVisible && <div className="relative w-full bg-white shadow-md">
+      <input
+        value={searchInput}
+        onChange={handleChange}
+        type="text"
+        placeholder="Search Here"
+        className="form-control w-full p-2"
+        aria-describedby="basic-addon2"
+      />
+      {renderSearchResults()}
+    </div>)
+      }
+
       {isCreateEventPopUpVisible && (
-        <CreateEvents
-          isOpen={isCreateEventPopUpVisible}
-          modalMode={modalMode}
-          changeCreateEventPopUpVisiblility={changeCreateEventPopUpVisiblility}
-        />
+       getPopUpModal() 
       )}
     </>
   );
