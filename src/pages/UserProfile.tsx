@@ -24,7 +24,7 @@ const UserProfile = () => {
         <UserInfoComponent />
         <div className="w-2/6">
           <Calendar
-            className="mt-2 ml-7 shadow-lg p-2"
+            className="mt-1 ml-2 shadow-lg"
             value={date}
             onChange={onDateChange}
           />

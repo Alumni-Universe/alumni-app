@@ -53,4 +53,5 @@ export interface RsvpInfoDto {
 export interface TopicInfoDto {
   topicId: number;
   name: string;
+  description: string;
 }

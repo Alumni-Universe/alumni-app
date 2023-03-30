@@ -29,7 +29,7 @@ export interface IAlumniUser {
   funFact: string | null;
   alumniGroups?: AlumniGroupInfoDto[];
   events?: EventInfoDto[];
-  postSenders?: string[];
+  postSenders?: PostInfoDto[];
   postTargetUserNavigations?: string[];
   rsvps?: RsvpInfoDto[];
   eventsNavigation?: string[];

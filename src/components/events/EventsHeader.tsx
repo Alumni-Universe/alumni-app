@@ -116,7 +116,7 @@ const EventsHeader: FC<HeaderProps> = ({
           <h2 className="text-xl font-semibold text-gray-700">Events</h2>
         </div>
         <button
-          className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
+          className="bg-white text-gray-600 border border-gray-600 py-2 px-4 hover:bg-gray-100 flex items-center"
           onClick={openCreateEventModal}
         >
           {isSearchVisible ? 'Create' : 'Invite'}

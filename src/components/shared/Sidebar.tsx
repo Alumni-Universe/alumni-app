@@ -54,7 +54,7 @@ const Sidebar: FC = () => {
         </li>
       </ul>
       <div className="flex flex-row items-center fixed bottom-2 left-0">
-        <img src={noroffLogo} className="w-10 h-10 mt-2 mr-2" alt="logo" />
+        <img src={noroffLogo} className="w-10 h-10 mt-2 mr-2 ml-2" alt="logo" />
         <span className="sidebar-heading text-m">
           <Link to={"/user"}>{authenticatedUser?.name}</Link>
         </span>
