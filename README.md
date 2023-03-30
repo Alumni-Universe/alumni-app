@@ -62,7 +62,7 @@ clone the repo like this:
 
 It is also possible to download the repo as a .zip.
 
-When running the code in Visual studio code, please don't forget to run `npm i` or `npm install` to install the necessary packages.
+When running the code in Visual studio code, please don't forget to run `npm i` or `npm install` to install the necessary packages. It is also crucial to keep in mind that the project will not run properly without the backend repo - It is recommended to set up the backend before working on the frontend.
 
 ## Creators
 
