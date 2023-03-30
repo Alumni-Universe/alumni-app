@@ -1,19 +1,20 @@
 import { FC, useContext } from "react";
-import { AlumniGroupContext } from "../../contexts/AlumniGroupContext";
 import { AlumniUserContext } from "../../contexts/AlumniUserContext";
 import { AlumniGroupInfoDto } from "../../interfaces/Dtos";
 import { IAlumniUser } from "../../interfaces/Interfaces";
-import { AlumniGroupContextType } from "../../types/AlumniGroupContextType";
 import { AlumniUserContextType } from "../../types/AlumniUserContextType";
 import Tab from "../shared/Tab";
 
 const UserInfoComponent: FC = () => {
-  const { alumniUsers, authenticatedUser } = useContext(AlumniUserContext) as AlumniUserContextType;
-
+  const { alumniUsers, authenticatedUser } = useContext(
+    AlumniUserContext
+  ) as AlumniUserContextType;
 
   const createGroupList = () => {
-    const user = alumniUsers.find((p: IAlumniUser) => p.userId === authenticatedUser?.userId);
-  
+    const user = alumniUsers.find(
+      (p: IAlumniUser) => p.userId === authenticatedUser?.userId
+    );
+
     if (user && user.alumniGroups) {
       return user.alumniGroups.map((group: AlumniGroupInfoDto) => (
         <div key={group.groupId}>
@@ -35,18 +36,18 @@ const UserInfoComponent: FC = () => {
       title: "Groups",
       content: <div>{createGroupList()}</div>,
     },
-  
+
     {
       title: "Topics",
       content: <div>This is the content of Tab 2</div>,
     },
-  
+
     {
       title: "People",
       content: <div>This is the content of Tab 2</div>,
     },
   ];
-  
+
   const ActivityTab = [
     {
       title: "Posts",
@@ -56,12 +57,12 @@ const UserInfoComponent: FC = () => {
       title: "Comments",
       content: <div>This is the content of Tab 2</div>,
     },
-  
+
     {
       title: "Threads",
       content: <div>This is the content of Tab 2</div>,
     },
-  
+
     {
       title: "Events",
       content: <div>This is the content of Tab 2</div>,

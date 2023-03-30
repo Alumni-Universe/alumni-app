@@ -4,8 +4,6 @@ import { PlusIcon } from "@heroicons/react/solid";
 import CreatePostModal from "../post/CreatePostModel";
 import { PostContextType } from "../../types/PostContextType";
 import { PostContext } from "../../contexts/PostContext";
-import { AlumniGroupProvider } from "../../contexts/AlumniGroupContext";
-import { TopicProvider } from "../../contexts/TopicContext";
 
 interface HeaderProps {
   isCreatePostPopUpVisible?: boolean;
@@ -80,7 +78,7 @@ const HomeHeader: FC<HeaderProps> = ({
             </div>
           ))}
           <div className="px-4 py-3 bg-gray-100 text-black font-semibold">
-          {filteredPosts.length} Result{filteredPosts.length > 1 ? 's' : ''}
+            {filteredPosts.length} Result{filteredPosts.length > 1 ? "s" : ""}
           </div>
         </div>
       );
@@ -101,7 +99,7 @@ const HomeHeader: FC<HeaderProps> = ({
         >
           New Post
           <span>
-            <PlusIcon className="h-4 w-4 ml-4 text-black"/>
+            <PlusIcon className="h-4 w-4 ml-4 text-black" />
           </span>
         </button>
       </header>

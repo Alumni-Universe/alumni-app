@@ -1,11 +1,7 @@
-import { FC, SetStateAction, useContext, useEffect, useState } from "react";
+import { FC } from "react";
 import { HomeIcon } from "@heroicons/react/outline";
 import { PlusIcon } from "@heroicons/react/solid";
 import CreatePostModal from "../post/CreatePostModel";
-import { PostContextType } from "../../types/PostContextType";
-import { PostContext } from "../../contexts/PostContext";
-import { AlumniGroupProvider } from "../../contexts/AlumniGroupContext";
-import { TopicProvider } from "../../contexts/TopicContext";
 
 interface UserProps {
   isCreatePostPopUpVisible?: boolean;
